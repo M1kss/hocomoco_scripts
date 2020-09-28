@@ -33,7 +33,7 @@ def main(peaks, genome, out_file_name):
         genome_nucleotides_dict[chr_name] = np.zeros(ChromPos.chrs[chr_name], np.int8)
 
     for index, row in peaks_df.iterrows():
-        start_end_positions_queues[row['CHR']].append({'start': row['START'], 'end': row['END']})
+        start_end_positions_queues[row['#CHR']].append({'start': row['START'], 'end': row['END']})
 
     p = 0
     skip_to_next_chr = False
