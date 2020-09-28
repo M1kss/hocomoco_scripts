@@ -44,7 +44,7 @@ def main(peak_file_name, peak_type, out_path):
     elif peak_type == 'macs2' or peak_type == 'macs2-nomodel':
         peak_df['SUMMIT'] = peak_df['abs_summit'] - peak_df['START']
 
-    peak_df['CHR'] = 'chr' + peak_df['#CHROM']
+    peak_df['CHR'] = peak_df['#CHROM'].apply(lambda x: 'chr' + x)
     peak_df = peak_df[peak_df.apply(check_row, axis=1)]
     if peak_df.empty:
         print('empty peaks, {}'.format(peak_file_name))
