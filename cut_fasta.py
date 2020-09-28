@@ -22,7 +22,7 @@ def main(peaks, genome, out_file_name):
     start_end_positions_queues = dict()
     genome_nucleotides_dict = dict()
 
-    peaks_df = pd.read_table(peaks, header=['#CHR', 'START', 'END', 'SUMMIT'])
+    peaks_df = pd.read_table(peaks, names=['#CHR', 'START', 'END', 'SUMMIT'])
 
     if peaks_df.empty:
         print('empty peaks, {}'.format(peaks))
