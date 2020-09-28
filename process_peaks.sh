@@ -4,7 +4,7 @@ out_path=$2
 genome=$3
 peaks_name=$(basename $peaks_path)
 
-if ! [ -d $peaks_path ]
+if ! [ -d $peaks_path ];
 then
   echo "Peaks have not been downloaded $peaks_path"
   exit 0
