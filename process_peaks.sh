@@ -1,7 +1,7 @@
 
-peaks_path=$1
-out_path=$2
-genome=$3
+peaks_path=$3
+out_path=$1
+genome=$2
 peaks_name=$(basename $peaks_path)
 
 if ! [ -d $peaks_path ];

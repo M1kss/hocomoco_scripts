@@ -1,5 +1,6 @@
 import pandas as pd
 import sys
+import os
 
 chr_l = [248956422, 242193529, 198295559, 190214555, 181538259, 170805979, 159345973,
          145138636, 138394717, 133797422, 135086622, 133275309, 114364328, 107043718,
@@ -52,4 +53,4 @@ def main(peak_file_name, peak_type, out_path):
 
 
 if __name__ == '__main__':
-    main(peak_file_name=sys.argv[1], peak_type=sys.argv[2], out_path=sys.argv[3])
+    main(peak_file_name=os.path.expanduser(sys.argv[1]), peak_type=sys.argv[2], out_path=os.path.expanduser(sys.argv[3]))

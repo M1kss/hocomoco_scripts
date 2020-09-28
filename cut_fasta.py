@@ -2,6 +2,7 @@ import sys
 import numpy as np
 import pandas as pd
 from collections import deque
+import os
 
 chr_l = [248956422, 242193529, 198295559, 190214555, 181538259, 170805979, 159345973,
          145138636, 138394717, 133797422, 135086622, 133275309, 114364328, 107043718,
@@ -111,4 +112,4 @@ def main(peaks, genome, out_file_name):
 
 
 if __name__ == '__main__':
-    main(genome=sys.argv[1], peaks=sys.argv[2], out_file_name=sys.argv[3])
+    main(genome=os.path.expanduser(sys.argv[1]), peaks=os.path.expanduser(sys.argv[2]), out_file_name=os.path.expanduser(sys.argv[3]))

@@ -17,4 +17,4 @@ fi
 
 
 
-parallel --jobs $njobs bash process_peaks.sh :::: $peaks_list $out_path $genome
+parallel --jobs $njobs bash process_peaks.sh $out_path $genome :::: $peaks_list
