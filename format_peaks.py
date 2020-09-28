@@ -24,7 +24,7 @@ peaks_types = {
 
 
 def check_row(df_row):
-    return (df_row['CHR'] in ChromPos.chrs) and df_row['START'] > 0 and df_row['END'] > 0
+    return (df_row['#CHR'] in ChromPos.chrs) and df_row['START'] > 0 and df_row['END'] > 0
 
 
 def main(peak_file_name, peak_type, out_path):
