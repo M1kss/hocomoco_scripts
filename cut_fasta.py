@@ -106,10 +106,10 @@ def main(peaks, genome_file_name, out_file_name):
                     if next_start <= p <= next_end:
                         genome_nucleotides_dict[chr][p] = num.get(sym.lower(), 5)
 
-        with open(out_file_name, 'w') as out:
-            for index, row in peaks_df.iterrows():
-                out.write('> {}\n'.format(row['SUMMIT']))
-                out.write(''.join([nuc[genome_nucleotides_dict[row['#CHR']][i]] for i in range(row['START'], row['END'] + 1)]) + '\n')
+    with open(out_file_name, 'w') as out:
+        for index, row in peaks_df.iterrows():
+            out.write('> {}\n'.format(row['SUMMIT']))
+            out.write(''.join([nuc[genome_nucleotides_dict[row['#CHR']][i]] for i in range(row['START'], row['END'] + 1)]) + '\n')
 
 
 if __name__ == '__main__':
