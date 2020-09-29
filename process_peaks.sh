@@ -13,7 +13,7 @@ fi
 for peak_dir in $peaks_path/*
 do
   peak_type=$(basename $peak_dir)
-  for score_type in "score pvalue"
+  for score_type in score pvalue
   do
     if [ $peak_type == "cpics" ] && [ $score_type == 'pvalue' ]
     then
