@@ -29,7 +29,7 @@ do
       continue
     fi
 
-    java -Xmx4G -cp chipmunk.jar ru.autosome.di.ChIPHorde 7:22,7:22 f c 1.0 m:$out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 400 40 1 2 random auto single 1>$out_path/results/${peaks_name}.${peak_type}.${score_type}.single.out 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.single.log
-    java -Xmx4G -cp chipmunk.jar ru.autosome.di.ChIPHorde 22:7,22:7 f c 1.0 m:$out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 400 40 1 2 random auto 1>$out_path/results/${peaks_name}.${peak_type}.${score_type}.flat.out 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.flat.log
+    java -Xmx4G -cp ~/chipmunk.jar ru.autosome.di.ChIPHorde 7:22,7:22 f c 1.0 m:$out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 400 40 1 2 random auto single 1>$out_path/results/${peaks_name}.${peak_type}.${score_type}.single.out 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.single.log
+    java -Xmx4G -cp ~/chipmunk.jar ru.autosome.di.ChIPHorde 22:7,22:7 f c 1.0 m:$out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 400 40 1 2 random auto 1>$out_path/results/${peaks_name}.${peak_type}.${score_type}.flat.out 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.flat.log
   done
 done
