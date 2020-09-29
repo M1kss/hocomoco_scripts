@@ -44,36 +44,47 @@ def main(peak_file_name, peak_type, score_type, out_path):
         if peak_type == 'cpics':
             assert score_type == 'score'
             peak_df['SCORE'] = peak_df['score']
+            peak_df['SCORE2'] = peak_df['score']
         elif peak_type == 'sissrs':
             if score_type == 'score':
                 peak_df['SCORE'] = peak_df['NumTags']
+                peak_df['SCORE2'] = peak_df['p-value']
             elif score_type == 'pvalue':
                 peak_df['SCORE'] = peak_df['p-value']
+                peak_df['SCORE2'] = peak_df['NumTags']
     elif peak_type == 'macs':
         peak_df['SUMMIT'] = peak_df['summit']
         if score_type == 'score':
             peak_df['SCORE'] = peak_df['tags']
+            peak_df['SCORE2'] = peak_df['-10*log10(pvalue)']
         elif score_type == 'pvalue':
             peak_df['SCORE'] = peak_df['-10*log10(pvalue)']
+            peak_df['SCORE2'] = peak_df['tags']
     elif peak_type == 'gem':
         peak_df['SUMMIT'] = peak_df['END']
         peak_df['START'] = peak_df['START'].apply(lambda x: max(x - 150, 0))
         peak_df['END'] = peak_df['END'] + 150
         if score_type == 'score':
             peak_df['SCORE'] = peak_df['IP']
+            peak_df['SCORE2'] = peak_df['P_-lg10']
         elif score_type == 'pvalue':
             peak_df['SCORE'] = peak_df['P_-lg10']
+            peak_df['SCORE2'] = peak_df['IP']
     elif peak_type == 'macs2' or peak_type == 'macs2-nomodel':
         peak_df['SUMMIT'] = peak_df['abs_summit'] - peak_df['START']
         if score_type == 'score':
             peak_df['SCORE'] = peak_df['pileup']
+            peak_df['SCORE2'] = peak_df['-log10(pvalue)']
         elif score_type == 'pvalue':
             peak_df['SCORE'] = peak_df['-log10(pvalue)']
+            peak_df['SCORE2'] = peak_df['pileup']
 
     peak_df['#CHR'] = peak_df['#CHROM'].apply(lambda x: 'chr' + str(x))
     peak_df = peak_df[peak_df.apply(check_row, axis=1)]
-    score_tr = peak_df.sort_values('SCORE', ascending=False)['SCORE'][min(len(peak_df.index) - 1, 999)]
-    peak_df_trunc = peak_df[peak_df['SCORE'] >= score_tr]
+    sorted_df = peak_df.sort_values(['SCORE', 'SCORE2'], ascending=False).reset_index(drop=True)
+    tr_1 = sorted_df['SCORE'][min(len(peak_df.index) - 1, 999)]
+    tr_2 = sorted_df['SCORE2'][min(len(peak_df.index) - 1, 999)]
+    peak_df_trunc = peak_df[(peak_df['SCORE'] > tr_1) | ((peak_df['SCORE'] == tr_1) & (peak_df['SCORE2'] >= tr_2))]
     if peak_df.empty:
         print('empty peaks, {}'.format(peak_file_name))
         exit(1)
