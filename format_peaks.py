@@ -72,12 +72,12 @@ def main(peak_file_name, peak_type, score_type, out_path):
 
     peak_df['#CHR'] = peak_df['#CHROM'].apply(lambda x: 'chr' + str(x))
     peak_df = peak_df[peak_df.apply(check_row, axis=1)]
-    score_tr = peak_df.sort_values('SCORE', ascending=False)['SCORE'][999]
-    peak_df = peak_df[peak_df['SCORE'] >= score_tr]
+    score_tr = peak_df.sort_values('SCORE', ascending=False)['SCORE'][min(len(peak_df.index) - 1, 999)]
+    peak_df_trunc = peak_df[peak_df['SCORE'] >= score_tr]
     if peak_df.empty:
         print('empty peaks, {}'.format(peak_file_name))
         exit(1)
-    peak_df[['#CHR', 'START', 'END', 'SUMMIT']].to_csv(out_path, sep='\t', index=False)
+    peak_df_trunc[['#CHR', 'START', 'END', 'SUMMIT']].to_csv(out_path, sep='\t', index=False)
 
 
 if __name__ == '__main__':
