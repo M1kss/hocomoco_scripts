@@ -1,15 +1,16 @@
+#!/bin/bash
 
-peaks_path=$3
 out_path=$1
 genome=$2
-peaks_name=$(basename $peaks_path)
+peaks_path="/home/boytsov/hocomoco-peaks/"$3
 
-if ! [ -d $peaks_path ];
+ls $peaks_path
+if [ ! -d "$peaks_path" ]
 then
   echo "Peaks have not been downloaded $peaks_path"
   exit 0
 fi
-
+peaks_name=$(basename $peaks_path)
 for peak_dir in $peaks_path/*
 do
   peak_type=$(basename $peak_dir)
@@ -29,7 +30,7 @@ do
       continue
     fi
 
-    java -Xmx4G -cp ~/chipmunk.jar ru.autosome.di.ChIPHorde 7:28,7:28 f c 1.0 m:$out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 400 40 1 2 random auto single 1>$out_path/results/${peaks_name}.${peak_type}.${score_type}.single.out 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.single.log
-    java -Xmx4G -cp ~/chipmunk.jar ru.autosome.di.ChIPHorde 28:7,28:7 f c 1.0 m:$out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 400 40 1 2 random auto 1>$out_path/results/${peaks_name}.${peak_type}.${score_type}.flat.out 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.flat.log
+    java -Xmx4G -cp ~/chipmunk.jar ru.autosome.ChIPHorde 13:23,13:23 f c 1.0 m:$out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 100 10 1 2 random auto single 1>$out_path/results/${peaks_name}.${peak_type}.${score_type}.single.out 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.single.log
+    java -Xmx4G -cp ~/chipmunk.jar ru.autosome.ChIPHorde 23:13,23:13 f c 1.0 m:$out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 100 10 1 2 random auto 1>$out_path/results/${peaks_name}.${peak_type}.${score_type}.flat.out 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.flat.log
   done
 done
