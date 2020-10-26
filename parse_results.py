@@ -15,13 +15,14 @@ for file in os.listdir(outputs_dir):
             key, value = line.strip('\n').split('|')
             parsed_output.append((key, value))
     A = [value for key, value in parsed_output if key == 'A']
+    C = [value for key, value in parsed_output if key == 'C']
+    G = [value for key, value in parsed_output if key == 'G']
+    T = [value for key, value in parsed_output if key == 'T']
     if len(A) == 0:
         assert len(parsed_output) == 0
         continue
-    A0 = A[0]
-    try:
-        for a in A:
-            assert a == A0
-    except AssertionError:
-        print(A)
-        raise
+    ACGT = list(zip(A, C, G, T))
+    for i, quad in enumerate(ACGT):
+        if quad in ACGT[:i]:
+            assert len(ACGT) == 2*i
+            break
