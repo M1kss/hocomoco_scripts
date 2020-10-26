@@ -17,6 +17,7 @@ for file in os.listdir(outputs_dir):
     A = [value for key, value in parsed_output if key == 'A']
     if len(A) == 0:
         assert len(parsed_output) == 0
+        continue
     A0 = A[0]
     try:
         for a in A:
