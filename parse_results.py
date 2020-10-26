@@ -3,11 +3,12 @@ import json
 
 def get_time(time):
     if time < 60:
-        return str(time) + 's'
+        return str(round(time)) + 's'
     elif time < 3600:
         return str(round(time / 60)) + 'm'
     else:
         return str(round(time / 3600)) + 'h'
+
 
 results_dir = os.path.expanduser('~/results_SP1/')
 outputs_dir = os.path.join(results_dir, 'results')
@@ -45,8 +46,8 @@ for file in os.listdir(outputs_dir):
         })
         continue
     ACGT = list(zip(A, C, G, T))
-    TIME = [int(value) for key, value in parsed_output if key == 'TIME'][-1]
-    time = get_time(time)
+    TIME = [float(value) for key, value in parsed_output if key == 'TIME'][-1]
+    time = get_time(TIME)
     for i, quad in enumerate(ACGT):
         if quad in ACGT[:i]:
             assert len(ACGT) == 2*i
