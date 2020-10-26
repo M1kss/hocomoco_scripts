@@ -43,6 +43,7 @@ for file in os.listdir(outputs_dir):
             'motif_len': None,
             'diag': DIAG,
             'time': None,
+            'pcm_path': None,
         })
         continue
     ACGT = list(zip(A, C, G, T))
@@ -54,7 +55,8 @@ for file in os.listdir(outputs_dir):
             ACGT = ACGT[:i]
             break
     for k, quad in enumerate(ACGT):
-        with open(os.path.join(pcms_dir, '{}.{}.pcm'.format(file[:-4], k)), 'w') as pcm:
+        pcm_path = os.path.join(pcms_dir, '{}.{}.pcm'.format(file[:-4], k))
+        with open(pcm_path, 'w') as pcm:
             pcm.write('>{}.{}'.format(file[:-4], k) + '\n')
             values = list(zip(*quad))
             motif_len = len(values)
@@ -69,6 +71,7 @@ for file in os.listdir(outputs_dir):
             'motif_len': motif_len,
             'diag': DIAG,
             'time': time,
+            'pcm_path': pcm_path,
         })
 with open(os.path.expanduser('~/info.json'), 'w') as ot:
     json.dump(info, ot)
