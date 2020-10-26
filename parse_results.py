@@ -74,4 +74,4 @@ for file in os.listdir(outputs_dir):
             'pcm_path': pcm_path,
         })
 with open(os.path.expanduser('~/info.json'), 'w') as ot:
-    json.dump(info, ot)
+    json.dump({'SP1_HUMAN': info}, ot)
