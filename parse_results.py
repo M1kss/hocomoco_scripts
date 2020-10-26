@@ -37,7 +37,7 @@ for file in os.listdir(outputs_dir):
     for k, quad in enumerate(ACGT):
         with open(os.path.join(pcms_dir, '{}.{}.pcm'.format(file[:-4], k)), 'w') as pcm:
             pcm.write('>{}.{}'.format(file[:-4], k) + '\n')
-            for a, c, g, t in list(zip(quad)):
+            for a, c, g, t in list(zip(*quad)):
                 pcm.write(''.join([a, c, g, t, '\n']))
     # info.append({
     #
