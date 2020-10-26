@@ -15,6 +15,8 @@ for file in os.listdir(outputs_dir):
             key, value = line.strip('\n').split('|')
             parsed_output.append((key, value))
     A = [value for key, value in parsed_output if key == 'A']
+    if len(A) == 0:
+        assert len(parsed_output) == 0
     A0 = A[0]
     try:
         for a in A:
