@@ -22,10 +22,13 @@ def main(peaks, genome_file_name, out_file_name):
     start_end_positions_queues = dict()
     genome_nucleotides_dict = dict()
 
+    if os.path.getsize(peaks) == 0:
+        print('Sorted df is empty (no header) ', peaks)
+        exit(1)
     peaks_df = pd.read_table(peaks, names=['#CHR', 'START', 'END', 'SUMMIT'])
 
     if peaks_df.empty:
-        print('empty peaks, {}'.format(peaks))
+        print('Empty peaks, {}'.format(peaks))
         exit(1)
 
     for chr_name in ChromPos.chrs:
