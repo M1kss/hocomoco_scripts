@@ -87,11 +87,11 @@ def main(peak_file_name, peak_type, score_type, out_path):
     elif peak_type == 'peakzilla':
         peak_df['SUMMIT'] = peak_df['Summit'] - peak_df['START']
         if score_type == 'score':
-            peak_df['SCORE'] = peak_df['FoldEnrichment']
+            peak_df['SCORE'] = peak_df['ChIP']
             peak_df['SCORE2'] = peak_df['FDR']
         elif score_type == 'pvalue':
             peak_df['SCORE'] = peak_df['FDR']
-            peak_df['SCORE2'] = peak_df['FoldEnrichment']
+            peak_df['SCORE2'] = peak_df['ChIP']
 
     peak_df['#CHR'] = peak_df['#CHROM'].apply(lambda x: 'chr' + str(x))
     peak_df = peak_df[peak_df.apply(check_row, axis=1)]
