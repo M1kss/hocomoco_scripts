@@ -29,8 +29,5 @@ do
     then
       continue
     fi
-
-    java -Xmx4G -cp ~/chipmunk.jar ru.autosome.ChIPHorde 13:23,13:23 f c 1.0 m:$out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 100 10 1 2 random auto single 1>$out_path/results/${peaks_name}.${peak_type}.${score_type}.single.out 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.single.log
-    java -Xmx4G -cp ~/chipmunk.jar ru.autosome.ChIPHorde 23:13,23:13 f c 1.0 m:$out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 100 10 1 2 random auto 1>$out_path/results/${peaks_name}.${peak_type}.${score_type}.flat.out 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.flat.log
   done
 done
