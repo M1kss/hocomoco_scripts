@@ -4,7 +4,6 @@ out_path=$1
 genome=$2
 peaks_path="/home/boytsov/hocomoco-peaks/"$3
 
-ls $peaks_path
 if [ ! -d "$peaks_path" ]
 then
   echo "Peaks have not been downloaded $peaks_path"
@@ -20,6 +19,7 @@ do
     then
       continue
     fi
+    echo "Now doing $peaks_path/$peak_type/$peaks_name"
     if ! python3 format_peaks.py $peaks_path/$peak_type/$peaks_name.interval $peak_type $score_type $out_path/raw/${peaks_name}.${peak_type}.${score_type}.bed 1>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.format.log 2>&1
     then
       echo "Format peaks failed: $peaks_path/$peak_type/$peaks_name.interval"
