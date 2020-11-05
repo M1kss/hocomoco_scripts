@@ -46,7 +46,7 @@ def main(peak_file_name, peak_type, score_type, out_path):
             peak_df['SCORE'] = peak_df['score']
             peak_df['SCORE2'] = peak_df['score']
         elif peak_type == 'sissrs':
-            if 'p-value' in peak_df.columns:
+            if 'p-value' not in peak_df.columns:
                 if score_type == 'pvalue':
                     print('sissrs no p value')
                     exit(1)
