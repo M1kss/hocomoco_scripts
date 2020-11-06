@@ -96,11 +96,14 @@ def main(peak_file_name, peak_type, score_type, out_path):
 
     peak_df['#CHR'] = peak_df['#CHROM'].apply(lambda x: 'chr' + str(x))
     peak_df = peak_df[peak_df.apply(check_row, axis=1)]
+    peak_df['name'] = peak_df['SUMMIT'].apply(lambda x: ' ' + str(x))
     sorted_df = peak_df.sort_values(['SCORE', 'SCORE2'], ascending=False).reset_index(drop=True)
+    if peak_df.empty:
+        print('empty peaks, {}'.format(peak_file_name))
+        exit(1)
     tr_1 = sorted_df['SCORE'][min(len(peak_df.index) - 1, 999)]
     tr_2 = sorted_df['SCORE2'][min(len(peak_df.index) - 1, 999)]
     peak_df_trunc = peak_df.loc[(peak_df['SCORE'] > tr_1) | ((peak_df['SCORE'] == tr_1) & (peak_df['SCORE2'] >= tr_2))]
-    peak_df_trunc['name'] = peak_df_trunc['SUMMIT'].apply(lambda x: ' ' + str(x))
     if peak_df_trunc.empty:
         print('empty peaks, {}'.format(peak_file_name))
         exit(1)
