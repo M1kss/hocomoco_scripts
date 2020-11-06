@@ -99,11 +99,12 @@ def main(peak_file_name, peak_type, score_type, out_path):
     sorted_df = peak_df.sort_values(['SCORE', 'SCORE2'], ascending=False).reset_index(drop=True)
     tr_1 = sorted_df['SCORE'][min(len(peak_df.index) - 1, 999)]
     tr_2 = sorted_df['SCORE2'][min(len(peak_df.index) - 1, 999)]
-    peak_df_trunc = peak_df[(peak_df['SCORE'] > tr_1) | ((peak_df['SCORE'] == tr_1) & (peak_df['SCORE2'] >= tr_2))]
+    peak_df_trunc = peak_df.loc[(peak_df['SCORE'] > tr_1) | ((peak_df['SCORE'] == tr_1) & (peak_df['SCORE2'] >= tr_2))]
+    peak_df_trunc['name'] = peak_df_trunc['SUMMIT'].apply(lambda x: ' ' + str(x))
     if peak_df_trunc.empty:
         print('empty peaks, {}'.format(peak_file_name))
         exit(1)
-    peak_df_trunc[['#CHR', 'START', 'END', 'SUMMIT']].to_csv(out_path, sep='\t', index=False)
+    peak_df_trunc[['#CHR', 'START', 'END', 'name']].to_csv(out_path, sep='\t', index=False)
 
 
 if __name__ == '__main__':

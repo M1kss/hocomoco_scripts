@@ -30,7 +30,7 @@ do
       echo "Bed tools failed: $out_path/raw/${peaks_name}.${peak_type}.${score_type}.bed"
       continue
     fi
-    if ! python3 cut_fasta.py $genome $out_path/sorted/${peaks_name}.${peak_type}.${score_type}.sorted.bed $out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 1>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.cut.log 2>&1
+    if ! bedtools getfasta -fi $genome -bed $out_path/sorted/${peaks_name}.${peak_type}.${score_type}.sorted.bed -name 1>$out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.cut.log
     then
       echo "Cut fasta failed: $out_path/sorted/${peaks_name}.${peak_type}.${score_type}.sorted.bed"
       continue
