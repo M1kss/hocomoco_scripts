@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -l walltime=48:00:00,nodes=1:ppn=2
 
-HOCOLINE=$(awk "{if(NR==$PBS_ARRAYID) print $0}" hoco-master.tsv)
+HOCOLINE=$(awk "{if(NR==$PBS_ARRAYID) print $0}" hoco-master-human.tsv)
 IFS=','
 read -ra ARRAY <<< "$HOCOLINE"
 
