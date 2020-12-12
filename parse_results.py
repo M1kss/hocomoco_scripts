@@ -27,7 +27,7 @@ def parse_one_file(file_name):
             key, value = line.strip('\n').split('|')
             parsed_output.append((key, value))
             last_line = line
-        if not last_line.startswith('_^^_| P0wered by cute chipmunks!'):
+        if last_line is None or not last_line.startswith('_^^_| P0wered by cute chipmunks!'):
             print(last_line)
             return [{
                 'name': peaks,
