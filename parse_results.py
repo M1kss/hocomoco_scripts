@@ -48,7 +48,18 @@ def parse_one_file(file_name):
     DIAG = [value for key, value in parsed_output if key == 'DIAG' and value.startswith('fail')]
 
     if len(A) == 0:
-        assert len(parsed_output) == 0
+        if len(parsed_output) != 0:
+            return [{
+                'name': peaks,
+                'caller': caller,
+                'motif_type': motif_type,
+                'selected_by': best_by,
+                'motif_index': None,
+                'motif_len': None,
+                'diag': ['Unexpected interrupt'],
+                'time': None,
+                'pcm_path': None,
+            }]
         return [{
             'name': peaks,
             'caller': caller,
