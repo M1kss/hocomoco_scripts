@@ -94,7 +94,7 @@ def parse_one_file(file_name):
 
 def make_tfs_dict():
     out = {}
-    master = pd.read_table(master_path, header=None)
+    master = pd.read_csv(master_path, header=None)
     master.columns = ['specie', 'tf', 'peaks', '1', '2', '3', '4', '5']
     for tf in master['tf'].unique():
         for peak in master[master['tf'] == tf]['peaks'].to_list():
