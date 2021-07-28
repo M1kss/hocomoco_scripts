@@ -34,6 +34,7 @@ def parse_one_file(file_name):
                 'caller': caller,
                 'motif_type': motif_type,
                 'selected_by': best_by,
+                'words': 0,
                 'motif_index': None,
                 'motif_len': None,
                 'diag': ['Unexpected interrupt'],
@@ -54,6 +55,9 @@ def parse_one_file(file_name):
                 'caller': caller,
                 'motif_type': motif_type,
                 'selected_by': best_by,
+                'words': 0,
+                'seqs': 0,
+                'total': 0,
                 'motif_index': None,
                 'motif_len': None,
                 'diag': ['Unexpected interrupt'],
@@ -67,6 +71,9 @@ def parse_one_file(file_name):
             'selected_by': best_by,
             'motif_index': None,
             'motif_len': None,
+            'words': 0,
+            'total': 0,
+            'seqs': 0,
             'diag': DIAG,
             'time': None,
             'pcm_path': None,
@@ -77,6 +84,9 @@ def parse_one_file(file_name):
     ACGT = list(zip(A, C, G, T))
     TIME = [float(value) for key, value in parsed_output if key == 'TIME'][-1]
     time = get_time(TIME)
+    words = [float(value) for key, value in parsed_output if key == 'WRDS'][-1]
+    seqs = [float(value) for key, value in parsed_output if key == 'SEQS'][-1]
+    total = [float(value) for key, value in parsed_output if key == 'TOTL'][-1]
     for i, quad in enumerate(ACGT):
         if quad in ACGT[:i]:
             assert len(ACGT) == 2 * i
@@ -95,6 +105,9 @@ def parse_one_file(file_name):
             'caller': caller,
             'motif_type': motif_type,
             'selected_by': best_by,
+            'words': words,
+            'seqs': seqs,
+            'total': total,
             'motif_index': k,
             'motif_len': motif_len,
             'diag': DIAG,
