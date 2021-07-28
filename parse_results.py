@@ -15,7 +15,7 @@ def get_time(time):
 results_dir = os.path.expanduser('~/hocomoco/')
 outputs_dir = os.path.join(results_dir, 'results')
 pcms_dir = os.path.expanduser('~/hocomoco-pcms/')
-master_path = os.path.expanduser('~/hocomoco/hoco-master-human.tsv')
+master_path = os.path.expanduser('~/hoco-master-human.tsv')
 
 
 def parse_one_file(file_name):
