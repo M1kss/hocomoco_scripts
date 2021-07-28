@@ -23,7 +23,10 @@ def parse_one_file(file_name):
         parsed_output = []
         last_line = None
         for line in f:
-            key, value = line.strip('\n').split('|')
+            try:
+                key, value = line.strip('\n').split('|')
+            except ValueError:
+                continue
             parsed_output.append((key, value))
             last_line = line
         if last_line is None or not last_line.startswith('_^^_| P0wered by cute chipmunks!'):
