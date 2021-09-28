@@ -20,4 +20,4 @@ for index, row in master_df.iterrows():
             new_dir = os.path.join(mouse_dir, peak_type)
             if not os.path.exists(new_dir):
                 os.mkdir(new_dir)
-            shutil.copy2(base_path, os.path.join(mouse_dir, peak_type, row['PEAKS'] + '.interval'))
+            shutil.copy2(os.path.join(base_path, peak_type, row['PEAKS'] + '.interval'), os.path.join(mouse_dir, peak_type, row['PEAKS'] + '.interval'))
