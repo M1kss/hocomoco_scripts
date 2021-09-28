@@ -21,4 +21,6 @@ for index, row in tqdm(master_df.iterrows(), total=len(master_df.index)):
             new_dir = os.path.join(mouse_dir, peak_type)
             if not os.path.exists(new_dir):
                 os.mkdir(new_dir)
-            shutil.copy2(os.path.join(base_path, peak_type, row['PEAKS'] + '.interval'), os.path.join(mouse_dir, peak_type, row['PEAKS'] + '.interval'))
+            new_path = os.path.join(base_path, peak_type, row['PEAKS'] + '.interval')
+            if os.path.exists(new_path):
+                shutil.copy2(new_path, os.path.join(mouse_dir, peak_type, row['PEAKS'] + '.interval'))
