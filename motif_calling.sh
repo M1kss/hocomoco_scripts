@@ -1,11 +1,12 @@
-njobs=$1
-out_path=$2
-genome=$3
-peaks_list=$4
+out_path=$1
+
 
 if ! [ -d $out_path ]
 then
-  mkdir $out_path
+  if ! [ -d $out_path ]
+  then
+    mkdir $out_path
+  fi
   for suffix in results logs raw sorted fasta
   do
     if ! [ -d $out_path/$suffix ]
@@ -16,5 +17,5 @@ then
 fi
 
 
-
-parallel --jobs $njobs bash process_peaks.sh $out_path $genome :::: $peaks_list
+#bash make_fasta_from_peaks.sh $out_path $genome $peaks_path
+#parallel --jobs $njobs bash process_fasta_by_line.sh $out_path :::: $peaks_list

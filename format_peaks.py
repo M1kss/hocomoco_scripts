@@ -111,4 +111,7 @@ def main(peak_file_name, peak_type, score_type, out_path):
 
 
 if __name__ == '__main__':
-    main(peak_file_name=os.path.expanduser(sys.argv[1]), peak_type=sys.argv[2], score_type=sys.argv[3], out_path=os.path.expanduser(sys.argv[4]))
+    main(peak_file_name=os.path.expanduser(sys.argv[1]),
+         peak_type=sys.argv[2],
+         score_type=sys.argv[3],
+         out_path=os.path.expanduser(sys.argv[4]))

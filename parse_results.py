@@ -1,5 +1,7 @@
 import os
 import json
+import sys
+
 import pandas as pd
 
 
@@ -12,9 +14,7 @@ def get_time(time):
         return str(round(time / 3600)) + 'h'
 
 
-outputs_dir = os.path.expanduser('~/results')
-pcms_dir = os.path.expanduser('~/hocomoco-pcms/')
-master_path = os.path.expanduser('~/hoco-master-human.tsv')
+outputs_dir = sys.argv[1]
 
 
 def parse_one_file(file_name):
@@ -95,7 +95,7 @@ def parse_one_file(file_name):
             ACGT = ACGT[:i]
             break
     for k, quad in enumerate(ACGT):
-        pcm_path = os.path.join(pcms_dir, '{}.{}.pcm'.format(file_name[:-4], k))
+        pcm_path = os.path.join('hocomoco_pwms', '{}.{}.pcm'.format(file_name[:-4], k))
         with open(pcm_path, 'w') as pcm:
             pcm.write('>{}.{}'.format(file_name[:-4], k) + '\n')
             values = list(zip(*quad))
@@ -121,7 +121,7 @@ def parse_one_file(file_name):
 
 def make_tfs_dict():
     out = {}
-    master = pd.read_csv(master_path, header=None)
+    master = pd.read_csv('master_peaks.csv', header=None)
     master.columns = ['specie', 'tf', 'peaks', '1', '2', '3', '4', '5']
     for tf in master['tf'].unique():
         for peak in master[master['tf'] == tf]['peaks'].to_list():
@@ -136,11 +136,9 @@ def main():
         peaks = file_name.split('.')[0]
         info = parse_one_file(file_name)
         results.setdefault(tfs_dict[peaks], []).extend(info)
-    with open(os.path.expanduser('~/info.json'), 'w') as ot:
+    with open(os.path.join('files', 'info.json'), 'w') as ot:
         json.dump(results, ot)
 
 
 if __name__ == '__main__':
-    if not os.path.isdir(pcms_dir):
-        os.mkdir(pcms_dir)
     main()

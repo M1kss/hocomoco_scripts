@@ -118,5 +118,7 @@ def main(peaks, genome_file_name, out_file_name):
 
 if __name__ == '__main__':
     t = time.perf_counter()
-    main(genome_file_name=os.path.expanduser(sys.argv[1]), peaks=os.path.expanduser(sys.argv[2]), out_file_name=os.path.expanduser(sys.argv[3]))
+    main(genome_file_name=os.path.expanduser(sys.argv[1]),
+         peaks=os.path.expanduser(sys.argv[2]),
+         out_file_name=os.path.expanduser(sys.argv[3]))
     print('CUT TIME: {}'.format(time.perf_counter() - t))

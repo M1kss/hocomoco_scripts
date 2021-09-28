@@ -1,0 +1,1953 @@
+superclass	1 Basic domains
+class	1.1 Basic leucine zipper factors (bZIP)
+family	1.1.1 Jun-related
+subfamily	1.1.1.1 Jun
+genus	1.1.1.1.1 c-Jun
+genus	1.1.1.1.2 JunB
+genus	1.1.1.1.3 JunD
+subfamily	1.1.1.2 NFE2
+genus	1.1.1.2.1 NFE2
+genus	1.1.1.2.2 NFE2L1
+genus	1.1.1.2.3 NFE2L2
+genus	1.1.1.2.4 NFE2L3
+genus	1.1.1.2.5 BACH1
+genus	1.1.1.2.6 BACH2
+subfamily	1.1.1.3 ATF2
+genus	1.1.1.3.1 ATF-2
+genus	1.1.1.3.2 ATF-7
+genus	1.1.1.3.3 CREB-5
+family	1.1.2 Fos-related
+subfamily	1.1.2.1 Fos
+genus	1.1.2.1.1 c-Fos
+genus	1.1.2.1.2 FosB
+genus	1.1.2.1.3 Fra-1
+genus	1.1.2.1.4 Fra-2
+subfamily	1.1.2.2 ATF3-like
+genus	1.1.2.2.1 ATF-3
+genus	1.1.2.2.2 JDP-2
+family	1.1.3 Maf-related
+subfamily	1.1.3.1 Large MAF
+genus	1.1.3.1.1 MAF (c-MAF)
+genus	1.1.3.1.2 MAFA
+genus	1.1.3.1.3 MAFB
+genus	1.1.3.1.4 NRL
+subfamily	1.1.3.2 Small MAF
+genus	1.1.3.2.1 MAFF
+genus	1.1.3.2.2 MAFG
+genus	1.1.3.2.3 MAFK
+family	1.1.4 B-ATF-related
+genus	1.1.4.0.1 BATF
+genus	1.1.4.0.2 BATF2
+genus	1.1.4.0.3 BATF3
+family	1.1.5 XBP1-related
+genus	1.1.5.0.1 XBP-1
+family	1.1.6 ATF4-related
+genus	1.1.6.0.1 ATF-4
+genus	1.1.6.0.2 ATF-5
+family	1.1.7 CREB-related
+subfamily	1.1.7.1 CREB-like
+genus	1.1.7.1.1 CREB1
+genus	1.1.7.1.2 ATF1
+genus	1.1.7.1.3 CREM
+subfamily	1.1.7.2 CREB3-like
+genus	1.1.7.2.1 CREB3
+genus	1.1.7.2.2 CREB3L1
+genus	1.1.7.2.3 CREB3L2
+genus	1.1.7.2.4 CREB3L3
+genus	1.1.7.2.5 CREB3L4
+subfamily	1.1.7.3 ATF6
+genus	1.1.7.3.1 ATF6
+genus	1.1.7.3.2 ATF6B
+subfamily	1.1.7.4 CREBZF-like
+genus	1.1.7.4.1 CREBZF
+subfamily	1.1.7.5 CREBL2-like
+genus	1.1.7.5.1 CREBL2
+family	1.1.8 CEBP-related
+subfamily	1.1.8.1 CEBP
+genus	1.1.8.1.1 CEBPA
+genus	1.1.8.1.2 CEBPB
+genus	1.1.8.1.3 CEBPG
+genus	1.1.8.1.4 CEBPD
+genus	1.1.8.1.5 CEBPE
+genus	1.1.8.1.6 DDIT3
+subfamily	1.1.8.2 PAR
+genus	1.1.8.2.1 DBP
+genus	1.1.8.2.2 HLF
+genus	1.1.8.2.3 NFIL3
+genus	1.1.8.2.4 TEF
+class	1.2 Basic helix-loop-helix factors (bHLH)
+family	1.2.1 E2A
+genus	1.2.1.0.1 TCF3 (E2A)
+genus	1.2.1.0.2 TCF4 / SEF2
+genus	1.2.1.0.3 TCF12/HTF4
+subfamily	1.2.1.0 E2A-like
+family	1.2.2 MyoD-ASC-related
+subfamily	1.2.2.1 Myogenic TFs
+genus	1.2.2.1.1 MyoD
+genus	1.2.2.1.2 MYOG
+genus	1.2.2.1.3 MYF5
+genus	1.2.2.1.4 MYF6
+subfamily	1.2.2.2 ASC
+genus	1.2.2.2.1 ASCL1
+genus	1.2.2.2.2 ASCL2
+genus	1.2.2.2.3 ASCL3
+genus	1.2.2.2.4 ASCL4
+genus	1.2.2.2.5 ASCL5
+family	1.2.3 Tal-related
+subfamily	1.2.3.1 TAL-HEN
+genus	1.2.3.1.1 TAL1
+genus	1.2.3.1.2 TAL2
+genus	1.2.3.1.3 LYL1
+genus	1.2.3.1.4 HEN1 (NHLH1)
+genus	1.2.3.1.5 HEN2 (NHLH2)
+subfamily	1.2.3.2 TWIST
+genus	1.2.3.2.1 TWIST1
+genus	1.2.3.2.2 TWIST2
+genus	1.2.3.2.3 HAND1
+genus	1.2.3.2.4 HAND2
+genus	1.2.3.2.5 TCF15 (bHLH-EC2)
+genus	1.2.3.2.6 SCX
+genus	1.2.3.2.7 PTF1A
+genus	1.2.3.2.8 FIGLA (FIGalpha, FIGalpha1, FIGalpha2, FIGalpha3, FIGalpha4, FIGalpha5)
+subfamily	1.2.3.3 MESP
+genus	1.2.3.3.1 MESP1 (Mesp, Mespa, Mespb)
+genus	1.2.3.3.2 MESP2
+genus	1.2.3.3.3 TCF23 (ABF-1, MyoR, Musculin, msctcf2123)
+genus	1.2.3.3.4 MSC
+genus	1.2.3.3.5 TCF21
+genus	1.2.3.3.6 MSGN1
+subfamily	1.2.3.4 Neurogenin-ATO
+genus	1.2.3.4.1 NEUROD1
+genus	1.2.3.4.2 NEUROD2
+genus	1.2.3.4.3 NEUROD4
+genus	1.2.3.4.4 NEUROD6
+genus	1.2.3.4.5 NGN1/NEUROG1
+genus	1.2.3.4.6 NGN2/NEUROG2
+genus	1.2.3.4.7 NGN3/NEUROG3
+genus	1.2.3.4.8 ATOH1
+genus	1.2.3.4.9 ATOH7
+genus	1.2.3.4.10 ATOH8
+genus	1.2.3.4.11 BHLHE22
+genus	1.2.3.4.12 BHLHE23
+genus	1.2.3.4.13 OLIG1
+genus	1.2.3.4.14 OLIG2
+genus	1.2.3.4.15 OLIG3
+genus	1.2.3.4.16 BHLHA15
+genus	1.2.3.4.17 FERD3L
+subfamily	1.2.3.5 BHLHA9
+genus	1.2.3.5.1 BHLHA9
+family	1.2.4 Hairy-related
+subfamily	1.2.4.1 HAIRY
+genus	1.2.4.1.1 HES1
+genus	1.2.4.1.2 HES2
+genus	1.2.4.1.3 HES3
+genus	1.2.4.1.4 HES4
+genus	1.2.4.1.5 HES5
+genus	1.2.4.1.6 HES6
+genus	1.2.4.1.7 HES7
+genus	1.2.4.1.8 HEY1
+genus	1.2.4.1.9 HEY2
+genus	1.2.4.1.10 HEYL
+genus	1.2.4.1.11 HELT
+genus	1.2.4.1.12 DEC1/BHLHE40
+genus	1.2.4.1.13 DEC2/BHLHE41
+family	1.2.5 PAS
+subfamily	1.2.5.1 PAS-AHR
+genus	1.2.5.1.1 AhR
+genus	1.2.5.1.2 AhRR
+genus	1.2.5.1.3 SIM1
+genus	1.2.5.1.4 SIM2
+genus	1.2.5.1.5 HIF1A (hif1alpha)
+genus	1.2.5.1.6 HIF3A (hif3alpha)
+genus	1.2.5.1.7 EPAS1
+genus	1.2.5.1.8 NPAS1
+genus	1.2.5.1.9 NPAS3
+subfamily	1.2.5.2 PAS-ARNT
+genus	1.2.5.2.1 ARNT
+genus	1.2.5.2.2 ARNT2
+genus	1.2.5.2.3 ARNTL (arntla, arntlb)
+genus	1.2.5.2.4 ARNTL2 (arntl2a, arntl2b)
+genus	1.2.5.2.5 CLOCK
+genus	1.2.5.2.6 NPAS2 (npas2a, npas2b)
+subfamily	1.2.5.3 NCOA
+genus	1.2.5.3.1 NCOA1
+genus	1.2.5.3.2 NCOA2
+genus	1.2.5.3.3 NCOA3
+subfamily	1.2.5.4 NPAS4
+genus	1.2.5.4.1 NPAS4
+subfamily	1.2.5.5 SOHLH
+genus	1.2.5.5.1 SOHLH1
+genus	1.2.5.5.2 SOHLH2
+genus	1.2.5.5.3 TCFL5
+family	1.2.6 bHLH-ZIP
+subfamily	1.2.6.1 TFE3
+genus	1.2.6.1.1 TFE3
+genus	1.2.6.1.2 TFEB
+genus	1.2.6.1.3 TFEC
+genus	1.2.6.1.4 MiTF
+subfamily	1.2.6.2 USF
+genus	1.2.6.2.1 USF1
+genus	1.2.6.2.2 USF2
+subfamily	1.2.6.3 SREBF
+genus	1.2.6.3.1 SREBF1
+genus	1.2.6.3.2 SREBF2
+subfamily	1.2.6.4 AP4
+genus	1.2.6.4.1 AP-4
+subfamily	1.2.6.5 MYC
+genus	1.2.6.5.1 c-MYC
+genus	1.2.6.5.2 NMYC
+genus	1.2.6.5.3 LMYC1 (lmyc)
+genus	1.2.6.5.5 MAX
+genus	1.2.6.5.6 SMYC
+genus	1.2.6.5.7 B-MYC
+subfamily	1.2.6.6 MONDOlike
+genus	1.2.6.6.1 MLX (BHLHD13)
+genus	1.2.6.6.2 MONDOA
+genus	1.2.6.6.3 MONDOB
+subfamily	1.2.6.7 MAD
+genus	1.2.6.7.1 MXD1
+genus	1.2.6.7.2 MXD3
+genus	1.2.6.7.3 MXD4
+genus	1.2.6.7.4 MAD5
+genus	1.2.6.7.5 MXI1
+genus	1.2.6.7.6 MNT (BHLHD3)
+family	1.2.8 HLH only
+genus	1.2.8.0.1 Id1
+genus	1.2.8.0.2 Id2
+genus	1.2.8.0.3 Id3
+genus	1.2.8.0.4 Id4
+subfamily	1.2.8.0 Id
+class	1.3 Basic helix-span-helix factors (bHSH)
+family	1.3.1 AP2
+genus	1.3.1.0.1 AP-2alpha
+genus	1.3.1.0.2 AP-2beta
+genus	1.3.1.0.3 AP-2gamma
+genus	1.3.1.0.4 AP-2delta
+genus	1.3.1.0.5 AP-2epsilon
+superclass	2 Zinc-coordinating DNA-binding domains
+class	2.1 Nuclear receptors with C4 zinc fingers
+family	2.1.1 Steroid hormone receptors
+subfamily	2.1.1.1 GR-like(NR3C)
+genus	2.1.1.1.1 GR (NR3C1)
+genus	2.1.1.1.2 MR (NR3C2)
+genus	2.1.1.1.3 PR (NR3C3)
+genus	2.1.1.1.4 AR (NR3C4)
+subfamily	2.1.1.2 ER-like(NR3A)
+genus	2.1.1.2.1 ERALPHA (ESR1, NR3A1)
+genus	2.1.1.2.2 ERBETA (ESR2, NR3A2)
+genus	2.1.1.2.3 ERR1 (ERRalpha, NR3B1)
+genus	2.1.1.2.4 ERR2 (ERRbeta, NR3B2, err23)
+genus	2.1.1.2.5 ERR3 (ERRgamma, NR3B3)
+family	2.1.2 Thyroid hormone receptor-related factors
+subfamily	2.1.2.1 RAR(NR1B)
+genus	2.1.2.1.1 RARALPHA (RARA, NR1B1)
+genus	2.1.2.1.2 RARBETA (RARB, NR1B2)
+genus	2.1.2.1.3 RARGAMMA (RARG, NR1B3)
+subfamily	2.1.2.2 T3R(NR1A)
+genus	2.1.2.2.1 T3RALPHA (NR1A1)
+genus	2.1.2.2.2 T3RBETA (NR1A2)
+subfamily	2.1.2.3 REVERBA(NR1D)
+genus	2.1.2.3.1 REV-ERBAALPHA (NR1D1)
+genus	2.1.2.3.2 REV-ERBABETA (NR1D2)
+subfamily	2.1.2.4 VDR(NR1I)
+genus	2.1.2.4.1 VDR(NR1I1)
+genus	2.1.2.4.2 PXR (NR1I2)
+genus	2.1.2.4.3 CAR (NR1I3)
+subfamily	2.1.2.5 PPAR(NR1C)
+genus	2.1.2.5.1 PPARALPHA (NR1C1, pparalpha2)
+genus	2.1.2.5.2 PPARBETA (NR1C2)
+genus	2.1.2.5.3 PPARGAMMA (NR1C3)
+subfamily	2.1.2.6 ROR(NR1F)
+genus	2.1.2.6.1 RORALPHA (RORABa, NR1F1)
+genus	2.1.2.6.2 RORBETA (NR1F2)
+genus	2.1.2.6.3 RORGAMMA (NR1F3)
+subfamily	2.1.2.7 LXR(NR1H)
+genus	2.1.2.7.1 LXRALPHA (NR1H3)
+genus	2.1.2.7.2 LXRBETA (NR1H2)
+genus	2.1.2.7.3 FXR (NR1H4)
+family	2.1.3 RXR-related receptors
+subfamily	2.1.3.1 RXR(NR2B)
+genus	2.1.3.1.1 RXRALPHA (NR2B1)
+genus	2.1.3.1.2 RXRBETA (NR2B2)
+genus	2.1.3.1.3 RXRGAMMA (NR2B3)
+subfamily	2.1.3.2 HNF4(NR2A)
+genus	2.1.3.2.1 HNF4ALPHA (NR2A1)
+genus	2.1.3.2.2 HNF4GAMMA (NR2A2)
+subfamily	2.1.3.3 TLX(NR2E1)
+genus	2.1.3.3.1 TLX (NR2E1)
+genus	2.1.3.3.2 PNR (NR2E3)
+subfamily	2.1.3.4 TR(NR2C)
+genus	2.1.3.4.1 TR2 (NR2C1)
+genus	2.1.3.4.2 TR4 (NR2C2)
+subfamily	2.1.3.5 COUP(NR2F)
+genus	2.1.3.5.1 COUPTFI (NR2F1)
+genus	2.1.3.5.2 COUPTFII (NR2F2)
+genus	2.1.3.5.3 EAR2 (NR2F6)
+family	2.1.4 NGFI(NR4A)
+genus	2.1.4.0.1 NGFI-B (NR4A1)
+genus	2.1.4.0.2 NURR1 (NR4A2)
+genus	2.1.4.0.3 NOR1 (NR4A3)
+family	2.1.5 FTZF1related(NR5A)
+genus	2.1.5.0.1 FTZ-F1 (SF-1) (NR5A1)
+genus	2.1.5.0.2 LRH1 (NR5A2)
+family	2.1.6 GCNF(NR6)
+genus	2.1.6.0.1 GCNF (NR6A1)
+family	2.1.7 DAXrelated(NR0)
+genus	2.1.7.0.1 DAX1 (NR0B1)
+genus	2.1.7.0.2 SHP (NR0B2)
+class	2.2 Other C4 zinc finger-type factors
+family	2.2.1 C4-GATA-related
+subfamily	2.2.1.1 GATA double
+genus	2.2.1.1.1 GATA1
+genus	2.2.1.1.2 GATA2
+genus	2.2.1.1.3 GATA3
+genus	2.2.1.1.4 GATA4
+genus	2.2.1.1.5 GATA5
+genus	2.2.1.1.6 GATA6
+subfamily	2.2.1.2 GATA single
+genus	2.2.1.2.1 GATAD1
+genus	2.2.1.2.2 GATAD2A
+genus	2.2.1.2.3 GATAD2B
+genus	2.2.1.2.4 RERE
+genus	2.2.1.2.5 MTA1
+genus	2.2.1.2.6 MTA2
+genus	2.2.1.2.7 MTA3
+genus	2.2.1.2.8 ZGLP1
+genus	2.2.1.2.9 DNMT3A
+genus	2.2.1.2.10 DNMT3B
+genus	2.2.1.2.11 DNMT3L
+genus	2.2.1.2.12 ATRX
+genus	2.2.1.2.13 TRPS1
+class	2.3 C2H2 zinc finger factors
+family	2.3.1 Three-zinc finger Krüppel-related
+subfamily	2.3.1.1 Sp1-like
+genus	2.3.1.1.1 Sp1
+genus	2.3.1.1.2 Sp2
+genus	2.3.1.1.3 Sp3
+genus	2.3.1.1.4 Sp4
+genus	2.3.1.1.5 Sp5
+genus	2.3.1.1.6 Sp6
+genus	2.3.1.1.7 Sp7
+genus	2.3.1.1.8 Sp8
+genus	2.3.1.1.9 Sp9
+subfamily	2.3.1.2 Kr-like
+genus	2.3.1.2.1 KLF1
+genus	2.3.1.2.2 KLF2
+genus	2.3.1.2.3 KLF3
+genus	2.3.1.2.4 KLF4
+genus	2.3.1.2.5 KLF5
+genus	2.3.1.2.6 KLF6
+genus	2.3.1.2.7 KLF7
+genus	2.3.1.2.8 KLF8
+genus	2.3.1.2.9 KLF9
+genus	2.3.1.2.10 KLF10
+genus	2.3.1.2.11 KLF11
+genus	2.3.1.2.12 KLF12
+genus	2.3.1.2.13 KLF13
+genus	2.3.1.2.14 KLF14
+genus	2.3.1.2.15 KLF15
+genus	2.3.1.2.16 KLF16
+genus	2.3.1.2.17 KLF17
+subfamily	2.3.1.3 EGR
+genus	2.3.1.3.1 EGR1
+genus	2.3.1.3.2 EGR2
+genus	2.3.1.3.3 EGR3
+genus	2.3.1.3.4 EGR4
+family	2.3.2 Other factors with up to three adjacent zinc fingers
+subfamily	2.3.2.1 BTB-POZ
+genus	2.3.2.1.1 ZBTB5
+genus	2.3.2.1.2 ZBTB8B
+genus	2.3.2.1.6 ZBTB22
+genus	2.3.2.1.7 ZBTB32
+genus	2.3.2.1.8 ZBTB34
+genus	2.3.2.1.9 ZBTB37
+genus	2.3.2.1.10 ZBTB43
+genus	2.3.2.1.11 ZBTB46
+genus	2.3.2.1.12 ZBTB33
+subfamily	2.3.2.2 KRAB
+genus	2.3.2.2.1 ZNF487
+genus	2.3.2.2.3 ZNF705A (znf705)
+subfamily	2.3.2.3 SCAN
+genus	2.3.2.3.1 ZSCAN1
+genus	2.3.2.3.2 ZNF174
+genus	2.3.2.3.3 ZNF396
+genus	2.3.2.3.4 ZNF446
+subfamily	2.3.2.4 Other
+genus	2.3.2.4.1 ZNF414
+genus	2.3.2.4.2 ZNF511
+genus	2.3.2.4.3 ZNF580
+genus	2.3.2.4.5 ZNF740
+genus	2.3.2.4.6 ZFPM2
+genus	2.3.2.4.7 OSR1
+genus	2.3.2.4.8 OVOL3
+genus	2.3.2.4.9 AEBP2
+family	2.3.3 More than 3 adjacent zinc fingers
+subfamily	2.3.3.1 GLI-lile
+genus	2.3.3.1.1 GLI1
+genus	2.3.3.1.2 GLI2
+genus	2.3.3.1.3 GLI3
+genus	2.3.3.1.4 GLIS1
+genus	2.3.3.1.5 GLIS2
+genus	2.3.3.1.6 GLIS3
+genus	2.3.3.1.7 ZIC1
+genus	2.3.3.1.8 ZIC2
+genus	2.3.3.1.9 ZIC3
+genus	2.3.3.1.10 ZIC4
+genus	2.3.3.1.11 ZIC5
+subfamily	2.3.3.2 Snail-like
+genus	2.3.3.2.1 SNAI1
+genus	2.3.3.2.2 SNAI2
+genus	2.3.3.2.3 SNAI3
+genus	2.3.3.2.4 SCRT1
+genus	2.3.3.2.5 SCRT2
+subfamily	2.3.3.3 ZFP91-like
+genus	2.3.3.3.1 ZFP91
+genus	2.3.3.3.2 ZNF692
+genus	2.3.3.3.3 ZNF276
+genus	2.3.3.3.4 ZNF653
+subfamily	2.3.3.4 ZNF280-like
+genus	2.3.3.4.1 ZNF280A
+genus	2.3.3.4.2 ZNF280B
+genus	2.3.3.4.3 ZNF280C (znf280cd)
+genus	2.3.3.4.4 ZNF280D
+genus	2.3.3.4.5 POGZ
+subfamily	2.3.3.5 ZSCAN5-like
+genus	2.3.3.5.1 ZSCAN5A (zscan5, zscan51, zscan52, zscan53, zscan54, zscan55, zscan56, zscan57, zscan58)
+genus	2.3.3.5.2 ZSCAN5B
+genus	2.3.3.5.3 ZSCAN5C
+genus	2.3.3.5.4 ZSCAN5D
+genus	2.3.3.5.5 ZSCAN4
+subfamily	2.3.3.6 ZNF75-like
+genus	2.3.3.6.1 ZNF75A (znf75ad)
+genus	2.3.3.6.3 ZNF75D
+genus	2.3.3.6.4 ZNF213
+subfamily	2.3.3.7 ZNF705
+genus	2.3.3.7.1 ZNF705D
+genus	2.3.3.7.2 ZNF705F
+genus	2.3.3.7.3 ZNF705G
+genus	2.3.3.7.4 ZNF705E
+subfamily	2.3.3.8 ZBTB7
+genus	2.3.3.8.1 ZBTB7A
+genus	2.3.3.8.2 ZBTB7B
+genus	2.3.3.8.3 ZBTB7C
+subfamily	2.3.3.9 YY1-like
+genus	2.3.3.9.1 YY1 (YY12)
+genus	2.3.3.9.2 YY2
+genus	2.3.3.9.3 ZFP42
+subfamily	2.3.3.10 ZNF24-like
+genus	2.3.3.10.1 ZNF24
+genus	2.3.3.10.2 ZNF193
+genus	2.3.3.10.3 ZSCAN23
+genus	2.3.3.10.4 GLI4
+genus	2.3.3.10.5 ZNF232
+genus	2.3.3.10.6 ZKSCAN1
+genus	2.3.3.10.7 ZNF323
+subfamily	2.3.3.11 ZBTB6-like
+genus	2.3.3.11.1 ZBTB6
+genus	2.3.3.11.2 ZBTB26
+genus	2.3.3.11.3 ZBTB12
+subfamily	2.3.3.12 PRDM1-like
+genus	2.3.3.12.1 PRDM1
+genus	2.3.3.12.2 ZNF683
+subfamily	2.3.3.13 ZNF148-like
+genus	2.3.3.13.1 ZNF148
+genus	2.3.3.13.2 ZNF281
+subfamily	2.3.3.14 ZBTB20-like
+genus	2.3.3.14.1 ZBTB20
+genus	2.3.3.14.2 ZBTB45
+subfamily	2.3.3.15 ZNF524-like
+genus	2.3.3.15.1 ZNF524
+genus	2.3.3.15.2 ZNF581
+subfamily	2.3.3.16 ZNF238-like
+genus	2.3.3.16.1 ZNF238
+genus	2.3.3.16.2 ZBTB42
+subfamily	2.3.3.17 OVOL
+genus	2.3.3.17.1 OVOL1
+genus	2.3.3.17.2 OVOL2
+subfamily	2.3.3.18 ZNF56-like
+genus	2.3.3.18.3 ZNF138 (znf138ortholog, znf138ortholog1, znf138ortholog2, znf138ortholog3, znf138ortholog4, znf138ortholog5, znf138ortholog6, znf138ortholog7)
+subfamily	2.3.3.19 ZNF500-like
+genus	2.3.3.19.1 ZNF500
+genus	2.3.3.19.2 ZNF853
+genus	2.3.3.19.3 ZKSCAN2
+genus	2.3.3.19.4 ZSCAN29
+genus	2.3.3.19.5 ZNF434
+subfamily	2.3.3.20 FEZF
+genus	2.3.3.20.1 FEZF1
+genus	2.3.3.20.2 FEZF2
+subfamily	2.3.3.21 GFI1
+genus	2.3.3.21.1 GFI1
+genus	2.3.3.21.2 GFI1B
+subfamily	2.3.3.22 BCL6
+genus	2.3.3.22.1 BCL6B
+genus	2.3.3.22.2 BCL6
+subfamily	2.3.3.23 ZNF212-like
+genus	2.3.3.23.1 ZNF212
+genus	2.3.3.23.2 ZNF777
+subfamily	2.3.3.24 MTF1-like
+genus	2.3.3.24.1 MTF1
+genus	2.3.3.24.2 ZNF410
+subfamily	2.3.3.25 PLAG
+genus	2.3.3.25.1 PLAGL2
+genus	2.3.3.25.2 PLAG1
+genus	2.3.3.25.3 PLAGL1
+subfamily	2.3.3.26 ZKSCAN3-like
+genus	2.3.3.26.1 ZKSCAN3 (zkscan34)
+genus	2.3.3.26.2 ZKSCAN4
+subfamily	2.3.3.27 ZNF525-like
+genus	2.3.3.27.1 ZNF525
+genus	2.3.3.27.2 ZNF701
+genus	2.3.3.27.3 ZNF765
+genus	2.3.3.27.4 ZNF468
+subfamily	2.3.3.28 ZNF76-like
+genus	2.3.3.28.1 ZNF76
+genus	2.3.3.28.2 ZNF143
+subfamily	2.3.3.29 ZNF652-like
+genus	2.3.3.29.1 ZNF652
+genus	2.3.3.29.2 ZBTB47
+subfamily	2.3.3.30 ZNF350-like
+genus	2.3.3.30.1 ZNF350 (znf350ortholog)
+genus	2.3.3.30.2 ZNF577
+genus	2.3.3.30.3 ZNF649 (znf649ortholog, znf649ortholog1, znf649ortholog2, znf649ortholog3, znf649ortholog4, znf649ortholog5, znf649ortholog6, znf649ortholog7, znf649ortholog8, znf649ortholog9, znf649ortholog10, znf649ortholog11, znf649ortholog12, znf649ortholog13)
+genus	2.3.3.30.4 ZNF613
+genus	2.3.3.30.5 ZNF614
+subfamily	2.3.3.31 ZNF642-like
+genus	2.3.3.31.1 ZNF642
+genus	2.3.3.31.2 ZNF643
+genus	2.3.3.31.3 ZNF570
+genus	2.3.3.31.4 ZNF583
+subfamily	2.3.3.32 ZNF679-like
+genus	2.3.3.32.1 ZNF679
+subfamily	2.3.3.33 ZNF763-like
+genus	2.3.3.33.1 ZNF763
+genus	2.3.3.33.2 ZNF844
+genus	2.3.3.33.3 ZNF625
+genus	2.3.3.33.4 ZNF669
+genus	2.3.3.33.5 ZNF670
+genus	2.3.3.33.6 ZNF124
+genus	2.3.3.33.7 ZNF627
+genus	2.3.3.33.8 ZNF439
+genus	2.3.3.33.9 ZNF440
+genus	2.3.3.33.10 ZNF77
+genus	2.3.3.33.11 ZNF490
+genus	2.3.3.33.12 ZNF563
+genus	2.3.3.33.13 ZNF57
+genus	2.3.3.33.15 ZNF136
+genus	2.3.3.33.16 ZNF564
+genus	2.3.3.33.17 ZNF20
+genus	2.3.3.33.18 ZNF878
+genus	2.3.3.33.19 ZNF555
+subfamily	2.3.3.34 ZNF3-like
+genus	2.3.3.34.1 ZNF3
+genus	2.3.3.34.2 ZNF397
+subfamily	2.3.3.35 ZNF620-like
+genus	2.3.3.35.1 ZNF620
+genus	2.3.3.35.2 ZNF621
+genus	2.3.3.35.3 ZNF566
+genus	2.3.3.35.4 ZNF619
+genus	2.3.3.35.5 ZNF383 (znf383ortholog, znf383ortholog1, znf383ortholog2, znf383ortholog3, znf383ortholog4, znf383ortholog5, znf383ortholog6, znf383ortholog7, znf383ortholog8, znf383ortholog9, znf383ortholog10, znf383ortholog11, znf383ortholog12, znf383ortholog13, znf383ortholog14, znf383ortholog15, znf383ortholog16, znf383ortholog17, znf383ortholog18, znf383ortholog19, znf383ortholog20, znf383ortholog21, znf383ortholog22, znf383ortholog23, znf383ortholog24, znf383ortholog25, znf383ortholog26, znf383ortholog27, znf383ortholog28, znf383ortholog29, znf383ortholog30, znf383ortholog31, znf383ortholog32, znf383ortholog33, znf383ortholog34, znf383ortholog35, znf383ortholog36, znf383ortholog37, znf383ortholog38, znf383ortholog39, znf383ortholog40, znf383ortholog41, znf383ortholog42, znf383ortholog43, znf383ortholog44, znf383ortholog45, znf383ortholog46, znf383ortholog47, znf383ortholog48, znf383ortholog49, znf383ortholog50, znf383ortholog51, znf383ortholog52, znf383ortholog53, znf383ortholog54, znf383ortholog55, znf383ortholog56, znf383ortholog57, znf383ortholog58, znf383ortholog59, znf383ortholog60, znf383ortholog61, znf383ortholog62, znf383ortholog63, znf383ortholog64, znf383ortholog65)
+genus	2.3.3.35.6 ZNF829
+genus	2.3.3.35.7 ZNF582
+subfamily	2.3.3.36 ZNF324
+genus	2.3.3.36.1 ZNF324A (ZNF324)
+genus	2.3.3.36.2 ZNF324B
+subfamily	2.3.3.37 ZNF362-like
+genus	2.3.3.37.1 ZNF362
+genus	2.3.3.37.2 ZNF384
+subfamily	2.3.3.38 ZNF282-like
+genus	2.3.3.38.1 ZNF282
+genus	2.3.3.38.2 ZNF398
+subfamily	2.3.3.39 ZNF764-like
+genus	2.3.3.39.1 ZNF764
+genus	2.3.3.39.2 ZNF785
+genus	2.3.3.39.3 ZNF771
+subfamily	2.3.3.40 ZNF177-like
+genus	2.3.3.40.1 ZNF177
+genus	2.3.3.40.2 ZNF891
+genus	2.3.3.40.3 ZNF333
+subfamily	2.3.3.41 ZNF32-like
+genus	2.3.3.41.1 ZNF32
+genus	2.3.3.41.2 ZIK1
+subfamily	2.3.3.42 ZNF773-like
+genus	2.3.3.42.2 ZNF419 (ZNF419a, ZNF419b)
+subfamily	2.3.3.43 ZNF558-like
+genus	2.3.3.43.1 ZNF558 (ZNF558/ZNF557)
+genus	2.3.3.43.2 ZNF557
+subfamily	2.3.3.44 ZNF302-like
+genus	2.3.3.44.1 ZNF302
+genus	2.3.3.44.2 ZNF2
+genus	2.3.3.44.3 ZNF181
+genus	2.3.3.44.4 ZNF140
+subfamily	2.3.3.45 ZNF562-like
+genus	2.3.3.45.1 ZNF562
+genus	2.3.3.45.2 ZNF812
+genus	2.3.3.45.3 ZNF561
+genus	2.3.3.45.4 ZNF559
+genus	2.3.3.45.5 ZNF846
+subfamily	2.3.3.46 ZXD
+genus	2.3.3.46.1 ZXDA (ZXDABZXDB1, ZXDB1)
+genus	2.3.3.46.2 ZXDB
+genus	2.3.3.46.3 ZXDC
+subfamily	2.3.3.47 ZNF222-like
+genus	2.3.3.47.1 ZNF222
+genus	2.3.3.47.2 ZNF223
+genus	2.3.3.47.3 ZNF230
+genus	2.3.3.47.4 ZNF155
+genus	2.3.3.47.5 ZNF221
+genus	2.3.3.47.6 ZNF224
+genus	2.3.3.47.7 ZNF225
+genus	2.3.3.47.8 ZNF284
+genus	2.3.3.47.9 ZNF235
+genus	2.3.3.47.10 ZNF45
+genus	2.3.3.47.11 ZNF229
+genus	2.3.3.47.12 ZNF227
+genus	2.3.3.47.13 ZNF226
+genus	2.3.3.47.14 ZNF234
+subfamily	2.3.3.48 ZNF736-like
+genus	2.3.3.48.1 ZNF736
+genus	2.3.3.48.2 ZNF727
+subfamily	2.3.3.49 ZNF286
+genus	2.3.3.49.1 ZNF286A
+genus	2.3.3.49.2 ZNF286B
+subfamily	2.3.3.50 CTCF-like
+genus	2.3.3.50.1 CTCF
+genus	2.3.3.50.2 CTCFL
+subfamily	2.3.3.51 ZNF366-like
+genus	2.3.3.51.1 ZNF366
+genus	2.3.3.51.2 ZNF710
+subfamily	2.3.3.52 ZNF322-like
+genus	2.3.3.52.1 ZNF322A
+subfamily	2.3.3.53 ZNF548-like
+genus	2.3.3.53.1 ZNF548
+genus	2.3.3.53.2 ZNF776
+subfamily	2.3.3.54 ZNF460-like
+genus	2.3.3.54.1 ZNF460
+genus	2.3.3.54.2 ZNF264 (znf264ortholog, znf264ortholog1, znf264ortholog2)
+genus	2.3.3.54.3 ZNF805
+genus	2.3.3.54.4 ZNF543
+genus	2.3.3.54.5 ZNF599
+subfamily	2.3.3.55 ZNF146-like
+genus	2.3.3.55.1 ZNF146
+genus	2.3.3.55.2 ZNF260
+subfamily	2.3.3.56 ZNF214-like
+genus	2.3.3.56.1 ZNF214
+genus	2.3.3.56.2 ZNF285
+genus	2.3.3.56.3 ZNF233
+subfamily	2.3.3.57 ZNF479-like
+genus	2.3.3.57.1 ZNF479
+subfamily	2.3.3.58 ZNF180-like
+genus	2.3.3.58.1 ZNF180
+genus	2.3.3.58.2 ZNF544
+genus	2.3.3.58.3 ZNF436
+genus	2.3.3.58.4 ZNF572
+genus	2.3.3.58.5 ZNF774
+genus	2.3.3.58.6 ZSCAN2
+subfamily	2.3.3.59 ZNF100-like
+genus	2.3.3.59.3 ZNF431
+subfamily	2.3.3.60 ZNF98-like
+subfamily	2.3.3.61 ZNF343-like
+genus	2.3.3.61.1 ZNF343
+genus	2.3.3.61.2 HKR1
+genus	2.3.3.61.3 ZNF169
+genus	2.3.3.61.4 ZNF133
+subfamily	2.3.3.62 ZFP2-like
+genus	2.3.3.62.1 ZFP2
+genus	2.3.3.62.2 ZNF71
+genus	2.3.3.62.3 ZNF568
+subfamily	2.3.3.63 ZFP30-like
+genus	2.3.3.63.1 ZFP30
+genus	2.3.3.63.2 ZFP82
+genus	2.3.3.63.3 ZFP14
+subfamily	2.3.3.64 ZNF354A-like
+genus	2.3.3.64.1 ZNF354A
+genus	2.3.3.64.2 ZNF354B
+subfamily	2.3.3.65 ZFX-ZFY
+genus	2.3.3.65.1 ZFX
+subfamily	2.3.3.66 ZNF689-like
+genus	2.3.3.66.1 ZNF689
+genus	2.3.3.66.2 ZNF672
+subfamily	2.3.3.67 ZNF283-like
+genus	2.3.3.67.1 ZNF283
+genus	2.3.3.67.2 ZNF345
+genus	2.3.3.67.3 ZNF404
+genus	2.3.3.67.4 ZNF571
+genus	2.3.3.67.5 ZNF30
+genus	2.3.3.67.6 ZNF420
+genus	2.3.3.67.7 ZNF607
+genus	2.3.3.67.8 ZNF546
+genus	2.3.3.67.9 ZNF780A (znf780ab, znf780ab1, znf780ab2)
+genus	2.3.3.67.10 ZNF780B
+subfamily	2.3.3.68 ZNF81-like
+genus	2.3.3.68.1 ZNF81
+genus	2.3.3.68.2 ZNF175
+genus	2.3.3.68.3 ZNF41 (znf41ortholog1, znf41ortholog2, znf41ortholog3, znf41ortholog4)
+genus	2.3.3.68.4 ZNF484
+genus	2.3.3.68.5 ZNF585B znf585ortholog1, znf585ortholog2, znf585ortholog3, znf585ortholog4, znf585ortholog5, znf585ortholog6, znf585ortholog7, znf585ortholog8, znf585ortholog9, znf585ortholog10, znf585ortholog11, znf585ortholog12, znf585ortholog13, znf585ortholog14, znf585ortholog15, znf585ortholog16, znf585ortholog17, znf585ortholog18, znf585ortholog19, znf585ortholog, znf585ortholog1, znf585ortholog2, znf585ortholog3, znf585ortholog4, znf585ortholog5, znf585ortholog6, znf585ortholog7, znf585ortholog8, znf585ortholog9, znf585ortholog10, znf585ortholog11, znf585ortholog12, znf585ortholog13, znf585ortholog14, znf585ortholog15, znf585ortholog16, znf585ortholog17, znf585ortholog18, znf585ortholog19, ZNF5851, ZNF5852)
+genus	2.3.3.68.6 ZNF585A
+subfamily	2.3.3.69 ZNF25-like
+genus	2.3.3.69.1 ZNF25
+genus	2.3.3.69.2 ZNF157
+genus	2.3.3.69.3 ZFP37
+genus	2.3.3.69.4 ZNF567
+genus	2.3.3.69.5 ZNF782
+genus	2.3.3.69.6 ZNF33A (znf33, znf33ortholog, znf33ortholog1, znf33ortholog2)
+genus	2.3.3.69.7 ZNF33B
+subfamily	2.3.3.70 ZNF26-like
+genus	2.3.3.70.1 ZNF26
+genus	2.3.3.70.2 ZNF268 (znf268ortholog)
+subfamily	2.3.3.71 ZNF300-like
+genus	2.3.3.71.1 ZNF300
+genus	2.3.3.71.2 ZNF605
+subfamily	2.3.3.72 ZNF813-like
+genus	2.3.3.72.1 ZNF813 (znf8138451, znf8138452)
+genus	2.3.3.72.2 ZNF860
+genus	2.3.3.72.3 ZNF611
+genus	2.3.3.72.4 ZNF600
+genus	2.3.3.72.5 ZNF808
+genus	2.3.3.72.7 ZNF845 (znf845ortholog, znf845ortholog1, znf845ortholog2, znf845ortholog3, znf845ortholog4, znf845ortholog5, znf845ortholog6, znf845ortholog7)
+subfamily	2.3.3.73 ZNF816A-like
+genus	2.3.3.73.1 ZNF816 (ZNF816A)
+genus	2.3.3.73.2 ZNF28
+subfamily	2.3.3.74 ZNF442-like
+genus	2.3.3.74.1 ZNF442
+genus	2.3.3.74.2 ZNF823
+genus	2.3.3.74.3 ZNF44
+genus	2.3.3.74.4 ZNF799
+genus	2.3.3.74.5 ZNF443
+subfamily	2.3.3.75 ZNF432-like
+genus	2.3.3.75.1 ZNF432
+genus	2.3.3.75.2 ZNF615 (znf615ortholog1, znf615ortholog2, znf615ortholog3, znf615ortholog4, znf615ortholog5)
+subfamily	2.3.3.76 ZNF665-like
+genus	2.3.3.76.1 ZNF665 (znf665ortholog)
+genus	2.3.3.76.2 ZNF160 (ZNF160ortholog)
+genus	2.3.3.76.3 ZNF347
+subfamily	2.3.3.77 ZNF595-like
+genus	2.3.3.77.1 ZNF595
+genus	2.3.3.77.2 ZNF721
+subfamily	2.3.3.78 ZNF14-like
+genus	2.3.3.78.1 ZNF14
+genus	2.3.3.78.2 ZNF709
+subfamily	2.3.3.79 ZNF841-like
+genus	2.3.3.79.1 ZNF841 (znf841ortholog)
+genus	2.3.3.79.2 ZNF836
+genus	2.3.3.79.3 ZNF616
+subfamily	2.3.3.80 ZNF99-like
+genus	2.3.3.80.1 ZNF99
+genus	2.3.3.80.2 ZNF729
+genus	2.3.3.0.1 ZFP161
+genus	2.3.3.0.10 ZNF781
+genus	2.3.3.0.11 ZNF114
+genus	2.3.3.0.12 ZNF589
+genus	2.3.3.0.13 ZNF22
+genus	2.3.3.0.14 ZNF713
+genus	2.3.3.0.15 ZSCAN16
+genus	2.3.3.0.20 ZNF18
+genus	2.3.3.0.21 WT1
+genus	2.3.3.0.23 PRDM6
+genus	2.3.3.0.24 ZNF444
+genus	2.3.3.0.25 ZNF641
+genus	2.3.3.0.26 ZNF746
+genus	2.3.3.0.27 ZIM2
+genus	2.3.3.0.31 ZNF655
+genus	2.3.3.0.32 ZNF165
+genus	2.3.3.0.34 ZNF131
+genus	2.3.3.0.35 PRDM14
+genus	2.3.3.0.37 ZNF575
+genus	2.3.3.0.38 ZBTB49
+genus	2.3.3.0.39 ZNF691
+genus	2.3.3.0.43 ZSCAN30
+genus	2.3.3.0.45 ZNF80
+genus	2.3.3.0.46 ZNF514
+genus	2.3.3.0.47 ZSCAN21
+genus	2.3.3.0.54 MYNN
+genus	2.3.3.0.55 ZBTB24
+genus	2.3.3.0.57 ZFP92
+genus	2.3.3.0.58 ZNF205
+genus	2.3.3.0.59 ZNF837
+genus	2.3.3.0.67 ZNF584
+genus	2.3.3.0.68 ZNF684
+genus	2.3.3.0.69 ZNF187
+genus	2.3.3.0.70 ZSCAN22
+genus	2.3.3.0.71 ZNF550
+genus	2.3.3.0.78 ZNF696
+genus	2.3.3.0.79 ZNF263
+genus	2.3.3.0.80 ZNF556
+genus	2.3.3.0.81 ZNF192
+genus	2.3.3.0.82 ZNF391
+genus	2.3.3.0.83 ZNF239
+genus	2.3.3.0.91 ZNF660
+genus	2.3.3.0.92 GZF1
+genus	2.3.3.0.93 ZNF408
+genus	2.3.3.0.94 ZNF648
+genus	2.3.3.0.95 ZNF768
+genus	2.3.3.0.100 ZNF35
+genus	2.3.3.0.101 ZNF483
+genus	2.3.3.0.102 ZBTB48
+genus	2.3.3.0.103 ZNF275
+genus	2.3.3.0.104 ZIM3
+genus	2.3.3.0.106 ZNF596
+genus	2.3.3.0.111 ZNF718
+genus	2.3.3.0.112 ZNF121
+genus	2.3.3.0.113 ZNF485
+genus	2.3.3.0.114 ZNF354C
+genus	2.3.3.0.115 ZNF586
+genus	2.3.3.0.118 ZNF10
+genus	2.3.3.0.119 ZNF19
+genus	2.3.3.0.123 ZBTB40
+genus	2.3.3.0.124 ZBTB11
+genus	2.3.3.0.125 ZNF454
+genus	2.3.3.0.126 ZNF154
+genus	2.3.3.0.127 ZNF416
+genus	2.3.3.0.130 ZNF34
+genus	2.3.3.0.136 ZNF320
+genus	2.3.3.0.142 ZNF331
+genus	2.3.3.0.148 ZNF329
+genus	2.3.3.0.149 ZFP90
+genus	2.3.3.0.150 ZNF317
+genus	2.3.3.0.159 ZNF167
+genus	2.3.3.0.160 ZNF250
+genus	2.3.3.0.161 ZNF623
+genus	2.3.3.0.162 ZFP3
+genus	2.3.3.0.165 ZNF266
+genus	2.3.3.0.166 ZNF311
+genus	2.3.3.0.173 ZNF880
+genus	2.3.3.0.174 ZNF287
+genus	2.3.3.0.180 ZNF549
+genus	2.3.3.0.183 ZNF676
+genus	2.3.3.0.186 ZNF267
+genus	2.3.3.0.191 ZNF471
+genus	2.3.3.0.192 ZFP28
+genus	2.3.3.0.193 ZNF182
+genus	2.3.3.0.195 PRDM5
+genus	2.3.3.0.196 RBAK
+genus	2.3.3.0.197 ZNF189
+genus	2.3.3.0.202 ZNF135
+genus	2.3.3.0.210 ZNF23
+genus	2.3.3.0.215 ZNF569
+genus	2.3.3.0.216 ZNF84
+genus	2.3.3.0.220 ZNF184
+genus	2.3.3.0.221 ZNF441
+genus	2.3.3.0.224 ZNF433
+genus	2.3.3.0.225 ZNF337
+genus	2.3.3.0.226 ZNF726
+genus	2.3.3.0.227 ZNF624
+genus	2.3.3.0.228 ZNF197
+genus	2.3.3.0.232 ZNF594
+genus	2.3.3.0.233 ZNF107
+genus	2.3.3.0.234 ZNF208
+subfamily	2.3.3.0 unclassified
+genus	2.3.3.0.3 ZNF496
+genus	2.3.3.0.6 ZNF274
+genus	2.3.3.0.7 ZNF200
+genus	2.3.3.0.9 OSR2
+genus	2.3.3.0.16 ZNF793
+genus	2.3.3.0.17 ZFP41
+genus	2.3.3.0.18 ZNF215
+genus	2.3.3.0.28 ZBTB44
+genus	2.3.3.0.30 ZNF576
+genus	2.3.3.0.40 ZNF394
+genus	2.3.3.0.41 ZNF449
+genus	2.3.3.0.42 ZNF498 (ZSCAN25)
+genus	2.3.3.0.51 ZNF707
+genus	2.3.3.0.60 ZNF202
+genus	2.3.3.0.61 ZNF789
+genus	2.3.3.0.62 ZNF662
+genus	2.3.3.0.63 ZNF554
+genus	2.3.3.0.64 ZNF506
+genus	2.3.3.0.72 ZFP1
+genus	2.3.3.0.74 ZBTB16
+genus	2.3.3.0.75 GTF3A
+genus	2.3.3.0.76 ZFP64
+genus	2.3.3.0.77 ZNF358
+genus	2.3.3.0.84 ZNF664
+genus	2.3.3.0.87 ZNF501
+genus	2.3.3.0.89 ZNF610
+genus	2.3.3.0.96 ZNF517
+genus	2.3.3.0.97 ZNF547
+genus	2.3.3.0.98 ZNF766
+genus	2.3.3.0.99 ZNF677
+genus	2.3.3.0.109 ZNF682
+genus	2.3.3.0.110 ZNF141
+genus	2.3.3.0.120 ZSCAN12
+genus	2.3.3.0.121 ZNF70
+genus	2.3.3.0.122 ZNF79
+genus	2.3.3.0.132 ZNF74
+genus	2.3.3.0.133 ZNF415
+genus	2.3.3.0.134 ZNF480
+genus	2.3.3.0.143 ZNF461
+genus	2.3.3.0.145 ZNF529
+genus	2.3.3.0.146 ZNF565
+genus	2.3.3.0.152 MZF1
+genus	2.3.3.0.153 ZNF530
+genus	2.3.3.0.156 ZNF695
+genus	2.3.3.0.157 ZNF879
+genus	2.3.3.0.158 ZNF790
+genus	2.3.3.0.167 ZNF551
+genus	2.3.3.0.168 ZNF497
+genus	2.3.3.0.169 ZSCAN10
+genus	2.3.3.0.175 ZNF502
+genus	2.3.3.0.176 ZNF835
+genus	2.3.3.0.177 ZNF560
+genus	2.3.3.0.179 ZNF667
+genus	2.3.3.0.188 ZNF83
+genus	2.3.3.0.189 ZNF528
+genus	2.3.3.0.190 ZNF7
+genus	2.3.3.0.204 ZNF16
+genus	2.3.3.0.205 ZNF17
+genus	2.3.3.0.207 ZNF534
+genus	2.3.3.0.209 ZNF791
+genus	2.3.3.0.217 ZNF749
+genus	2.3.3.0.218 ZNF425
+genus	2.3.3.0.229 ZNF493
+genus	2.3.3.0.230 ZNF43
+genus	2.3.3.0.231 ZFP62
+genus	2.3.3.0.235 ZNF91
+family	2.3.4 Factors with multiple dispersed zinc fingers
+subfamily	2.3.4.1 ZNF417-like
+genus	2.3.4.1.1 ZNF417
+genus	2.3.4.1.2 ZNF587 (ZNF587B)
+genus	2.3.4.1.3 ZNF552
+genus	2.3.4.1.4 ZNF814 (ZNF814B, ZNF814B1, ZNF814B2, ZNF814C)
+genus	2.3.4.1.5 ZNF418 (ZNF418B)
+genus	2.3.4.1.6 ZNF211
+genus	2.3.4.1.7 ZNF256
+subfamily	2.3.4.2 ZNF219-like
+genus	2.3.4.2.1 ZNF219
+genus	2.3.4.2.2 ZNF536
+genus	2.3.4.2.3 ZNF516
+genus	2.3.4.2.4 ZNF217
+subfamily	2.3.4.3 SAL-like
+genus	2.3.4.3.1 SALL1
+genus	2.3.4.3.2 SALL2
+genus	2.3.4.3.3 SALL3
+genus	2.3.4.3.4 SALL4
+subfamily	2.3.4.4 Ikaros
+genus	2.3.4.4.1 IKZF1
+genus	2.3.4.4.2 IKZF2
+genus	2.3.4.4.3 IKZF3
+genus	2.3.4.4.4 IKZF4
+genus	2.3.4.4.5 IKZF5
+subfamily	2.3.4.5 HIV EP
+genus	2.3.4.5.1 HIVEP1
+genus	2.3.4.5.2 HIVEP2
+genus	2.3.4.5.3 HIVEP3
+subfamily	2.3.4.6 ZBTB1-like
+genus	2.3.4.6.1 ZBTB1
+genus	2.3.4.6.2 ZBTB2
+genus	2.3.4.6.3 ZBTB25
+subfamily	2.3.4.7 RLF-like
+genus	2.3.4.7.1 RLF
+genus	2.3.4.7.2 ZNF292
+genus	2.3.4.7.3 ZNF654
+subfamily	2.3.4.8 MAZ-like
+genus	2.3.4.8.1 MAZ
+genus	2.3.4.8.2 VEZF1
+genus	2.3.4.8.3 PATZ1
+subfamily	2.3.4.9 ZNF532-like
+genus	2.3.4.9.1 ZNF532
+genus	2.3.4.9.2 ZNF592
+genus	2.3.4.9.3 ZNF687
+subfamily	2.3.4.10 ZNF512
+genus	2.3.4.10.1 ZNF512
+genus	2.3.4.10.2 ZNF512B
+subfamily	2.3.4.11 ZNF658
+genus	2.3.4.11.1 ZNF658
+subfamily	2.3.4.12 ZNF423-like
+genus	2.3.4.12.1 ZNF423
+genus	2.3.4.12.2 ZNF521
+subfamily	2.3.4.13 ZNF639-like
+genus	2.3.4.13.1 ZNF639
+genus	2.3.4.13.2 ZNF711
+subfamily	2.3.4.14 EVI1-like
+genus	2.3.4.14.1 EVI1
+genus	2.3.4.14.2 PRDM16
+subfamily	2.3.4.15 BCL11
+genus	2.3.4.15.1 BCL11A
+genus	2.3.4.15.2 BCL11B
+genus	2.3.4.15.3 ZNF296
+subfamily	2.3.4.16 Insulinoma-associated proteins
+genus	2.3.4.16.1 INSM1
+genus	2.3.4.16.2 INSM2
+subfamily	2.3.4.17 HIC
+genus	2.3.4.17.1 HIC1
+genus	2.3.4.17.2 HIC2
+subfamily	2.3.4.18 ZNF518
+genus	2.3.4.18.1 ZNF518A
+genus	2.3.4.18.2 ZNF518B
+subfamily	2.3.4.19 Basonuclin
+genus	2.3.4.19.1 BNC1
+genus	2.3.4.19.2 BNC2
+subfamily	2.3.4.20 TRERF1-like
+subfamily	2.3.4.21 HINFP-like
+genus	2.3.4.21.1 HINFP
+genus	2.3.4.21.2 ZFAT
+subfamily	2.3.4.22 ZNF526-like
+genus	2.3.4.22.1 ZNF526
+genus	2.3.4.22.2 ZNF574
+subfamily	2.3.4.23 ZNF319-like
+genus	2.3.4.23.1 ZNF319
+genus	2.3.4.23.2 ZNF786
+subfamily	2.3.4.24 ZNF134-like
+genus	2.3.4.24.1 ZNF134
+genus	2.3.4.24.2 ZNF671
+genus	2.3.4.24.3 ZNF772
+genus	2.3.4.24.4 ZNF792
+subfamily	2.3.4.25 ZNF37A-like
+genus	2.3.4.25.1 ZNF37A
+genus	2.3.4.25.2 ZNF717
+genus	2.3.4.25.3 ZNF248
+genus	2.3.4.25.4 ZNF334
+genus	2.3.4.25.5 ZNF382
+genus	2.3.4.25.6 ZNF510
+genus	2.3.4.0.1 CASZ1
+genus	2.3.4.0.2 ZNF335
+genus	2.3.4.0.4 WIZ
+genus	2.3.4.0.5 ZNF469
+genus	2.3.4.0.6 ZFPM1
+genus	2.3.4.0.7 ZBTB4
+genus	2.3.4.0.9 ZBTB39
+genus	2.3.4.0.10 ZNF295
+genus	2.3.4.0.12 PRDM13
+genus	2.3.4.0.13 ZNF646
+genus	2.3.4.0.14 ZNF579
+genus	2.3.4.0.16 PRDM2
+genus	2.3.4.0.17 ZNF800
+genus	2.3.4.0.18 ZNF618
+genus	2.3.4.0.21 ZNF451
+genus	2.3.4.0.22 ZNF438
+genus	2.3.4.0.24 ZNF507
+genus	2.3.4.0.25 ZNF236
+genus	2.3.4.0.26 ZNF770
+genus	2.3.4.0.28 ZFP57
+genus	2.3.4.0.30 ZNF597
+genus	2.3.4.0.32 PRDM15
+genus	2.3.4.0.33 ZBTB41
+genus	2.3.4.0.34 PRDM10
+genus	2.3.4.0.36 ZNF513
+genus	2.3.4.0.37 ZNF142
+genus	2.3.4.0.38 FIZ1
+genus	2.3.4.0.40 ZNF784
+genus	2.3.4.0.41 ZNF697
+genus	2.3.4.0.42 ZKSCAN5
+genus	2.3.4.0.44 ZNF775
+genus	2.3.4.0.45 ZNF467
+genus	2.3.4.0.46 ZNF787
+genus	2.3.4.0.48 ZNF48
+genus	2.3.4.0.49 ZNF629
+genus	2.3.4.0.50 ZNF668
+genus	2.3.4.0.51 ZNF101
+genus	2.3.4.0.52 ZNF251
+genus	2.3.4.0.53 ZNF445
+genus	2.3.4.0.56 ZSCAN20
+genus	2.3.4.0.57 ZNF674
+genus	2.3.4.0.60 ZNF788
+genus	2.3.4.0.63 ZNF778
+genus	2.3.4.0.68 ZNF519
+genus	2.3.4.0.69 ZNF304
+genus	2.3.4.0.70 ZNF132
+genus	2.3.4.0.72 ZBTB17
+genus	2.3.4.0.73 ZNF407
+genus	2.3.4.0.74 E4F1
+subfamily	2.3.4.0 unclassified
+genus	2.3.4.0.3 PRDM8
+genus	2.3.4.0.8 ZBTB38
+genus	2.3.4.0.15 RREB1
+genus	2.3.4.0.19 ZNF277
+genus	2.3.4.0.23 PEG3
+genus	2.3.4.0.27 REST
+genus	2.3.4.0.31 PRDM4
+genus	2.3.4.0.35 ZNF341
+genus	2.3.4.0.39 ZNF628
+genus	2.3.4.0.43 ZNF316
+genus	2.3.4.0.59 ZNF195
+genus	2.3.4.0.67 ZNF606
+genus	2.3.4.0.71 PRDM9
+genus	2.3.4.0.75 ZNF462
+genus	2.3.4.0.76 ZNF644
+family	2.3.5 BED zinc finger factors
+genus	2.3.5.0.1 ZBED1
+genus	2.3.5.0.2 ZBED2
+genus	2.3.5.0.3 ZBED3
+genus	2.3.5.0.4 ZBED4
+genus	2.3.5.0.5 ZBED5
+genus	2.3.5.0.6 ZBED6
+class	2.5 DM-type intertwined zinc finger factors
+family	2.5.1 DMRT
+genus	2.5.1.0.1 DMRT1
+genus	2.5.1.0.2 DMRT2
+genus	2.5.1.0.3 DMRT3 (DMRT3a, DMRT3b)
+genus	2.5.1.0.4 DMRTA1
+genus	2.5.1.0.5 DMRTA2
+genus	2.5.1.0.6 DMRTB1
+genus	2.5.1.0.7 DMRTC2 (dmrtc2b1, dmrtc2b2)
+genus	2.5.1.0.8 DMRTC1 (dmrtc1a, dmrtc1b, dmrtc1b1, dmrtc1b2, dmrtc1b3, dmrtc1b4, dmrtc1b5, dmrtc1c)
+class	2.6 CXXC zinc finger factors
+family	2.6.1 CpG-binding proteins
+genus	2.6.1.0.1 CXXC1
+genus	2.6.1.0.2 MBD1
+genus	2.6.1.0.3 TET1
+genus	2.6.1.0.4 MLL
+genus	2.6.1.0.5 KDM2A
+genus	2.6.1.0.6 DNMT1
+genus	2.6.1.0.7 KMT2B
+class	2.7 C2HC
+family	2.7.1 MYT
+genus	2.7.1.0.1 MYT1
+genus	2.7.1.0.2 MYT1L
+genus	2.7.1.0.3 ST18
+family	2.7.2 FOG
+genus	2.7.2.0.1 FOG1
+genus	2.7.2.0.2 FOG2
+family	2.7.3 MYST
+genus	2.7.3.0.1 MYST1
+genus	2.7.3.0.2 MYST2
+genus	2.7.3.0.3 MYST3
+genus	2.7.3.0.4 MYST4
+genus	2.7.3.0.5 KAT5
+family	2.7.4 L3MBTL1
+genus	2.7.4.0.1 L3MBTL1
+family	2.7.5 LYAR
+genus	2.7.5.0.1 LYAR
+class	2.8 C3H zinc finger factors
+family	2.8.1 ZC3H8
+genus	2.8.1.0.1 ZC3H8
+genus	2.8.1.0.2 ZC3H4
+genus	2.8.1.0.3 ZC3H6
+family	2.8.2 ZGPAT
+genus	2.8.2.0.1 ZGPAT
+family	2.8.3 RC3H
+genus	2.8.3.0.1 RC3H2
+family	2.8.4 CNOT4
+genus	2.8.4.0.1 CNOT4
+class	2.9 C2CH THAP-type zinc finger factors
+family	2.9.1 THAP
+genus	2.9.1.0.1 THAP1
+genus	2.9.1.0.2 THAP2
+genus	2.9.1.0.3 THAP3
+genus	2.9.1.0.4 THAP4
+genus	2.9.1.0.5 THAP5
+genus	2.9.1.0.6 THAP6
+genus	2.9.1.0.7 THAP7
+genus	2.9.1.0.8 THAP8
+genus	2.9.1.0.9 THAP9
+genus	2.9.1.0.10 THAP10
+genus	2.9.1.0.11 THAP11
+genus	2.9.1.0.12 PRKRIR
+superclass	3 Helix-turn-helix domains
+class	3.1 Homeo domain factors
+family	3.1.1 HOX
+subfamily	3.1.1.1 HOX1
+genus	3.1.1.1.1 HOXA1
+genus	3.1.1.1.2 HOXB1
+genus	3.1.1.1.3 HOXD1
+subfamily	3.1.1.2 HOX2
+genus	3.1.1.2.1 HOXA2
+genus	3.1.1.2.2 HOXB2
+subfamily	3.1.1.3 HOX3
+genus	3.1.1.3.1 HOXA3
+genus	3.1.1.3.2 HOXB3
+genus	3.1.1.3.3 HOXD3
+subfamily	3.1.1.4 HOX4
+genus	3.1.1.4.1 HOXA4
+genus	3.1.1.4.2 HOXB4
+genus	3.1.1.4.3 HOXC4
+genus	3.1.1.4.4 HOXD4
+subfamily	3.1.1.5 HOX5
+genus	3.1.1.5.1 HOXA5
+genus	3.1.1.5.2 HOXB5
+genus	3.1.1.5.3 HOXC5
+subfamily	3.1.1.6 HOX6-7
+genus	3.1.1.6.1 HOXA6
+genus	3.1.1.6.2 HOXB6
+genus	3.1.1.6.3 HOXC6
+genus	3.1.1.6.4 HOXA7
+genus	3.1.1.6.5 HOXB7
+subfamily	3.1.1.7 HOX8
+genus	3.1.1.7.1 HOXB8
+genus	3.1.1.7.2 HOXC8
+genus	3.1.1.7.3 HOXD8
+subfamily	3.1.1.8 HOX9-13
+genus	3.1.1.8.1 HOXA9
+genus	3.1.1.8.2 HOXB9
+genus	3.1.1.8.3 HOXC9
+genus	3.1.1.8.4 HOXD9
+genus	3.1.1.8.5 HOXA10
+genus	3.1.1.8.7 HOXC10
+genus	3.1.1.8.8 HOXD10
+genus	3.1.1.8.9 HOXA11
+genus	3.1.1.8.10 HOXC11
+genus	3.1.1.8.11 HOXD11
+genus	3.1.1.8.12 HOXC12
+genus	3.1.1.8.13 HOXD12
+genus	3.1.1.8.14 HOXA13
+genus	3.1.1.8.15 HOXB13
+genus	3.1.1.8.16 HOXC13
+genus	3.1.1.8.17 HOXD13
+subfamily	3.1.1.9 CDX
+genus	3.1.1.9.1 CDX1
+genus	3.1.1.9.2 CDX2
+genus	3.1.1.9.3 CDX4
+subfamily	3.1.1.10 EVX
+genus	3.1.1.10.1 EVX1
+genus	3.1.1.10.2 EVX2
+subfamily	3.1.1.11 GBX
+genus	3.1.1.11.1 GBX1 (GBX)
+genus	3.1.1.11.2 GBX2
+subfamily	3.1.1.12 GSX
+genus	3.1.1.12.1 GSX1
+genus	3.1.1.12.2 GSX2
+subfamily	3.1.1.13 MNX
+genus	3.1.1.13.1 MNX1
+subfamily	3.1.1.14 MEOX
+genus	3.1.1.14.1 MEOX1
+genus	3.1.1.14.2 MEOX2
+subfamily	3.1.1.15 PDX
+genus	3.1.1.15.1 PDX1
+family	3.1.2 NK
+subfamily	3.1.2.1 BARHL
+genus	3.1.2.1.1 BARHL1
+genus	3.1.2.1.2 BARHL2
+subfamily	3.1.2.2 BARX
+genus	3.1.2.2.1 BARX1
+genus	3.1.2.2.2 BARX2
+subfamily	3.1.2.3 BSX
+genus	3.1.2.3.1 BSX1
+subfamily	3.1.2.4 DBX
+genus	3.1.2.4.1 DBX1
+genus	3.1.2.4.2 DBX2
+subfamily	3.1.2.5 DLX
+genus	3.1.2.5.1 DLX1
+genus	3.1.2.5.2 DLX2
+genus	3.1.2.5.3 DLX3
+genus	3.1.2.5.4 DLX4
+genus	3.1.2.5.5 DLX5
+genus	3.1.2.5.6 DLX6
+subfamily	3.1.2.6 EMX
+genus	3.1.2.6.1 EMX1
+genus	3.1.2.6.2 EMX2
+subfamily	3.1.2.7 EN
+genus	3.1.2.7.1 EN1
+genus	3.1.2.7.2 EN2
+subfamily	3.1.2.8 HHEX
+genus	3.1.2.8.1 HHEX
+subfamily	3.1.2.9 HLX
+genus	3.1.2.9.1 HLX1
+subfamily	3.1.2.10 LBX
+genus	3.1.2.10.1 LBX1
+genus	3.1.2.10.2 LBX2
+subfamily	3.1.2.11 MSX
+genus	3.1.2.11.1 MSX1
+genus	3.1.2.11.2 MSX2
+genus	3.1.2.11.3 MSX3
+subfamily	3.1.2.12 NANOG
+genus	3.1.2.12.1 NANOG
+subfamily	3.1.2.13 NK1
+genus	3.1.2.13.1 NKX1-1
+genus	3.1.2.13.2 NKX1-2
+subfamily	3.1.2.14 NK2.1
+genus	3.1.2.14.1 NKX2-1
+genus	3.1.2.14.2 NKX2-4
+subfamily	3.1.2.15 NK2.2
+genus	3.1.2.15.1 NKX2-2
+genus	3.1.2.15.2 NKX2-8
+subfamily	3.1.2.16 NK3
+genus	3.1.2.16.1 NKX3-1
+genus	3.1.2.16.2 NKX3-2
+subfamily	3.1.2.17 NK4
+genus	3.1.2.17.1 NKX2-3
+genus	3.1.2.17.2 NKX2-5
+genus	3.1.2.17.3 NKX2-6
+subfamily	3.1.2.18 NK5-HMX
+genus	3.1.2.18.1 HMX1
+genus	3.1.2.18.2 HMX2
+genus	3.1.2.18.3 HMX3
+subfamily	3.1.2.19 NK6
+genus	3.1.2.19.1 NKX6-1 (NKX6-1-1, NKX6-1-2)
+genus	3.1.2.19.2 NKX6-2
+genus	3.1.2.19.3 NKX6-3
+subfamily	3.1.2.20 NOTO
+genus	3.1.2.20.1 NOTO
+subfamily	3.1.2.21 TLX
+genus	3.1.2.21.1 TLX1
+genus	3.1.2.21.2 TLX2
+genus	3.1.2.21.3 TLX3
+subfamily	3.1.2.22 VAX
+genus	3.1.2.22.1 VAX1
+genus	3.1.2.22.2 VAX2
+subfamily	3.1.2.23 VENTX
+genus	3.1.2.23.1 VENTX
+family	3.1.3 Paired-related HD
+subfamily	3.1.3.1 ALX
+genus	3.1.3.1.1 ALX1
+genus	3.1.3.1.2 ALX3
+genus	3.1.3.1.3 ALX4
+subfamily	3.1.3.2 ARGFX
+genus	3.1.3.2.1 ARGFX
+subfamily	3.1.3.3 ARX
+genus	3.1.3.3.1 ARX
+subfamily	3.1.3.4 DMBX
+genus	3.1.3.4.1 DMBX1
+subfamily	3.1.3.5 DPRX
+genus	3.1.3.5.1 DPRX
+subfamily	3.1.3.6 DRGX
+genus	3.1.3.6.1 DRGX
+subfamily	3.1.3.7 DUX
+genus	3.1.3.7.1 DUXA
+genus	3.1.3.7.5 DUX4
+genus	3.1.3.7.9 DUX4L4
+subfamily	3.1.3.8 ESX
+genus	3.1.3.8.1 ESX1
+subfamily	3.1.3.9 GSC
+genus	3.1.3.9.1 GSC
+genus	3.1.3.9.2 GSC2
+subfamily	3.1.3.10 HESX
+genus	3.1.3.10.1 HESX1
+subfamily	3.1.3.11 HOPX
+genus	3.1.3.11.1 HOPX
+subfamily	3.1.3.12 ISX
+genus	3.1.3.12.1 ISX
+subfamily	3.1.3.13 LEUTX
+genus	3.1.3.13.1 LEUTX
+subfamily	3.1.3.14 MIX
+genus	3.1.3.14.1 MIXL1
+subfamily	3.1.3.15 NOBOX
+genus	3.1.3.15.1 NOBOX
+subfamily	3.1.3.16 OTP
+genus	3.1.3.16.1 OTP
+subfamily	3.1.3.17 OTX
+genus	3.1.3.17.1 OTX1
+genus	3.1.3.17.2 OTX2
+genus	3.1.3.17.3 CRX
+subfamily	3.1.3.18 PHOX
+genus	3.1.3.18.1 PHOX2A
+genus	3.1.3.18.2 PHOX2B
+subfamily	3.1.3.19 PITX
+genus	3.1.3.19.1 PITX1
+genus	3.1.3.19.2 PITX2
+genus	3.1.3.19.3 PITX3
+subfamily	3.1.3.20 PROP
+genus	3.1.3.20.1 PROP1
+subfamily	3.1.3.21 PRRX
+genus	3.1.3.21.1 PRRX1 (PRRX1a, PRRX1b)
+genus	3.1.3.21.2 PRRX2
+subfamily	3.1.3.22 RAX
+genus	3.1.3.22.1 RAX
+genus	3.1.3.22.2 RAX2
+subfamily	3.1.3.23 RHOX
+genus	3.1.3.23.1 RHOXF1
+genus	3.1.3.23.2 RHOXF2
+subfamily	3.1.3.24 SEBOX
+genus	3.1.3.24.1 SEBOX
+subfamily	3.1.3.25 SHOX
+genus	3.1.3.25.1 SHOX
+genus	3.1.3.25.2 SHOX2
+subfamily	3.1.3.26 TPRX
+genus	3.1.3.26.1 TPRX1
+genus	3.1.3.26.2 TPRXL
+subfamily	3.1.3.27 UNCX
+genus	3.1.3.27.1 UNCX
+subfamily	3.1.3.28 VSX
+genus	3.1.3.28.1 VSX1
+genus	3.1.3.28.2 VSX2
+family	3.1.4 TALE-type HD
+subfamily	3.1.4.1 IRX
+genus	3.1.4.1.1 IRX1
+genus	3.1.4.1.2 IRX2
+genus	3.1.4.1.3 IRX3
+genus	3.1.4.1.4 IRX4
+genus	3.1.4.1.5 IRX5
+genus	3.1.4.1.6 IRX6
+subfamily	3.1.4.2 MEIS
+genus	3.1.4.2.1 MEIS1
+genus	3.1.4.2.2 MEIS2
+genus	3.1.4.2.3 MEIS3
+subfamily	3.1.4.3 MKX
+genus	3.1.4.3.1 MKX
+subfamily	3.1.4.4 PBX
+genus	3.1.4.4.1 PKNOX1
+genus	3.1.4.4.2 PKNOX2
+subfamily	3.1.4.5 PKNOX
+genus	3.1.4.5.1 TGIF1
+genus	3.1.4.5.2 TGIF2
+genus	3.1.4.5.3 TGIF2LX
+genus	3.1.4.5.4 TGIF2LY
+subfamily	3.1.4.6 TGIF
+family	3.1.5 HD-LIM
+subfamily	3.1.5.1 ISL
+genus	3.1.5.1.1 ISL1
+genus	3.1.5.1.2 ISL2
+subfamily	3.1.5.2 LHX1-like
+genus	3.1.5.2.1 LHX1
+genus	3.1.5.2.2 LHX5
+subfamily	3.1.5.3 LHX2-like
+genus	3.1.5.3.1 LHX2
+genus	3.1.5.3.2 LHX9
+subfamily	3.1.5.4 LHX3-like
+genus	3.1.5.4.1 LHX3
+genus	3.1.5.4.2 LHX4
+subfamily	3.1.5.5 LHX6-like
+genus	3.1.5.5.1 LHX6
+genus	3.1.5.5.2 LHX8
+subfamily	3.1.5.6 LMX
+genus	3.1.5.6.1 LMX1A (LMX1alpha)
+genus	3.1.5.6.2 LMX1B (LMX1beta)
+family	3.1.6 HD-SINE
+subfamily	3.1.6.1 SIX1-like
+genus	3.1.6.1.1 SIX1
+genus	3.1.6.1.2 SIX2
+subfamily	3.1.6.2 SIX3-like
+genus	3.1.6.2.1 SIX3
+genus	3.1.6.2.2 SIX6
+subfamily	3.1.6.3 SIX4-like
+genus	3.1.6.3.1 SIX4
+genus	3.1.6.3.2 SIX5
+subfamily	3.1.6.0 other SIX-like
+family	3.1.7 HD-PROS
+genus	3.1.7.0.1 PROX1
+genus	3.1.7.0.2 PROX2
+family	3.1.8 HD-ZF
+subfamily	3.1.8.1 ADNP
+genus	3.1.8.1.1 ADNP1
+genus	3.1.8.1.2 ADNP2
+subfamily	3.1.8.2 TSHZ
+genus	3.1.8.2.1 TSHZ1
+genus	3.1.8.2.2 TSHZ2
+genus	3.1.8.2.3 TSHZ3
+subfamily	3.1.8.3 ZEB
+genus	3.1.8.3.1 ZEB1
+genus	3.1.8.3.2 ZEB2
+subfamily	3.1.8.4 ZFHX
+genus	3.1.8.4.1 ZFHX2
+genus	3.1.8.4.2 ZFHX3
+genus	3.1.8.4.3 ZFHX4
+subfamily	3.1.8.5 ZHX
+genus	3.1.8.5.1 ZHX1
+genus	3.1.8.5.2 ZHX2
+genus	3.1.8.5.3 ZHX3
+genus	3.1.8.5.4 HOMEZ
+genus	3.1.8.5.5 NANOGNB
+family	3.1.9 HD-CUT
+subfamily	3.1.9.1 ONECUT
+genus	3.1.9.1.1 ONECUT1
+genus	3.1.9.1.2 ONECUT2
+genus	3.1.9.1.3 ONECUT3
+subfamily	3.1.9.2 CUX
+genus	3.1.9.2.1 CUX1
+genus	3.1.9.2.2 CUX2
+subfamily	3.1.9.3 SATB
+genus	3.1.9.3.1 SATB1
+genus	3.1.9.3.2 SATB2
+family	3.1.10 POU
+subfamily	3.1.10.1 POU1
+genus	3.1.10.1.1 POU1F1 (Pit-1)
+subfamily	3.1.10.2 POU2
+genus	3.1.10.2.1 POU2F1 (Oct-1)
+genus	3.1.10.2.2 POU2F2 (Oct-2)
+genus	3.1.10.2.3 POU2F3 (Oct-11)
+subfamily	3.1.10.3 POU3
+genus	3.1.10.3.1 POU3F1 (Oct-6)
+genus	3.1.10.3.2 POU3F2 (Oct-7, Brn-2)
+genus	3.1.10.3.3 POU3F3 (Oct-8, Brn-1)
+genus	3.1.10.3.4 POU3F4 (Oct-9, Brn-4)
+subfamily	3.1.10.4 POU4
+genus	3.1.10.4.1 POU4F1 (Brn-3A, OCT-T1)
+genus	3.1.10.4.2 POU4F2 (Brn-3B)
+genus	3.1.10.4.3 POU4F3 (Brn-3C)
+subfamily	3.1.10.5 POU5
+genus	3.1.10.5.2 POU5F1 (Oct-3)
+genus	3.1.10.5.4 POU5F2
+subfamily	3.1.10.6 POU6
+genus	3.1.10.6.1 POU6F1 (Brn-5)
+genus	3.1.10.6.2 POU6F2 (Rpf-1)
+subfamily	3.1.10.7 HNF1-like
+genus	3.1.10.7.1 HNF1A
+genus	3.1.10.7.2 HNF1B
+genus	3.1.10.7.3 HMBOX1
+subfamily	3.1.10.8 HDX
+genus	3.1.10.8.1 HDX
+family	3.1.11 PHTF
+genus	3.1.11.0.1 PHTF1
+genus	3.1.11.0.2 PHTF2
+class	3.2 Paired box factors
+family	3.2.1 PD+HD
+subfamily	3.2.1.1 PAX3-like
+genus	3.2.1.1.1 PAX3
+genus	3.2.1.1.2 PAX7
+subfamily	3.2.1.2 PAX4-like
+genus	3.2.1.2.1 PAX4
+genus	3.2.1.2.2 PAX6
+family	3.2.2 PD
+subfamily	3.2.2.1 PAX1-like
+genus	3.2.2.1.1 PAX1
+genus	3.2.2.1.2 PAX9
+subfamily	3.2.2.2 PAX2-like
+genus	3.2.2.2.1 PAX2
+genus	3.2.2.2.2 PAX5
+genus	3.2.2.2.3 PAX8
+class	3.3 Fork head / winged helix factors
+family	3.3.1 FOX
+subfamily	3.3.1.1 FOXA
+genus	3.3.1.1.1 FOXA1
+genus	3.3.1.1.2 FOXA2
+genus	3.3.1.1.3 FOXA3
+subfamily	3.3.1.2 FOXB
+genus	3.3.1.2.1 FOXB1
+genus	3.3.1.2.2 FOXB2
+subfamily	3.3.1.3 FOXC
+genus	3.3.1.3.1 FOXC1
+genus	3.3.1.3.2 FOXC2
+subfamily	3.3.1.4 FOXD
+genus	3.3.1.4.1 FOXD1
+genus	3.3.1.4.2 FOXD2
+genus	3.3.1.4.3 FOXD3
+genus	3.3.1.4.4 FOXD4 (FOXD4a, FOXD4b)
+genus	3.3.1.4.5 FOXD4L1
+genus	3.3.1.4.7 FOXD4L3
+genus	3.3.1.4.8 FOXD4L4
+genus	3.3.1.4.9 FOXD4L5
+genus	3.3.1.4.10 FOXD4L6
+subfamily	3.3.1.5 FOXE
+genus	3.3.1.5.1 FOXE1
+genus	3.3.1.5.2 FOXE3
+subfamily	3.3.1.6 FOXF
+genus	3.3.1.6.1 FOXF1
+genus	3.3.1.6.2 FOXF2
+subfamily	3.3.1.7 FOXG
+genus	3.3.1.7.1 FOXG1
+subfamily	3.3.1.8 FOXH
+genus	3.3.1.8.1 FOXH1
+subfamily	3.3.1.9 FOXI
+genus	3.3.1.9.1 FOXI1
+genus	3.3.1.9.2 FOXI2
+genus	3.3.1.9.3 FOXI3
+subfamily	3.3.1.10 FOXJ
+genus	3.3.1.10.1 FOXJ1
+genus	3.3.1.10.2 FOXJ2
+genus	3.3.1.10.3 FOXJ3
+subfamily	3.3.1.11 FOXK
+genus	3.3.1.11.1 FOXK1
+genus	3.3.1.11.2 FOXK2
+subfamily	3.3.1.12 FOXL
+genus	3.3.1.12.1 FOXL1
+genus	3.3.1.12.2 FOXL2
+subfamily	3.3.1.13 FOXM
+genus	3.3.1.13.1 FOXM1
+subfamily	3.3.1.14 FOXN
+genus	3.3.1.14.1 FOXN1
+genus	3.3.1.14.2 FOXN2
+genus	3.3.1.14.3 FOXN3
+genus	3.3.1.14.4 FOXN4
+subfamily	3.3.1.15 FOXO
+genus	3.3.1.15.1 FOXO1
+genus	3.3.1.15.2 FOXO3
+genus	3.3.1.15.3 FOXO4
+genus	3.3.1.15.5 FOXO6
+subfamily	3.3.1.16 FOXP
+genus	3.3.1.16.1 FOXP1
+genus	3.3.1.16.2 FOXP2
+genus	3.3.1.16.3 FOXP3
+genus	3.3.1.16.4 FOXP4
+subfamily	3.3.1.17 FOXQ
+genus	3.3.1.17.1 FOXQ1
+subfamily	3.3.1.18 FOXR
+genus	3.3.1.18.1 FOXR1
+genus	3.3.1.18.2 FOXR2
+subfamily	3.3.1.19 FOXS
+genus	3.3.1.19.1 FOXS1
+family	3.3.2 E2F
+subfamily	3.3.2.1 E2F
+genus	3.3.2.1.1 E2F1
+genus	3.3.2.1.2 E2F2
+genus	3.3.2.1.3 E2F3
+genus	3.3.2.1.4 E2F4
+genus	3.3.2.1.5 E2F5
+genus	3.3.2.1.6 E2F6
+genus	3.3.2.1.7 E2F7
+genus	3.3.2.1.8 E2F8
+subfamily	3.3.2.2 DP1
+genus	3.3.2.2.1 DP1
+genus	3.3.2.2.2 DP2 (DP3)
+family	3.3.3 RFX
+genus	3.3.3.0.1 RFX1
+genus	3.3.3.0.2 RFX2
+genus	3.3.3.0.3 RFX3
+genus	3.3.3.0.4 RFX4
+genus	3.3.3.0.5 RFX5
+genus	3.3.3.0.6 RFX6
+genus	3.3.3.0.7 RFX7
+genus	3.3.3.0.8 RFX8
+class	3.4 Heat shock factors
+family	3.4.1 HSF
+genus	3.4.1.0.1 HSF1
+genus	3.4.1.0.2 HSF2
+genus	3.4.1.0.3 HSF3
+genus	3.4.1.0.4 HSF4
+genus	3.4.1.0.5 HSF5
+genus	3.4.1.0.6 HSFX1
+genus	3.4.1.0.8 HSFY1
+genus	3.4.1.0.10 HSFX3
+class	3.5 Tryptophan cluster factors
+family	3.5.1 Myb-SANT
+subfamily	3.5.1.1 Myb-like
+genus	3.5.1.1.1 c-Myb (Myb)
+genus	3.5.1.1.2 A-Myb (MYBL1)
+genus	3.5.1.1.3 B-Myb (B-Myb1, B-Myb2)
+genus	3.5.1.1.4 CDC5L
+genus	3.5.1.1.5 SNAPc4
+subfamily	3.5.1.2 NCoR-like
+genus	3.5.1.2.1 NCoR1
+genus	3.5.1.2.2 NCoR2
+genus	3.5.1.2.3 RCoR1
+genus	3.5.1.2.4 RCoR2
+genus	3.5.1.2.5 RCoR3
+subfamily	3.5.1.3 MIER-like
+genus	3.5.1.3.1 MIER1
+genus	3.5.1.3.2 MIER2
+genus	3.5.1.3.3 MIER3
+genus	3.5.1.3.4 MTA1
+genus	3.5.1.3.5 MTA2
+genus	3.5.1.3.6 MTA3
+genus	3.5.1.3.7 RERE
+genus	3.5.1.3.8 DMAP1
+genus	3.5.1.3.9 TRERF1
+genus	3.5.1.3.10 ZNF541
+genus	3.5.1.3.11 CRAMP1L
+genus	3.5.1.3.12 ELMSAN1
+subfamily	3.5.1.4 DNAJC-like
+genus	3.5.1.4.1 DNAJC1
+genus	3.5.1.4.2 DNAJC2
+subfamily	3.5.1.5 SMARCA-like
+genus	3.5.1.5.1 SMARCA1
+genus	3.5.1.5.2 SMARCA5
+subfamily	3.5.1.6 TADA2-like
+genus	3.5.1.6.1 TADA2A
+genus	3.5.1.6.2 TADA2B
+genus	3.5.1.6.3 SMARCC1
+genus	3.5.1.6.4 SMARCC2
+subfamily	3.5.1.7 DMTF-like
+genus	3.5.1.7.1 DMTF1
+family	3.5.2 Ets-related
+subfamily	3.5.2.1 ETS-like
+genus	3.5.2.1.1 c-Ets-1 (Ets-1)
+genus	3.5.2.1.2 c-Ets-2 (Ets-2, ets21, ets22)
+genus	3.5.2.1.4 ETV2
+genus	3.5.2.1.5 GABPA
+genus	3.5.2.1.6 Fli-1
+genus	3.5.2.1.7 ERG
+genus	3.5.2.1.8 FEV
+genus	3.5.2.1.9 ETV3
+genus	3.5.2.1.10 ETV3L
+genus	3.5.2.1.11 ERF
+subfamily	3.5.2.2 ELK-like
+genus	3.5.2.2.1 ELK1
+genus	3.5.2.2.2 ELK3
+genus	3.5.2.2.3 ELK4
+genus	3.5.2.2.4 ETV1
+genus	3.5.2.2.5 ETV4
+genus	3.5.2.2.6 ETV5
+subfamily	3.5.2.3 ELF1-like
+genus	3.5.2.3.1 Elf-1 (ELF14)
+genus	3.5.2.3.2 Elf-2
+genus	3.5.2.3.3 Elf-4
+subfamily	3.5.2.4 EHF-like
+genus	3.5.2.4.1 EHF
+genus	3.5.2.4.2 Elf-3
+genus	3.5.2.4.3 Elf-5
+subfamily	3.5.2.5 SPI-like
+genus	3.5.2.5.1 PU.1 (Spi-1)
+genus	3.5.2.5.2 SpiB
+genus	3.5.2.5.3 SpiC
+subfamily	3.5.2.6 ETV6-like
+genus	3.5.2.6.1 ETV6
+genus	3.5.2.6.2 ETV7
+subfamily	3.5.2.7 SPDEF-like
+genus	3.5.2.7.1 SPDEF
+family	3.5.3 IRF
+genus	3.5.3.0.1 IRF1
+genus	3.5.3.0.2 IRF2
+genus	3.5.3.0.3 IRF3
+genus	3.5.3.0.4 IRF4
+genus	3.5.3.0.5 IRF5
+genus	3.5.3.0.6 IRF6
+genus	3.5.3.0.7 IRF7
+genus	3.5.3.0.8 IRF8
+genus	3.5.3.0.9 IRF9
+class	3.6 TEA domain factors
+family	3.6.1 TEF1-related
+genus	3.6.1.0.1 TEF-1 (TEAD1)
+genus	3.6.1.0.2 TEF-3 (TEAD4)
+genus	3.6.1.0.3 TEF-4 (TEAD2)
+genus	3.6.1.0.4 TEF-5 (TEAD3)
+class	3.7 ARID
+family	3.7.1 ARID-related
+subfamily	3.7.1.1 ARID1
+genus	3.7.1.1.1 ARID1A
+genus	3.7.1.1.2 ARID1B
+subfamily	3.7.1.2 ARID2
+genus	3.7.1.2.1 ARID2
+subfamily	3.7.1.3 ARID3
+genus	3.7.1.3.1 ARID3A
+subfamily	3.7.1.4 ARID4
+genus	3.7.1.4.1 ARID4A
+genus	3.7.1.4.2 ARID4B
+subfamily	3.7.1.5 ARID5
+genus	3.7.1.5.1 ARID5A
+genus	3.7.1.5.2 ARID5B
+subfamily	3.7.1.6 JARID1
+genus	3.7.1.6.1 JARID1A (KDM5A)
+genus	3.7.1.6.2 JARID1B (KDM5B)
+genus	3.7.1.6.3 JARID1C (KDM5C, JARID1CD)
+subfamily	3.7.1.7 JARID2
+genus	3.7.1.7.1 JARID2
+superclass	4 Other all-alpha-helical DNA-binding domains
+class	4.1 High-mobility group (HMG) domain factors
+family	4.1.1 SOX-related
+subfamily	4.1.1.1 Group A
+genus	4.1.1.1.1 SRY
+subfamily	4.1.1.2 Group B
+genus	4.1.1.2.1 SOX1
+genus	4.1.1.2.2 SOX2
+genus	4.1.1.2.3 SOX3
+genus	4.1.1.2.4 SOX14
+genus	4.1.1.2.5 SOX21
+subfamily	4.1.1.3 Group C
+genus	4.1.1.3.1 SOX4
+genus	4.1.1.3.2 SOX11
+genus	4.1.1.3.3 SOX12
+subfamily	4.1.1.4 Group D
+genus	4.1.1.4.1 SOX5
+genus	4.1.1.4.2 SOX6
+genus	4.1.1.4.3 SOX13
+subfamily	4.1.1.5 Group E
+genus	4.1.1.5.1 SOX8
+genus	4.1.1.5.2 SOX9
+genus	4.1.1.5.3 SOX10
+subfamily	4.1.1.6 Group F
+genus	4.1.1.6.1 SOX7
+genus	4.1.1.6.2 SOX17
+genus	4.1.1.6.3 SOX18
+subfamily	4.1.1.7 Group G
+genus	4.1.1.7.1 SOX15
+subfamily	4.1.1.8 Group H
+genus	4.1.1.8.1 SOX30
+subfamily	4.1.1.9 Further SOX-related
+genus	4.1.1.9.1 CIC
+genus	4.1.1.9.2 HBP-1
+genus	4.1.1.9.3 BBX
+family	4.1.2 TOX-related
+genus	4.1.2.0.1 TOX
+genus	4.1.2.0.2 TOX2
+genus	4.1.2.0.3 TOX3
+genus	4.1.2.0.4 TOX4
+genus	4.1.2.0.5 SMARCE1
+genus	4.1.2.0.6 HMG20A
+genus	4.1.2.0.7 HMG20B
+genus	4.1.2.0.8 HMGXB3
+family	4.1.3 TCF7-related
+genus	4.1.3.0.1 TCF-7
+genus	4.1.3.0.2 TCF-7L1
+genus	4.1.3.0.3 TCF-7L2
+genus	4.1.3.0.4 LEF1
+genus	4.1.3.0.5 TAF1
+family	4.1.4 PBRM1-related
+genus	4.1.4.0.1 PBRM1 (PBRM-1, PBRM1-2, PBRM1-3, PBRM1-4)
+genus	4.1.4.0.2 HMGXB4
+family	4.1.5 WHSC1-related
+genus	4.1.5.0.1 WHSC1
+genus	4.1.5.0.2 SSRP1
+family	4.1.6 UBF-related
+subfamily	4.1.6.1 UBF
+genus	4.1.6.1.1 UBF (UBTF)
+subfamily	4.1.6.2 UBF-like
+genus	4.1.6.2.1 UBTFL1 (UBTLF1)
+family	4.1.7 TFAM
+genus	4.1.7.0.1 TFAM
+class	4.2 Heteromeric CCAAT-binding factors
+family	4.2.1 Heteromeric CCAAT-binding
+genus	4.2.1.0.1 NF-YA
+genus	4.2.1.0.2 NF-YB
+genus	4.2.1.0.3 NF-YC
+superclass	5 alpha-Helices exposed by beta-structures
+class	5.1 MADS box factors
+family	5.1.1 Regulators of differentiation
+subfamily	5.1.1.1 MEF2
+genus	5.1.1.1.1 MEF2A
+genus	5.1.1.1.2 MEF2B
+genus	5.1.1.1.3 MEF2C
+genus	5.1.1.1.4 MEF2D
+family	5.1.2 Responders to external signals
+genus	5.1.2.0.1 SRF
+class	5.3 SAND domain factors
+family	5.3.1 AIRE
+genus	5.3.1.0.1 AIRE
+family	5.3.2 DEAF
+genus	5.3.2.0.1 DEAF1
+family	5.3.3 GMEB
+subfamily	5.3.3.1 GMEB
+genus	5.3.3.1.1 GMEB1
+genus	5.3.3.1.2 GMEB2
+family	5.3.4 Sp110
+genus	5.3.4.0.1 Sp110
+family	5.3.5 Sp140-Sp100
+subfamily	5.3.5.1 Sp140
+genus	5.3.5.1.1 Sp140
+genus	5.3.5.1.2 Sp140L
+subfamily	5.3.5.2 Sp100
+genus	5.3.5.2.1 Sp100
+superclass	6 Immunoglobulin fold
+class	6.1 Rel homology region (RHR) factors
+family	6.1.1 NFkappaB-related
+subfamily	6.1.1.1 NFkappaB p50-like
+genus	6.1.1.1.1 NF-kappaB p105 (NFKB1)
+genus	6.1.1.1.2 NF-kappaB p100 (NFKB2)
+subfamily	6.1.1.2 NFkappaB p65-like
+genus	6.1.1.2.1 RelA
+genus	6.1.1.2.2 RelB
+genus	6.1.1.2.3 c-Rel
+family	6.1.2 Ankyrin-only
+subfamily	6.1.2.1 IkappaB-like
+genus	6.1.2.1.8 BCL3
+subfamily	6.1.2.2 RelA-associated inhibitor
+genus	6.1.2.2.1 RAI
+family	6.1.3 NFAT-related
+genus	6.1.3.0.1 NFATc1
+genus	6.1.3.0.2 NFATc2
+genus	6.1.3.0.3 NFATc3
+genus	6.1.3.0.4 NFATc4
+genus	6.1.3.0.5 NFAT5
+family	6.1.4 CSL-related
+subfamily	6.1.4.1 M
+genus	6.1.4.1.1 RBPJkappa (RBPJ)
+genus	6.1.4.1.2 RBPJL
+family	6.1.5 EBF-related
+genus	6.1.5.0.1 EBF1
+genus	6.1.5.0.2 EBF2
+genus	6.1.5.0.3 EBF3
+genus	6.1.5.0.4 EBF4
+class	6.2 STAT domain factors
+family	6.2.1 STAT
+genus	6.2.1.0.1 STAT1
+genus	6.2.1.0.2 STAT2
+genus	6.2.1.0.3 STAT3
+genus	6.2.1.0.4 STAT4
+genus	6.2.1.0.5 STAT5A
+genus	6.2.1.0.6 STAT5B
+genus	6.2.1.0.7 STAT6
+class	6.3 p53 domain factors
+family	6.3.1 p53-related
+genus	6.3.1.0.1 p53
+genus	6.3.1.0.2 p63
+genus	6.3.1.0.3 p73
+class	6.4 Runt domain factors
+family	6.4.1 Runt-related
+genus	6.4.1.0.1 Runx2
+genus	6.4.1.0.2 Runx1
+genus	6.4.1.0.3 Runx3
+class	6.5 T-Box factors
+family	6.5.1 Brachyury-related
+genus	6.5.1.0.1 T (Brachyury)
+genus	6.5.1.0.2 TBX19
+family	6.5.2 TBrain-related
+family	6.5.3 TBX1-related
+genus	6.5.3.0.1 TBX1
+genus	6.5.3.0.2 TBX10
+genus	6.5.3.0.3 TBX15
+genus	6.5.3.0.4 TBX18
+genus	6.5.3.0.5 TBX20
+genus	6.5.3.0.6 TBX22
+family	6.5.4 TBX2-related
+genus	6.5.4.0.1 TBX2
+genus	6.5.4.0.2 TBX3
+genus	6.5.4.0.3 TBX4
+genus	6.5.4.0.4 TBX5
+family	6.5.5 TBX6-related
+genus	6.5.5.0.1 TBX6
+genus	6.5.5.0.2 MGA (MAD5)
+class	6.6 NDT80 domain factors
+family	6.6.1 MYRF-related
+genus	6.6.1.0.1 MYRF
+class	6.7 Grainyhead
+family	6.7.1 Grainyhead-related
+subfamily	6.7.1.1 GRH-like
+genus	6.7.1.1.1 GRH-L1
+genus	6.7.1.1.2 GRH-L2
+genus	6.7.1.1.3 GRH-L3
+family	6.7.2 CP2-related
+genus	6.7.2.0.1 CP2
+genus	6.7.2.0.2 CP2L1
+genus	6.7.2.0.3 UBP1
+superclass	7 beta-Hairpin exposed by an alpha/beta-scaffold
+class	7.1 SMAD/NF-1 DNA-binding domain factors
+family	7.1.1 SMAD
+subfamily	7.1.1.1 R-MAD
+genus	7.1.1.1.1 SMAD1
+genus	7.1.1.1.2 SMAD2
+genus	7.1.1.1.3 SMAD3
+genus	7.1.1.1.4 SMAD5
+genus	7.1.1.1.5 SMAD9
+subfamily	7.1.1.2 Co-SMAD
+genus	7.1.1.2.1 SMAD4
+subfamily	7.1.1.3 I-SMAD
+genus	7.1.1.3.1 SMAD6
+genus	7.1.1.3.2 SMAD7
+family	7.1.2 NF-1
+genus	7.1.2.0.1 NF-1A
+genus	7.1.2.0.2 NF-1B
+genus	7.1.2.0.3 NF-1C
+genus	7.1.2.0.4 NF-1X
+class	7.2 GCM domain factors
+family	7.2.1 GCM
+genus	7.2.1.0.1 GCM1
+genus	7.2.1.0.2 GCM2
+superclass	8 beta-Sheet binding to DNA
+class	8.1 TATA-binding proteins
+family	8.1.1 TBP-related
+genus	8.1.1.0.1 TBP
+genus	8.1.1.0.2 TBPL1
+genus	8.1.1.0.3 TBPL2
+class	8.2 A.T hook factors
+family	8.2.1 HMGA
+genus	8.2.1.0.1 HMGA1
+genus	8.2.1.0.2 HMGA2
+superclass	9 beta-Barrel DNA-binding domains
+class	9.1 Cold-shock domain factors
+family	9.1.1 Dbp
+subfamily	9.1.1.1 A
+genus	9.1.1.1.1 DbpA (YBX3)
+subfamily	9.1.1.2 B
+genus	9.1.1.2.1 YB-1 (YBX1)
+subfamily	9.1.1.3 C
+genus	9.1.1.3.1 YBX2
+superclass	0 Yet undefined DNA-binding domains
+class	0.1 AXUD/CSRNP domain factors
+family	0.1.1 CSRNP
+genus	0.1.1.0.1 CSRNP-1
+genus	0.1.1.0.2 CSRNP-2
+genus	0.1.1.0.3 CSRNP-3
+class	0.2 NonO domain factors
+family	0.2.1 NonO-related
+genus	0.2.1.0.1 NonO
+genus	0.2.1.0.3 PSPC1
+class	0.3 Leucine-rich repeat flightless-interacting proteins
+family	0.3.1 LRRFIP
+genus	0.3.1.0.1 LRRFIP1
+genus	0.3.1.0.2 LRRFIP2
+class	0.4 NFX1-type putative zinc finger factors
+family	0.4.1 NFX1
+genus	0.4.1.0.1 NFX1
+genus	0.4.1.0.2 NFXL1
+class	0.0 Uncharacterized
+family	0.0.1 NULP1
+genus	0.0.1.0.1 NULP1 (TCF25)
+family	0.0.2 PHF5
+genus	0.0.2.0.1 PHF5A
+family	0.0.3 RFXANK
+genus	0.0.3.0.1 RFXANK
+family	0.0.4 RFXAP
+genus	0.0.4.0.1 RFXAP
+family	0.0.5 PUR
+genus	0.0.5.0.1 PURalpha (PURA)
+genus	0.0.5.0.2 PURbeta (PURB)
+genus	0.0.5.0.3 PURgamma (PURG)
+family	0.0.6 NRF
+genus	0.0.6.0.1 NRF1
