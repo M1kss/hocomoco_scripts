@@ -14,9 +14,10 @@ for peak_type in os.listdir(os.path.expanduser('~/grouped-peaks')):
     if not os.path.exists(new_dir):
         os.mkdir(new_dir)
 for index, row in master_df.iterrows():
-    for peak_type in os.listdir(os.path.expanduser('~/grouped-peaks')):
-        base_path = os.path.join(os.path.expanduser('~/grouped-peaks'), peak_type, row['PEAKS'] + '.interval')
-        if os.path.exists(base_path):
+    base_path = os.path.join(os.path.expanduser('~/hocomoco-peaks'), row['PEAKS'])
+    if os.path.exists(base_path):
+        for peak_type in os.listdir(base_path):
+            new_dir = os.path.join(mouse_dir, peak_type)
+            if not os.path.exists(new_dir):
+                os.mkdir(new_dir)
             shutil.copy2(base_path, os.path.join(mouse_dir, peak_type, row['PEAKS'] + '.interval'))
-        else:
-            print(base_path)
