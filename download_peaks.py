@@ -1,4 +1,4 @@
-import os
+import time
 import subprocess
 import pandas as pd
 from tqdm import tqdm
@@ -9,6 +9,7 @@ for index, row in tqdm(df.iterrows()):
     print(['scp', '-P', '1300', '-T',
                      'autosome@localhost:' + row['DOWNLOAD_PATH'],
                       '~/mouse/peaks/'])
+    time.sleep(10)
     subprocess.Popen(['scp', '-P', '1300', '-T',
                      'autosome@localhost:' + row['DOWNLOAD_PATH'],
                       '~/mouse/peaks/'])
