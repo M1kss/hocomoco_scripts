@@ -7,5 +7,5 @@ df = pd.read_table('~/mouse/mouse_peaks_dn.tsv')
 df = df[~df['DOWNLOAD_PATH'].isna()]
 for index, row in tqdm(df.iterrows()):
     subprocess.Popen(['scp', '-P', '1300', '-T',
-                      ' '.join([x + 'autosome@localhost:~/' for x in row['DOWNLOAD_PATH'].split()]),
+                     'autosome@localhost:' + row['DOWNLOAD_PATH'],
                       '~/mouse/peaks/'])
