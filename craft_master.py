@@ -9,11 +9,11 @@ specie = 'Mus Musculus'
 
 
 def get_len(row, ann_df, mode):
-    tf_id = row['TF_ID']
-    print(ann_df)
+    print(ann_df[
+            ann_df['#ID'] == row['TF_ID']])
     try:
         return ann_df[
-            ann_df['#ID'] == tf_id][
+            ann_df['#ID'] == row['TF_ID']][
             '{}_motif_len'.format(mode)
         ].reset_index(drop=True)[0]
     except IndexError:
