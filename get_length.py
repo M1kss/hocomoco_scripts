@@ -78,6 +78,7 @@ def parse_annotation():
     result = {}
     ann_df = pd.read_table(
         os.path.join('source_files', 'annotation_2.txt'), header=None)
+    print(ann_df.columns)
     ann_df = ann_df[[0, 26, 27]]
     ann_df.columns = ['id', 'family', 'subfamily']
     for index, row in ann_df.iterrows():
