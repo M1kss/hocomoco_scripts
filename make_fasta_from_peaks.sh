@@ -25,7 +25,7 @@ do
     then
       continue
     fi
-    echo "Now doing $peaks_path/$peak_type/$peaks_name, $score_type"
+    echo "Now doing $peaks_path/$peak_type/$peak_name, $score_type"
     if ! python3 format_peaks.py $peaks_path/$peak_type/$peak_name.interval $peak_type $score_type $out_path/raw/${peak_name}.${peak_type}.${score_type}.bed 1>$out_path/logs/${peak_name}.${peak_type}.${score_type}.format.log 2>&1
     then
       echo "Format peaks failed: $peaks_path/$peak_type/$peak_name.interval"
