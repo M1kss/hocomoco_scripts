@@ -31,7 +31,7 @@ def get_extended_rows(row, callers_dict):
     for caller in callers_dict.get(row['PEAKS'], ()):
         for rank_type in ['score'] + (['pvalue'] if caller != 'cpics' else []):
             for motif_type in ['flat', 'single']:
-                new_row = row.todict()
+                new_row = row.to_dict()
                 new_row['RANK_TYPE'] = rank_type
                 new_row['MOTIF_TYPE'] = motif_type
                 rows.append(new_row)
