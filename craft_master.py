@@ -10,10 +10,12 @@ specie = 'Mus Musculus'
 
 def get_len(row, ann_df, mode):
     try:
-        return ann_df[
+        filtered_df = ann_df[
             ann_df['#ID'] == row['TF_ID']][
             '{}_motif_len'.format(mode)
-        ].reset_index(drop=True)[0]
+        ].reset_index(drop=True)
+        print(filtered_df)
+        return filtered_df[0]
     except IndexError or ValueError or KeyError:
         if mode == 'max':
             return 24
