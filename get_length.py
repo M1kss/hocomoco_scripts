@@ -89,7 +89,7 @@ def parse_annotation():
 
 
 def add_meta(row, annotation_dict):
-    k = annotation_dict.get(row['#ID'])
+    k = annotation_dict.get(row['#ID'], None)
     if k is not None:
         sf, f = k
     else:
