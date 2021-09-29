@@ -10,6 +10,7 @@ specie = 'Mus Musculus'
 
 def get_len(row, ann_df, mode):
     tf_id = row['TF_ID']
+    print(tf_id)
     try:
         return ann_df[
             ann_df['#ID'] == tf_id][
