@@ -3,10 +3,7 @@ out_path=$1
 
 if ! [ -d $out_path ]
 then
-  if ! [ -d $out_path ]
-  then
-    mkdir $out_path
-  fi
+  mkdir $out_path
   for suffix in results logs raw sorted fasta
   do
     if ! [ -d $out_path/$suffix ]
