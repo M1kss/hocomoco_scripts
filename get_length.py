@@ -90,7 +90,11 @@ def parse_annotation():
 
 
 def add_meta(row, annotation_dict):
-    sf, f = annotation_dict.get(row['#ID'])
+    k = annotation_dict.get(row['#ID'])
+    if k is not None:
+        sf, f = k
+    else:
+        sf, f = None, None
     row['subfamily'] = sf
     row['family'] = f
     return row
