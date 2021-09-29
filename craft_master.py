@@ -14,9 +14,10 @@ def get_len(row, ann_df, mode):
             ann_df['#ID'] == row['TF_ID']][
             '{}_motif_len'.format(mode)
         ].reset_index(drop=True)
-        print(filtered_df)
+        if len(filtered_df.index) == 0:
+            raise AssertionError
         return filtered_df[0]
-    except IndexError or ValueError or KeyError:
+    except AssertionError:
         if mode == 'max':
             return 24
         elif mode == 'min':
