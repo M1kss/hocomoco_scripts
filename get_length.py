@@ -84,15 +84,15 @@ def parse_annotation():
         for name in ['subfamily', 'family']:
             if row[name] == '__na':
                 row[name] = None
-        result[row['id']] = row[['subfamily', 'family']]
+        result[row['id']] = row[['subfamily', 'family']].to_dict()
     return result
 
 
-def add_meta(motif_df):
-    annotation = parse_annotation()
-    motif_df[['subfamily', 'family']] = \
-        motif_df.apply(lambda x: annotation.get(x['#ID']), axis=1)
-    return motif_df
+def add_meta(row, annotation_dict):
+    sf, f = annotation_dict.get(row['#ID'])
+    row['subfamily'] = sf
+    row['family'] = f
+    return row
 
 
 def main():
@@ -102,7 +102,8 @@ def main():
     uniprot_convert_df = pd.read_table(os.path.join('source_files', 'uniprot.tab'))
     uniprot_convert_df = uniprot_convert_df[[uniprot_convert_df.columns[0], 'Entry name']]
     uniprot_convert_df.columns = ['#ID', 'NAME']
-    uniprot_convert_df = add_meta(uniprot_convert_df)
+    annotation = parse_annotation()
+    uniprot_convert_df = uniprot_convert_df.apply(lambda x: add_meta(x, annotation), axis=1)
     uniprot_convert_df[
         uniprot_convert_df['family'].isna()][['#ID', 'NAME']].to_csv(
         os.path.join('files', 'exps_not_found_family.tsv'),
