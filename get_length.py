@@ -78,7 +78,6 @@ def parse_annotation():
     result = {}
     ann_df = pd.read_table(
         os.path.join('source_files', 'annotation_2.txt'), header=None)
-    print(ann_df.columns)
     ann_df = ann_df[[0, 26, 27]]
     ann_df.columns = ['id', 'family', 'subfamily']
     for index, row in ann_df.iterrows():
@@ -116,7 +115,7 @@ def main():
         index=False)
     tfs_len_dict = parse_hoco(uniprot_convert_df)
     for index, row in tqdm(uniprot_convert_df.iterrows()):
-        tfs_len_list = tfs_len_dict['TFs'].get(row['NAME'])
+        tfs_len_list = tfs_len_dict['TFs'].get(row['NAME'], None)
         if not tfs_len_list:
             if row['subfamily'] is not None and row['subfamily'] != '{}' and tfs_len_dict['subfamily'].get(
                     row['subfamily']):
@@ -128,6 +127,8 @@ def main():
             else:
                 tfs_len_list = []
                 counter += 1
+        else:
+            tfs_len_list = []
         max_len_list.append(get_motif_length(tfs_len_list, 'max'))
         min_len_list.append(get_motif_length(tfs_len_list, 'min'))
     uniprot_convert_df['max_motif_len'] = max_len_list
