@@ -85,7 +85,6 @@ def parse_annotation():
             if row[name] == '__na':
                 row[name] = None
         result[row['id']] = row[['subfamily', 'family']].to_dict()
-    print(result)
     return result
 
 
