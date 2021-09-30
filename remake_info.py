@@ -21,7 +21,7 @@ def filter_tfs():
     trans_dict = read_uniprot_mapping()
     dicts = read_dicts()
     d = {}
-    # df = pd.read_excel('~/hocomoco_2021_humo_final_YM.xlsx')
+    # df = pd.read_excel('~/hocomoco_2021.xlsx')
     # curated_ids = info_dict.keys() - set(df['curated:uniprot_ac'].unique())
     # print(len(info_dict.keys()), len(set(x for x in info_dict.keys()) - curated_ids))
     # revert_dict = {}

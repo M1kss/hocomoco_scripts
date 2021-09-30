@@ -57,8 +57,8 @@ def parse_hoco(peaks_df):
         tf_name = path.split('.')[0]
         len_pwm = len(pd.read_table(os.path.join(pwm_path, path), header=None, comment='>').index)
         p_df = peaks_df[peaks_df['NAME'] == tf_name]
-        subfamily = str(p_df['subfamily'].reset_index(drop=True)[0]) if not p_df['subfamily'].empty else None
-        family = str(p_df['family'].reset_index(drop=True)[0]) if not p_df['family'].empty else None
+        subfamily = str(p_df['tfclass:subfamily'].reset_index(drop=True)[0]) if not p_df['subfamily'].empty else None
+        family = str(p_df['tfclass:family'].reset_index(drop=True)[0]) if not p_df['family'].empty else None
         try:
             tfs_dict['TFs'][tf_name].append(len_pwm)
         except KeyError:
@@ -103,18 +103,9 @@ def main():
     max_len_list = []
     min_len_list = []
     counter = 0
-    uniprot_convert_df = pd.read_table(os.path.join('source_files', 'uniprot.tab'))
-    uniprot_convert_df = uniprot_convert_df[[uniprot_convert_df.columns[0], 'Entry name']]
-    uniprot_convert_df.columns = ['#ID', 'NAME']
-    annotation = parse_annotation()
-    uniprot_convert_df = uniprot_convert_df.apply(lambda x: add_meta(x, annotation), axis=1)
-    uniprot_convert_df[
-        uniprot_convert_df['family'].isna()][['#ID', 'NAME']].to_csv(
-        os.path.join('files', 'exps_not_found_family.tsv'),
-        sep='\t',
-        index=False)
-    tfs_len_dict = parse_hoco(uniprot_convert_df)
-    for index, row in tqdm(uniprot_convert_df.iterrows()):
+    master_df = pd.read_excel(os.path.join('source_files', 'hocomoco_2021.xlsx'))
+    tfs_len_dict = parse_hoco(master_df)
+    for index, row in tqdm(master_df.iterrows()):
         tfs_len_list = tfs_len_dict['TFs'].get(row['NAME'], None)
         if not tfs_len_list:
             if row['subfamily'] is not None and row['subfamily'] != '{}' and tfs_len_dict['subfamily'].get(
@@ -131,11 +122,11 @@ def main():
             tfs_len_list = []
         max_len_list.append(get_motif_length(tfs_len_list, 'max'))
         min_len_list.append(get_motif_length(tfs_len_list, 'min'))
-    uniprot_convert_df['max_motif_len'] = max_len_list
-    uniprot_convert_df['min_motif_len'] = min_len_list
-    uniprot_convert_df.to_csv(os.path.join('files', 'len_annotated.tsv'),
-                              index=False,
-                              sep='\t')
+    master_df['max_motif_len'] = max_len_list
+    master_df['min_motif_len'] = min_len_list
+    master_df.to_csv(os.path.join('files', 'len_annotated.tsv'),
+                     index=False,
+                     sep='\t')
     # print(counter)
 
 
