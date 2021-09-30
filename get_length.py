@@ -56,7 +56,7 @@ def parse_hoco(peaks_df):
             continue
         tf_name = path.split('.')[0]
         len_pwm = len(pd.read_table(os.path.join(pwm_path, path), header=None, comment='>').index)
-        p_df = peaks_df[peaks_df['NAME'] == tf_name]
+        p_df = peaks_df[peaks_df['curated:uniprot_id'] == tf_name]
         subfamily = str(p_df['tfclass:subfamily'].reset_index(drop=True)[0]) if not p_df['subfamily'].empty else None
         family = str(p_df['tfclass:family'].reset_index(drop=True)[0]) if not p_df['family'].empty else None
         try:
@@ -106,7 +106,7 @@ def main():
     master_df = pd.read_excel(os.path.join('source_files', 'hocomoco_2021.xlsx'))
     tfs_len_dict = parse_hoco(master_df)
     for index, row in tqdm(master_df.iterrows()):
-        tfs_len_list = tfs_len_dict['TFs'].get(row['NAME'], None)
+        tfs_len_list = tfs_len_dict['TFs'].get(row['curated:uniprot_id'], None)
         if not tfs_len_list:
             if row['subfamily'] is not None and row['subfamily'] != '{}' and tfs_len_dict['subfamily'].get(
                     row['subfamily']):
