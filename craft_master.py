@@ -11,7 +11,7 @@ specie = 'Mus Musculus'
 def get_len(row, ann_df, mode):
     try:
         filtered_df = ann_df[
-            ann_df['#ID'] == row['TF_ID']][
+            ann_df['curated:uniprot_ac'] == row['TF_ID']][
             '{}_motif_len'.format(mode)
         ].reset_index(drop=True)
         if len(filtered_df.index) == 0:
