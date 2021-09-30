@@ -44,7 +44,7 @@ def main(master_path):
     master = pd.read_table(master_path, header=None, names=['TF_ID', 'PEAKS'])
     ann_df = pd.read_table(os.path.join('files', 'len_annotated.tsv'))
     master['SPECIE'] = specie
-    print(ann_df['family'].unique())
+    print(ann_df['tfclass:family'].unique())
     master['MIN_LEN'] = master.apply(lambda x: get_len(x,
                                                        mode='min',
                                                        ann_df=ann_df), axis=1)
