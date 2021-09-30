@@ -3,7 +3,7 @@
 
 
 out_path=$1
-HOCOLINE=$(awk "{if(NR==$PBS_ARRAYID) print $0}" $2)
+HOCOLINE=$2
 IFS=','
 read -ra ARRAY <<< "$HOCOLINE"
 
