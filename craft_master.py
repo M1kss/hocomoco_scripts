@@ -65,6 +65,7 @@ def main(master_path):
     print(len(master.index))
     for index, row in master.iterrows():
         print(extended_master)
+        print(pd.DataFrame(get_extended_rows(row, callers_dict)))
         extended_master.append(get_extended_rows(row, callers_dict))
 
     extended_master[['SPECIE', 'TF_ID', 'PEAKS', 'RANK_TYPE', 'MOTIF_TYPE', 'MIN_LEN', 'MAX_LEN']].to_csv(
