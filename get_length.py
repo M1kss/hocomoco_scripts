@@ -108,12 +108,12 @@ def main():
     for index, row in tqdm(master_df.iterrows()):
         tfs_len_list = tfs_len_dict['TFs'].get(row['curated:uniprot_id'], None)
         if not tfs_len_list:
-            if row['subfamily'] is not None and row['subfamily'] != '{}' and tfs_len_dict['subfamily'].get(
-                    row['subfamily']):
-                tfs_len_list = tfs_len_dict['subfamily'].get(row['subfamily'])
-            elif row['family'] is not None:
-                tfs_len_list = tfs_len_dict['family'].get(row['family'], [])
-                if row['family'] not in tfs_len_dict['family']:
+            if row['tfclass:subfamily'] is not None and row['tfclass:subfamily'] != '{}' and tfs_len_dict['subfamily'].get(
+                    row['tfclass:subfamily']):
+                tfs_len_list = tfs_len_dict['subfamily'].get(row['tfclass:subfamily'])
+            elif row['tfclass:family'] is not None:
+                tfs_len_list = tfs_len_dict['family'].get(row['tfclass:family'], [])
+                if row['tfclass:family'] not in tfs_len_dict['family']:
                     counter += 1
             else:
                 tfs_len_list = []
