@@ -51,21 +51,10 @@ def main(master_path):
                                                        mode='max',
                                                        ann_df=ann_df), axis=1)
 
-    extended_master = pd.DataFrame({
-        'SPECIE': [],
-        'TF_ID': [],
-        'PEAKS': [],
-        'RANK_TYPE': [],
-        'MOTIF_TYPE': [],
-        'MIN_LEN': [],
-        'MAX_LEN': [],
-
-    })
     dfs = []
     for index, row in master.iterrows():
         dfs.append(pd.DataFrame(get_extended_rows(row, callers_dict)))
-    ext_df = pd.concat(dfs)
-    print(ext_df)
+    extended_master = pd.concat(dfs)
 
     extended_master[['SPECIE', 'TF_ID', 'PEAKS', 'RANK_TYPE', 'MOTIF_TYPE', 'MIN_LEN', 'MAX_LEN']].to_csv(
         'master_peaks.csv',
