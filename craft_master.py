@@ -61,7 +61,7 @@ def main(master_path):
         'MAX_LEN': [],
 
     })
-    print(master['MIN_LEN'].unique())
+    print(master['MAX_LEN'].unique())
     print(len(master.index))
     for index, row in master.iterrows():
         extended_master.append(get_extended_rows(row, callers_dict))
