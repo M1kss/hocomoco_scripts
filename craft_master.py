@@ -34,6 +34,7 @@ def get_extended_rows(row, callers_dict):
                 new_row = row.to_dict()
                 new_row['RANK_TYPE'] = rank_type
                 new_row['MOTIF_TYPE'] = motif_type
+                new_row['CALLER'] = caller
                 rows.append(new_row)
     return rows
 
@@ -56,7 +57,7 @@ def main(master_path):
         dfs.append(pd.DataFrame(get_extended_rows(row, callers_dict)))
     extended_master = pd.concat(dfs)
 
-    extended_master[['SPECIE', 'TF_ID', 'PEAKS', 'RANK_TYPE', 'MOTIF_TYPE', 'MIN_LEN', 'MAX_LEN']].to_csv(
+    extended_master[['SPECIE', 'TF_ID', 'PEAKS', 'CALLER', 'RANK_TYPE', 'MOTIF_TYPE', 'MIN_LEN', 'MAX_LEN']].to_csv(
         'master_peaks.csv',
         sep=',',
         index=False,

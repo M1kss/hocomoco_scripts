@@ -17,7 +17,7 @@ max_len=${ARRAY[6]}
 min_len=${ARRAY[7]}
 
 
-echo $out_path/fasta/${peaks_name}.${peak_type}.${score_type}
+echo $out_path/fasta/${peaks_name}.${peak_type}.${score_type}.${motif_type}
 
 if [ "$motif_type" == 'single' ]; then
   java -Xmx4G -cp ~/chipmunk.jar ru.autosome.ChIPHorde ${min_len}:${max_len},${min_len}:${max_len} f c 1.0 m:$out_path/fasta/${peaks_name}.${peak_type}.${score_type}.mfa 100 10 1 2 random auto single 1>$out_path/results/${peaks_name}.${peak_type}.${score_type}.single.out 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.single.log
