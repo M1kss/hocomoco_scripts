@@ -3,6 +3,7 @@ import json
 import sys
 
 import pandas as pd
+from tqdm import tqdm
 
 
 def get_time(time):
@@ -27,7 +28,6 @@ def parse_one_file(file_name, outputs_dir):
             parsed_output.append((key, value))
             last_line = line
         if last_line is None or not last_line.startswith('_^^_| P0wered by cute chipmunks!'):
-            print(last_line)
             return [{
                 'name': peaks,
                 'caller': caller,
@@ -129,7 +129,8 @@ def make_tfs_dict(master_list):
 def main(outputs_dir, master_list):
     tfs_dict = make_tfs_dict(master_list)
     results = {}
-    for file_name in os.listdir(outputs_dir):
+    iterable = os.listdir(outputs_dir)
+    for file_name in tqdm(iterable, total=len(iterable)):
         peaks = file_name.split('.')[0]
         info = parse_one_file(file_name, outputs_dir)
         results.setdefault(tfs_dict[peaks], []).extend(info)
