@@ -10,7 +10,7 @@ def main(source_dir, secondary_dir):
         out_file = os.path.join(source_dir, file_name)
         if os.path.exists(out_file):
             if not filecmp.cmp(in_file, out_file):
-                print('Different results for {}'.format(in_file, out_file))
+                print('Different results for {} and {}'.format(in_file, out_file))
         else:
             shutil.copy2(in_file, out_file)
 
