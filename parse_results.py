@@ -14,10 +14,7 @@ def get_time(time):
         return str(round(time / 3600)) + 'h'
 
 
-outputs_dir = sys.argv[1]
-
-
-def parse_one_file(file_name):
+def parse_one_file(file_name, outputs_dir):
     peaks, caller, best_by, motif_type, _ = file_name.split('.')
     with open(os.path.join(outputs_dir, file_name)) as f:
         parsed_output = []
@@ -119,9 +116,9 @@ def parse_one_file(file_name):
     return result
 
 
-def make_tfs_dict():
+def make_tfs_dict(master_list):
     out = {}
-    master = pd.read_csv('master_peaks.csv', header=None)
+    master = pd.read_csv(master_list, header=None)
     master.columns = ['specie', 'tf', 'peaks', '1', '2', '3', '4', '5']
     for tf in master['tf'].unique():
         for peak in master[master['tf'] == tf]['peaks'].to_list():
@@ -129,16 +126,16 @@ def make_tfs_dict():
     return out
 
 
-def main():
-    tfs_dict = make_tfs_dict()
+def main(outputs_dir, master_list):
+    tfs_dict = make_tfs_dict(master_list)
     results = {}
     for file_name in os.listdir(outputs_dir):
         peaks = file_name.split('.')[0]
-        info = parse_one_file(file_name)
+        info = parse_one_file(file_name, outputs_dir)
         results.setdefault(tfs_dict[peaks], []).extend(info)
     with open(os.path.join('files', 'info.json'), 'w') as ot:
         json.dump(results, ot)
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1], sys.argv[2])
