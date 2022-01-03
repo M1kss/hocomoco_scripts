@@ -8,7 +8,8 @@ import requests
 from cairosvg import svg2png
 from tqdm import tqdm
 
-from cor import dict_types, motif_dir, result_path, filter_pwms, read_info_dict, read_cisbp_df, allowed_tfs
+from cor import dict_types, motif_dir, result_path, filter_pwms, read_info_dict, read_cisbp_df, allowed_tfs, \
+    hocomoco_path
 
 
 def get_made_part(objs, index, parts=10):
@@ -62,7 +63,7 @@ def craft_motif_name(exp):
 
 def get_comp_motif_path(motif_name, d_type=None):
     if d_type == 'hocomoco':
-        return os.path.join('pcm', motif_name + '.pcm')
+        return os.path.join(hocomoco_path, motif_name + '.pcm')
     else:
         return os.path.join(motif_dir, motif_name + '.ppm')
 
