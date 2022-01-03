@@ -35,7 +35,7 @@ def add_to_fam_dict(fam_dict, key, fam, df):
 def parse_known_tfs(tfs_df):
     family_dict = {}
     subfamily_dict = {}
-    for index, row in tfs_df:
+    for index, row in tfs_df.iterrows():
         tf_subfamily = row['tfclass:subfamily']
         tf_family = row['tfclass:family']
         subfamily_dict = add_to_fam_dict(subfamily_dict, 'tfclass:subfamily', tf_subfamily, tfs_df)
