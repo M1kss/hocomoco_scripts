@@ -84,7 +84,11 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
         return
     with open(os.path.join(result_path, t_factor + '.json')) as f:
         sim_dict = json.load(f)
+    index = 0
     for exp in tqdm(tf_info):
+        index+=1
+        if index > 50:
+            continue
         exp['name'] = craft_motif_name(exp)
         exp['motif_image'] = draw_svg(exp['pcm_path'], False)
         pcm_name = os.path.splitext(os.path.basename(exp['pcm_path']))[0]
@@ -141,10 +145,10 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
             sheet.write(index + 1, i + 7, exp[d_type]['sim'])
         best_d_type, _ = max([(x, exp[x]['sim']) for x in exp if x in dict_types and exp[x]['sim']],
                              key=lambda x: x[1])
-        best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'], best_d_type),
-                                  revcomp=True if exp[best_d_type]['orientation'] == 'revcomp' else False)
-        sheet.insert_image(index + 1, 7 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
-        sheet.set_column(7 + len(dict_types[1:]), 7 + len(dict_types[1:]), motif_len * 2.5)
+        # best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'], best_d_type),
+        #                           revcomp=True if exp[best_d_type]['orientation'] == 'revcomp' else False)
+        # sheet.insert_image(index + 1, 7 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
+        # sheet.set_column(7 + len(dict_types[1:]), 7 + len(dict_types[1:]), motif_len * 2.5)
         sheet.write(index + 1, 8 + len(dict_types[1:]), exp[best_d_type]['name'])
         sheet.write(index + 1, 9 + len(dict_types[1:]), best_d_type)
 
