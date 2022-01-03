@@ -27,8 +27,6 @@ def add_to_fam_dict(fam_dict, key, fam, df):
         for tf in fam_tfs:
             if fam_dict.get(tf, None) is None:
                 fam_dict[tf] = fam_tfs
-            else:
-                fam_dict[tf] = []
 
 
 def parse_known_tfs(tfs_df):
