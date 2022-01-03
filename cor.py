@@ -78,7 +78,6 @@ def run_ape(exps, res_dir, jobs=10):
                 process.wait()
             for process, exp in zip(processes, batch):
                 res = process.stdout.read().decode('utf-8')
-                print(res)
                 name, res = parse_output(exp, res)
                 result[name] = res
         shutil.rmtree(res_dir)
