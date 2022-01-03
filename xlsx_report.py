@@ -8,7 +8,7 @@ import requests
 from cairosvg import svg2png
 from tqdm import tqdm
 
-from cor import dict_types, motif_dir, result_path, filter_pwms, read_dicts, read_info_dict, read_cisbp_df
+from cor import dict_types, motif_dir, result_path, filter_pwms, read_info_dict, read_cisbp_df, allowed_tfs
 
 
 def get_made_part(objs, index, parts=10):
@@ -160,6 +160,9 @@ if __name__ == '__main__':
         cisbp_dict = cisbp_dict.update(pd.Series(df.TF_Name.values, index=df.Motif_ID).to_dict())
 
     for tf_name, value in info_dict.items():
+        if allowed_tfs is not None:
+            if tf_name not in allowed_tfs:
+                continue
         print('Processing {}'.format(tf_name))
         report_path = os.path.join('reports', tf_name + '.xlsx')
         if os.path.exists(report_path):
