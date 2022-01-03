@@ -36,7 +36,7 @@ def check_dir_for_collection(tf, motif_collection, d_type):
     os.mkdir(dir_path)
     for motif in motif_collection:
         if d_type == 'hocomoco':
-            path = os.path.join('pcm', motif)
+            path = os.path.join(hocomoco_path, motif)
         else:
             path = os.path.join(motif_dir, motif + '.ppm')
         if os.path.exists(path):
