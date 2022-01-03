@@ -41,7 +41,7 @@ def draw_svg(pcm_path, revcomp):
                     out_path=out_path,
                     unit_height=80,
                     unit_width=40)
-    svg2png(url=out_path, write_to=out_path, output_height=20, dpi=5)
+    svg2png(url=out_path, write_to=out_path, output_height=100, dpi=5)
 
     return out_path
 
@@ -131,7 +131,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     sheet.write(0, 9 + len(dict_types[1:]), 'Most_sim_type')
     worksheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
     print('Writing to file')
-    for index, exp in tqdm(enumerate(sorted_tf_info)):
+    for index, exp in tqdm(enumerate(sorted_tf_info, 1)):
         sheet.set_column(0, 0, name_width)
         sheet.set_column(4, 4, motif_len * 2.5)
         sheet.write(index + 1, 0, exp['name'])
