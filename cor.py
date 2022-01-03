@@ -16,7 +16,7 @@ dict_types = ['hocomoco', 'direct', 'inferred', 'tf_class_family', 'tf_class_sub
 
 ape_path = os.path.expanduser('~/ape.jar')
 hocomoco_path = 'hocomoco_pwms'
-allowed_tfs = ['ANDR_HUMAN', 'CTCF_HUMAN']
+allowed_tfs = ['ANDR_MOUSE', 'CTCF_MOUSE']
 
 
 def check_dir_for_collection(tf, motif_collection, d_type):
@@ -78,7 +78,7 @@ def read_dicts():
     dicts = {}
     for d_type in dict_types:
         with open(os.path.join(dicts_path, d_type + '_dict.json')) as f:
-            dicts[d_type] = json.loads(f.readline())
+            dicts[d_type] = json.load(f)
     return dicts
 
 
