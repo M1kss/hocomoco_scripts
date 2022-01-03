@@ -36,7 +36,6 @@ def draw_svg(pcm_path, revcomp):
     if not os.path.isdir(directory):
         os.mkdir(directory)
     out_path = os.path.join(directory, os.path.basename(pcm_path))
-    print(pcm_path)
     start.draw_logo(pcm_path,
                     revcomp=revcomp,
                     out_path=out_path,
@@ -104,7 +103,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
                 exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
                 continue
             tf_cisbp_name = get_cisbp_tf(comp['motif'], cisbp_dict, d_type)
-            exp[d_type] = {'motif': comp['motif'].replace('.txt', ''),
+            exp[d_type] = {'motif': comp['motif'].replace('.txt', ''),  # FIXME
                            'orientation': comp['orientation'],
                            'sim': float(comp['similarity']),
                            'name': tf_cisbp_name}
@@ -151,7 +150,6 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
                                   revcomp=True if exp[best_d_type]['orientation'] == 'revcomp' else False)
         sheet.insert_image(index + 1, 7 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
         sheet.set_column(7 + len(dict_types[1:]), 7 + len(dict_types[1:]), motif_len * 2.5)
-        print(exp[best_d_type])
         sheet.write(index + 1, 8 + len(dict_types[1:]), exp[best_d_type]['name'])
         sheet.write(index + 1, 9 + len(dict_types[1:]), best_d_type)
 
