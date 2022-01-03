@@ -67,7 +67,7 @@ def get_cisbp_tf(motif_name, cisbp_dict, d_type=None):
     if d_type == 'hocomoco':
         return '.'.join(motif_name.split('.')[-2:])
     else:
-        return cisbp_dict.get(motif_name)
+        return cisbp_dict.get(os.path.splitext(motif_name)[0])
 
 
 def get_format(param):
