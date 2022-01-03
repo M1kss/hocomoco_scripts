@@ -39,7 +39,7 @@ def parse_known_tfs(tfs_df):
         subfamily_dict = add_to_fam_dict(subfamily_dict, 'tfclass:subfamily', row, tfs_df)
         family_dict = add_to_fam_dict(family_dict, 'tfclass:family', row, tfs_df)
         if index < 2:
-            print(subfamily_dict)
+            print(family_dict)
     return family_dict, subfamily_dict
 
 
