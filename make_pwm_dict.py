@@ -4,7 +4,7 @@ import json
 
 from tqdm import tqdm
 
-from cor import cisbp_dict_path, dicts_path, hocomoco_path
+from cor import cisbp_human_dict_path, cisbp_mouse_dict_path, dicts_path, hocomoco_path
 
 
 def get_tfs_by_fam_tf_class(fam, split_ids, dbid_dict, t, subfamily=False):
@@ -43,18 +43,29 @@ def parse_known_tfs(tfs_df):
     return family_dict, subfamily_dict
 
 
-def get_motifs_by_tf(t, tf_name, inferred=False):
+def chose_df_by_tf(cisbp_dfs, tf_name):
+    if '_MOUSE' in tf_name:
+        return cisbp_dfs['mouse']
+    elif '_HUMAN' in tf_name:
+        return cisbp_dfs['human']
+    else:
+        raise ValueError(tf_name)
+
+
+def get_motifs_by_tf(cisbp_dfs, tf_name, inferred=False):
+    t = chose_df_by_tf(cisbp_dfs, tf_name)
     motifs = t[t['TF_Name'] == tf_name]
     status_ok = {'D', 'I'} if inferred else {'D'}
     motifs = motifs[motifs['TF_Status'].isin(status_ok)]
     return motifs['Motif_ID'].tolist()
 
 
-def get_family_motifs_by_tf(t, tfs_list):
+def get_family_motifs_by_tf(cisbp_dfs, tfs_list):
     result = set()
     if tfs_list is None:
         return None
     for tf in tfs_list:
+        t = chose_df_by_tf(cisbp_dfs, tf)
         tf_motifs = t[t['TF_Name'] == tf]
         tf_motifs = set(tf_motifs[tf_motifs['TF_Status'] == 'D']['Motif_ID'].unique())
         result |= tf_motifs
@@ -70,16 +81,14 @@ def read_hocomoco_dir():
     result = {}
     for motif in motifs:
         tf, _, _, qual, _ = motif.split('.')
-        if tf == 'ANDR_HUMAN':
-            tf = 'AR_HUMAN'
-        if tf.endswith('_HUMAN'):
-            tf = tf[:-6]
         result.setdefault(tf, []).append(motif)
     return result
 
 
 def main():
-    cisbp_df = pd.read_table(cisbp_dict_path)
+    cisbp_dfs = {specie: pd.read_table(fname) for
+                 specie, fname in zip(['human', 'mouse'],
+                                      [cisbp_human_dict_path, cisbp_mouse_dict_path])}
     known_tfs = pd.read_excel(os.path.join('source_files', 'hocomoco_2021.xlsx'),
                               engine='openpyxl')
     tfs = known_tfs['curated:uniprot_id'].to_list()
@@ -90,16 +99,17 @@ def main():
     tf_class_family_dict = {}
     tf_class_subfamily_dict = {}
     hocomoco_dict = {}
+    hocomoco_motifs = read_hocomoco_dir()
     for tf in tqdm(tfs):
-        direct_dict[tf] = get_motifs_by_tf(cisbp_df, tf)
-        inferred_dict[tf] = get_motifs_by_tf(cisbp_df, tf, inferred=True)
-        tf_class_family_dict[tf] = get_family_motifs_by_tf(cisbp_df,
+        direct_dict[tf] = get_motifs_by_tf(cisbp_dfs, tf)
+        inferred_dict[tf] = get_motifs_by_tf(cisbp_dfs, tf, inferred=True)
+        tf_class_family_dict[tf] = get_family_motifs_by_tf(cisbp_dfs,
                                                            tf_class_family_tfs_dict[tf])
 
-        tf_class_subfamily_dict[tf] = get_family_motifs_by_tf(cisbp_df,
+        tf_class_subfamily_dict[tf] = get_family_motifs_by_tf(cisbp_dfs,
                                                               tf_class_subfamily_tfs_dict[tf])
-        hocomoco_motifs = read_hocomoco_dir()
-        hocomoco_dict = {tf: get_hocomoco_by_tf(hocomoco_motifs, tf) for tf in tfs}
+
+        hocomoco_dict[tf] = get_hocomoco_by_tf(hocomoco_motifs, tf)
     with open(os.path.join(dicts_path, 'direct_dict.json'), 'w') as f:
         json.dump(direct_dict, f, indent=2)
 
