@@ -23,7 +23,7 @@ def get_tfs_by_fam_tf_class(fam, split_ids, dbid_dict, t, subfamily=False):
 
 def add_to_fam_dict(fam_dict, key, fam, df):
     if fam:
-        fam_tfs = df[df[key] == fam]['curated:uniprot_id']
+        fam_tfs = df[df[key] == fam]['curated:uniprot_id'].to_list()
         for tf in fam_tfs:
             if fam_dict.get(tf, None) is None:
                 fam_dict[tf] = fam_tfs
