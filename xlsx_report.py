@@ -36,6 +36,7 @@ def draw_svg(pcm_path, revcomp):
     if not os.path.isdir(directory):
         os.mkdir(directory)
     out_path = os.path.join(directory, os.path.basename(pcm_path))
+    print(pcm_path)
     start.draw_logo(pcm_path,
                     revcomp=revcomp,
                     out_path=out_path,
