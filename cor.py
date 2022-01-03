@@ -80,6 +80,7 @@ def run_ape(exps, res_dir, jobs=10):
                 err = process.stderr.read().decode('utf-8')
                 if err:
                     print(err)
+                    print(exp)
                     raise ValueError
                 res = process.stdout.read().decode('utf-8')
                 name, res = parse_output(exp, res)
