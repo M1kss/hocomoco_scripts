@@ -66,7 +66,8 @@ def get_family_motifs_by_tf(cisbp_dfs, tfs_list):
         return None
     for tf in tfs_list:
         t = chose_df_by_tf(cisbp_dfs, tf)
-        tf_motifs = t[t['TF_Name'] == tf]
+        tf_name = tf[:-6]
+        tf_motifs = t[t['TF_Name'] == tf_name]
         tf_motifs = set(tf_motifs[tf_motifs['TF_Status'] == 'D']['Motif_ID'].unique())
         result |= tf_motifs
     return list(result)

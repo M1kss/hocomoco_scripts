@@ -4,7 +4,7 @@ import sys
 import json
 import shutil
 
-dicts_path = 'results'
+dicts_path = 'files'
 cisbp_human_dict_path = os.path.join('source_files', 'TF_Information_human.txt')
 cisbp_mouse_dict_path = os.path.join('source_files', 'TF_Information_mouse.txt')
 info_dict_path = os.path.join('files', 'new_info.json')
