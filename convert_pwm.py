@@ -12,6 +12,7 @@ def main(inp, out):
         header = inf.readline()
         if header == '':
             os.remove(out)
+            return
         try:
             assert header == '\t'.join(['Pos', 'A', 'C', 'G', 'T']) + '\n'
         except AssertionError:
