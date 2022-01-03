@@ -80,7 +80,11 @@ def read_hocomoco_dir():
     motifs = os.listdir(hocomoco_path)
     result = {}
     for motif in motifs:
-        tf, _, _, qual, _ = motif.split('.')
+        try:
+            tf, _, _, qual, _ = motif.split('.')
+        except ValueError:
+            print(motif)
+            raise
         result.setdefault(tf, []).append(motif)
     return result
 
