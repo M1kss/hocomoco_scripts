@@ -51,9 +51,10 @@ def main(i_dict):
     df = read_xlsx_master()
     convert_d = df.set_index('curated:uniprot_ac')['curated:uniprot_id'].to_dict().keys()
     with open(info_dict_path, 'w') as out:
+        print('Dumping...')
         json.dump({convert_d[x]: [item for item in y
                                   if item['pcm_path'] is not None]
-                   for x, y in i_dict.keys()}, out)
+                   for x, y in i_dict.items()}, out)
 
 
 if __name__ == '__main__':
