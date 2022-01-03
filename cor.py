@@ -10,7 +10,7 @@ info_dict_path = os.path.join('files', 'new_info.json')
 result_path = 'ape_result'
 motif_dir = 'cisbp_pwms'
 
-dict_types = ['hocomoco', 'direct', 'inferred', 'family', 'tf_class_family', 'tf_class_subfamily']
+dict_types = ['hocomoco', 'direct', 'inferred', 'tf_class_family', 'tf_class_subfamily']
 
 
 ape_path = os.path.expanduser('~/ape.jar')
