@@ -80,6 +80,7 @@ def run_ape(exps, res_dir, jobs=10):
                 res = process.stdout.read().decode('utf-8')
                 name, res = parse_output(exp, res)
                 result[name] = res
+                print(res)
         shutil.rmtree(res_dir)
     return result
 
