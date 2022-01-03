@@ -99,7 +99,7 @@ def main():
                               engine='openpyxl')
     tfs = known_tfs['curated:uniprot_id'].to_list()
     tf_class_family_tfs_dict, tf_class_subfamily_tfs_dict = parse_known_tfs(known_tfs)
-    print(tf_class_family_tfs_dict, tf_class_subfamily_tfs_dict)
+    print(len(tf_class_subfamily_tfs_dict))
     direct_dict = {}
     inferred_dict = {}
     tf_class_family_dict = {}
