@@ -18,7 +18,9 @@ def main(inp, out):
         except AssertionError:
             print('Are u sure this is a cisbp pwm? Header is different.\n{}'.format(header))
         ouf.write('>{}'.format(os.path.basename(inp)) + '\n')
+        is_empty = True
         for line in inf:
+            is_empty = False
             items = line.strip('\n').split('\t')
             try:
                 assert len(items) == 5
@@ -28,6 +30,8 @@ def main(inp, out):
                 print("Didn't I tell ya?\n{}".format(line))
                 raise
             ouf.write('\t'.join(items[1:]) + '\n')
+        if is_empty:
+            os.remove(out)
 
 
 if __name__ == '__main__':
