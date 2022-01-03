@@ -102,8 +102,16 @@ def read_dicts():
     return dicts
 
 
-def transform_name(tf):
-    return tf
+def transform_name(tf, specie):
+    tf_name = tf.split('_')[0]
+    if tf_name == 'ANDR':
+        tf_name = 'AR'
+    if specie == 'human':
+        return tf_name
+    elif specie == 'mouse':
+        return tf_name.lower().capitalize()
+    else:
+        raise ValueError(specie)
 
 
 def filter_pwms(motifs):
