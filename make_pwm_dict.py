@@ -6,20 +6,6 @@ from tqdm import tqdm
 from cor import dicts_path, hocomoco_path, read_xlsx_master, read_cisbp_df, transform_name
 
 
-def get_tfs_by_fam_tf_class(fam, split_ids, dbid_dict, t, subfamily=False):
-    if fam[-1] != 0:
-        tfs = []
-        for id in split_ids:
-            if id[:(-1 if subfamily else -2)] == fam:
-                tf_name = t[t['DBID'].isin(dbid_dict['.'.join(id)])]['TF_Name'].unique()
-                if len(tf_name) == 0:
-                    continue
-                tfs.extend(tf_name)
-        return list(set(tfs))
-    else:
-        return []
-
-
 def add_to_fam_dict(fam_dict, key, fam, df):
     if fam[key]:
         fam_tfs = df[df[key] == fam[key]]['curated:uniprot_id'].to_list()
@@ -99,27 +85,27 @@ def main():
     for tf in tqdm(tfs):
         direct_dict[tf] = get_motifs_by_tf(cisbp_dfs, tf)
         inferred_dict[tf] = get_motifs_by_tf(cisbp_dfs, tf, inferred=True)
-        # tf_class_family_dict[tf] = get_family_motifs_by_tf(cisbp_dfs,
-        #                                                    tf_class_family_tfs_dict.get(tf, None))
-        #
-        # tf_class_subfamily_dict[tf] = get_family_motifs_by_tf(cisbp_dfs,
-        #                                                       tf_class_subfamily_tfs_dict.get(tf, None))
-        #
-        # hocomoco_dict[tf] = get_hocomoco_by_tf(hocomoco_motifs, tf)
+        tf_class_family_dict[tf] = get_family_motifs_by_tf(cisbp_dfs,
+                                                           tf_class_family_tfs_dict.get(tf, None))
+
+        tf_class_subfamily_dict[tf] = get_family_motifs_by_tf(cisbp_dfs,
+                                                              tf_class_subfamily_tfs_dict.get(tf, None))
+
+        hocomoco_dict[tf] = get_hocomoco_by_tf(hocomoco_motifs, tf)
     with open(os.path.join(dicts_path, 'direct_dict.json'), 'w') as f:
         json.dump(direct_dict, f, indent=2)
 
     with open(os.path.join(dicts_path, 'inferred_dict.json'), 'w') as f:
         json.dump(inferred_dict, f, indent=2)
 
-    # with open(os.path.join(dicts_path, 'tf_class_family_dict.json'), 'w') as f:
-    #     json.dump(tf_class_family_dict, f, indent=2)
-    #
-    # with open(os.path.join(dicts_path, 'tf_class_subfamily_dict.json'), 'w') as f:
-    #     json.dump(tf_class_subfamily_dict, f, indent=2)
-    #
-    # with open(os.path.join(dicts_path, 'hocomoco_dict.json'), 'w') as f:
-    #     json.dump(hocomoco_dict, f, indent=2)
+    with open(os.path.join(dicts_path, 'tf_class_family_dict.json'), 'w') as f:
+        json.dump(tf_class_family_dict, f, indent=2)
+
+    with open(os.path.join(dicts_path, 'tf_class_subfamily_dict.json'), 'w') as f:
+        json.dump(tf_class_subfamily_dict, f, indent=2)
+
+    with open(os.path.join(dicts_path, 'hocomoco_dict.json'), 'w') as f:
+        json.dump(hocomoco_dict, f, indent=2)
 
 
 if __name__ == '__main__':
