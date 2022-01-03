@@ -150,6 +150,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
         #                           revcomp=True if exp[best_d_type]['orientation'] == 'revcomp' else False)
         # sheet.insert_image(index + 1, 7 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
         # sheet.set_column(7 + len(dict_types[1:]), 7 + len(dict_types[1:]), motif_len * 2.5)
+        print(exp[best_d_type])
         sheet.write(index + 1, 8 + len(dict_types[1:]), exp[best_d_type]['name'])
         sheet.write(index + 1, 9 + len(dict_types[1:]), best_d_type)
 
@@ -162,7 +163,6 @@ if __name__ == '__main__':
         df = value[value['TF_Status'] == 'D']
         cis_dict = {**cis_dict,
                     **pd.Series(df.TF_Name.values, index=df.Motif_ID).to_dict()}
-    print(cis_dict)
     for tf_name, value in info_dict.items():
         if allowed_tfs is not None:
             if tf_name not in allowed_tfs:
