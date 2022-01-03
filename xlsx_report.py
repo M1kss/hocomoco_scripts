@@ -83,7 +83,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     if not os.path.exists(os.path.join(result_path, t_factor + '.json')):
         return
     with open(os.path.join(result_path, t_factor + '.json')) as f:
-        sim_dict = json.loads(f.readline())
+        sim_dict = json.load(f)
     for exp in tqdm(tf_info):
         exp['name'] = craft_motif_name(exp)
         exp['motif_image'] = draw_svg(exp['pcm_path'], False)
