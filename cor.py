@@ -77,6 +77,10 @@ def run_ape(exps, res_dir, jobs=10):
             for process in processes:
                 process.wait()
             for process, exp in zip(processes, batch):
+                err = process.stderr.read().decode('utf-8')
+                if err:
+                    print(err)
+                    raise ValueError
                 res = process.stdout.read().decode('utf-8')
                 name, res = parse_output(exp, res)
                 result[name] = res
