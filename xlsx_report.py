@@ -1,19 +1,14 @@
+import pandas as pd
 import xlsxwriter
 import json
 import os
-import sys
 from base64 import b64encode
 from drawlogo import start
 import requests
 from cairosvg import svg2png
-import pandas as pd
-from cor import dict_types, motif_dir, result_path, cisbp_dict_path, allowed_tfs, filter_pwms, read_dicts
+from tqdm import tqdm
 
-
-if os.path.exists(cisbp_dict_path):
-    df = pd.read_table(cisbp_dict_path)
-    df = df[df['TF_Status'] == 'D']
-    cisbp_dict = pd.Series(df.TF_Name.values, index=df.Motif_ID).to_dict()
+from cor import dict_types, motif_dir, result_path, filter_pwms, read_dicts, read_info_dict, read_cisbp_df
 
 
 def get_made_part(objs, index, parts=10):
@@ -68,69 +63,11 @@ def get_comp_motif_path(motif_name, d_type=None):
         return os.path.join(motif_dir, motif_name + '.ppm')
 
 
-def get_cisbp_tf(motif_name, d_type=None):
+def get_cisbp_tf(motif_name, cisbp_dict, d_type=None):
     if d_type == 'hocomoco':
         return '.'.join(motif_name.split('.')[-2:])
     else:
         return cisbp_dict.get(motif_name)
-
-
-def get_image_code_for_json(tf_info, t_factor):
-    with open(os.path.join(result_path, t_factor + '.json')) as f:
-        sim_dict = json.loads(f.readline())
-    similar_motifs = set()
-    tf_images = {}
-    for index, exp in enumerate(tf_info):
-        exp['name'] = craft_motif_name(exp)
-        if index % 100 == 0:
-            print('Done {} motifs for {}'.format(index, t_factor))
-        if exp.get('motif_image') is None:
-            exp['motif_image'] = draw_svg(exp['pcm_path'], False)
-        exp['motif_image'] = get_image_code(exp['motif_image'])
-        pcm_name = os.path.splitext(os.path.basename(exp['pcm_path']))[0]
-        for d_type in dict_types:
-            motifs = sim_dict.get(d_type)
-            if not motifs:
-                print('No {} motifs for {}'.format(d_type, tf))
-                exp[d_type] = {'motif': None, 'sim': None, 'name': None}
-                continue
-            comp = motifs.get(pcm_name)
-            if not comp:
-                print('No {} comp for {}. {}'.format(d_type, tf, pcm_name))
-                exp[d_type] = {'motif': None, 'sim': None, 'name': None}
-                continue
-            similar_motifs.add((comp['motif'], comp['orientation']))
-    print('Drawing cisbp')
-    for index, (motif, orient) in enumerate(similar_motifs):
-        to_print, part = get_made_part(similar_motifs, index, parts=10)
-        if to_print:
-            print('Done {} part of 10'.format(part))
-        try:
-            tf_images[motif] = get_image_code(
-                draw_svg(get_comp_motif_path(motif),
-                         revcomp=True if orient == 'revcomp' else False))
-        except TypeError:
-            print(motif)
-            raise
-    for index, exp in enumerate(tf_info):
-        pcm_name = os.path.splitext(os.path.basename(exp['pcm_path']))[0]
-        for d_type in dict_types:
-            motifs = sim_dict.get(d_type)
-            if not motifs:
-                print('No {} motifs for {}'.format(d_type, tf))
-                exp[d_type] = {'motif': None, 'sim': None, 'name': None}
-                continue
-            comp = motifs.get(pcm_name)
-            if not comp:
-                print('No {} comp for {}. {}'.format(d_type, tf, pcm_name))
-                exp[d_type] = {'motif': None, 'sim': None, 'name': None}
-                continue
-            tf_cisbp_name = get_cisbp_tf(comp['motif'], d_type)
-
-            exp[d_type] = {'motif': tf_images.get(comp['motif']),
-                           'sim': round(float(comp['similarity']), 2),
-                           'name': tf_cisbp_name
-                           }
 
 
 def get_format(param):
@@ -142,27 +79,27 @@ def get_format(param):
         return null_format
 
 
-def process_tf(sheet, t_factor, tf_info):
+def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     if not os.path.exists(os.path.join(result_path, t_factor + '.json')):
         return
     with open(os.path.join(result_path, t_factor + '.json')) as f:
         sim_dict = json.loads(f.readline())
-    for index, exp in enumerate(tf_info):
+    for exp in tqdm(tf_info):
         exp['name'] = craft_motif_name(exp)
         exp['motif_image'] = draw_svg(exp['pcm_path'], False)
         pcm_name = os.path.splitext(os.path.basename(exp['pcm_path']))[0]
         for i, d_type in enumerate(dict_types):
             motifs = sim_dict.get(d_type)
             if not motifs:
-                print('No {} motifs for {}'.format(d_type, tf))
+                print('No {} motifs for {}'.format(d_type, t_factor))
                 exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
                 continue
             comp = motifs.get(pcm_name)
             if not comp:
-                print('No {} comp for {}. {}'.format(d_type, tf, pcm_name))
+                print('No {} comp for {}. {}'.format(d_type, t_factor, pcm_name))
                 exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
                 continue
-            tf_cisbp_name = get_cisbp_tf(comp['motif'], d_type)
+            tf_cisbp_name = get_cisbp_tf(comp['motif'], cisbp_dict, d_type)
             exp[d_type] = {'motif': comp['motif'],
                            'orientation': comp['orientation'],
                            'sim': float(comp['similarity']),
@@ -215,22 +152,22 @@ def process_tf(sheet, t_factor, tf_info):
 
 
 if __name__ == '__main__':
-    tfs_stats = sys.argv[1] if len(sys.argv) > 1 else None
-    hocomoco_dict = read_dicts()['hocomoco']
-    if tfs_stats is not None:
-        with open(tfs_stats) as opened_json:
-            d = json.loads(opened_json.readline())
-            for tf in hocomoco_dict:
-                tf_name = tf + '_HUMAN'
-                report_path = os.path.join('reports', tf_name + '.xlsx')
-                if os.path.exists(report_path):
-                    continue
-                if tf_name in d:
-                    print('Now doing', tf_name)
-                    workbook = xlsxwriter.Workbook(report_path)
-                    green_format = workbook.add_format({'bg_color': '#C6EFCE'})
-                    yellow_format = workbook.add_format({'bg_color': '#FFF77D'})
-                    null_format = workbook.add_format()
-                    worksheet = workbook.add_worksheet()
-                    process_tf(worksheet, tf_name, filter_pwms(d[tf_name]))
-                    workbook.close()
+    info_dict = read_info_dict()
+    cisbp_dfs = read_cisbp_df()
+    cisbp_dict = {}
+    for value in cisbp_dfs.values():
+        df = value[value['TF_Status'] == 'D']
+        cisbp_dict = cisbp_dict.update(pd.Series(df.TF_Name.values, index=df.Motif_ID).to_dict())
+
+    for tf_name, value in info_dict.items():
+        print('Processing {}'.format(tf_name))
+        report_path = os.path.join('reports', tf_name + '.xlsx')
+        if os.path.exists(report_path):
+            continue
+        workbook = xlsxwriter.Workbook(report_path)
+        green_format = workbook.add_format({'bg_color': '#C6EFCE'})
+        yellow_format = workbook.add_format({'bg_color': '#FFF77D'})
+        null_format = workbook.add_format()
+        worksheet = workbook.add_worksheet()
+        process_tf(worksheet, tf_name, filter_pwms(value), cisbp_dict)
+        workbook.close()

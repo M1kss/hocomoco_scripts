@@ -27,6 +27,11 @@ def read_xlsx_master():
                          engine='openpyxl')
 
 
+def read_info_dict():
+    with open(info_dict_path) as info:
+        return json.load(info)
+
+
 def check_dir_for_collection(tf, motif_collection, d_type):
     dir_path = os.path.join(result_path, tf + '_' + d_type)
     if motif_collection is None:
@@ -108,10 +113,15 @@ def filter_pwms(motifs):
             and x['words'] >= words_tr and x['total'] and x['seqs'] / x['total'] >= percent_tr]
 
 
+def read_cisbp_df():
+    return {specie: pd.read_table(fname) for
+            specie, fname in zip(['human', 'mouse'],
+                                 [cisbp_human_dict_path, cisbp_mouse_dict_path])}
+
+
 def main(njobs=10):
     dicts = read_dicts()
-    with open(info_dict_path) as info:
-        info_dict = json.load(info)
+    info_dict = read_info_dict()
     for tf in tqdm(info_dict.keys()):
         if allowed_tfs is not None:
             if tf not in allowed_tfs:
