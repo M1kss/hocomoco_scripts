@@ -38,7 +38,7 @@ def check_dir_for_collection(tf, motif_collection, d_type):
         if d_type == 'hocomoco':
             path = os.path.join(hocomoco_path, motif)
         else:
-            path = os.path.join(motif_dir, motif + '.ppm')
+            path = os.path.join(motif_dir, motif + '.txt')
         if os.path.exists(path):
             shutil.copy2(path, dir_path)
         else:
