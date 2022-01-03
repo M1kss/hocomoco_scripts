@@ -61,7 +61,7 @@ def main(i_dict):
                       if item['pcm_path'] is not None]
     with open(info_dict_path, 'w') as out:
         print('Dumping...')
-        json.dump(d, out)
+        json.dump(d, out, indent=2)
 
 
 if __name__ == '__main__':
