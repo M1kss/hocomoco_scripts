@@ -92,7 +92,7 @@ def parse_one_file(file_name, outputs_dir):
             ACGT = ACGT[:i]
             break
     for k, quad in enumerate(ACGT):
-        pcm_path = os.path.join('hocomoco_pwms', '{}.{}.pcm'.format(file_name[:-4], k))
+        pcm_path = os.path.join('results', '{}.{}.pcm'.format(file_name[:-4], k))
         with open(pcm_path, 'w') as pcm:
             pcm.write('>{}.{}'.format(file_name[:-4], k) + '\n')
             values = list(zip(*quad))
