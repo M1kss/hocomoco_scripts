@@ -106,6 +106,8 @@ def main():
     hocomoco_dict = {}
     hocomoco_motifs = read_hocomoco_dir()
     for tf in tqdm(tfs):
+        if tf not in tf_class_family_tfs_dict:
+            continue
         direct_dict[tf] = get_motifs_by_tf(cisbp_dfs, tf)
         inferred_dict[tf] = get_motifs_by_tf(cisbp_dfs, tf, inferred=True)
         tf_class_family_dict[tf] = get_family_motifs_by_tf(cisbp_dfs,
