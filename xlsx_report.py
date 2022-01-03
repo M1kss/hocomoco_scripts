@@ -131,7 +131,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     sheet.write(0, 9 + len(dict_types[1:]), 'Most_sim_type')
     worksheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
     print('Writing to file')
-    for index, exp in tqdm(enumerate(sorted_tf_info, 1)):
+    for index, exp in tqdm(enumerate(sorted_tf_info)):
         sheet.set_column(0, 0, name_width)
         sheet.set_column(4, 4, motif_len * 2.5)
         sheet.write(index + 1, 0, exp['name'])
@@ -162,7 +162,7 @@ if __name__ == '__main__':
         df = value[value['TF_Status'] == 'D']
         cis_dict = {**cis_dict,
                     **pd.Series(df.TF_Name.values, index=df.Motif_ID).to_dict()}
-
+    print(cis_dict)
     for tf_name, value in info_dict.items():
         if allowed_tfs is not None:
             if tf_name not in allowed_tfs:
