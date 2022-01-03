@@ -108,6 +108,9 @@ def main(njobs=10):
     with open(info_dict_path) as info:
         info_dict = json.loads(info.readline())
     for tf in tqdm(info_dict.keys()):
+        if allowed_tfs is not None:
+            if tf not in allowed_tfs:
+                continue
         if os.path.exists(os.path.join('reports', tf + '.xlsx')):
             continue
         results = {}
