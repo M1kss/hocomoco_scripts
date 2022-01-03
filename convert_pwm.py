@@ -10,6 +10,8 @@ def main(inp, out):
     """
     with open(os.path.expanduser(inp), 'r') as inf, open(os.path.expanduser(out), 'w') as ouf:
         header = inf.readline()
+        if header == '':
+            return
         try:
             assert header == '\t'.join(['Pos', 'A', 'C', 'G', 'T']) + '\n'
         except AssertionError:
