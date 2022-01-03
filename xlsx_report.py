@@ -169,8 +169,6 @@ if __name__ == '__main__':
                 continue
         print('Processing {}'.format(tf_name))
         report_path = os.path.join('reports', tf_name + '.xlsx')
-        if os.path.exists(report_path):
-            continue
         workbook = xlsxwriter.Workbook(report_path)
         green_format = workbook.add_format({'bg_color': '#C6EFCE'})
         yellow_format = workbook.add_format({'bg_color': '#FFF77D'})
