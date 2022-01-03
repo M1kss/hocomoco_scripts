@@ -1,6 +1,8 @@
 import json
 import os
 import pandas as pd
+from tqdm import tqdm
+
 from cor import read_dicts, read_xlsx_master, info_dict_path, initial_info_dict_path
 
 
@@ -50,11 +52,17 @@ def filter_tfs():
 def main(i_dict):
     df = read_xlsx_master()
     convert_d = df.set_index('curated:uniprot_ac')['curated:uniprot_id'].to_dict()
+    d = {}
+    for key, value in tqdm(i_dict.items()):
+        new_key = convert_d.get(key)
+        if new_key is None:
+            print(key, value)
+            raise ValueError
+        d[new_key] = [item for item in value
+                        if item['pcm_path'] is not None]
     with open(info_dict_path, 'w') as out:
         print('Dumping...')
-        json.dump({convert_d[x]: [item for item in y
-                                  if item['pcm_path'] is not None]
-                   for x, y in i_dict.items()}, out)
+        json.dump(d, out)
 
 
 if __name__ == '__main__':
