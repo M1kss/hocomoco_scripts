@@ -106,11 +106,11 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
                            'orientation': comp['orientation'],
                            'sim': float(comp['similarity']),
                            'name': tf_cisbp_name}
-    if tf_info.get('hocomoco'):
+    if tf_info[0].get('hocomoco'):
         sorted_tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['sim'], reverse=True)
         sorted_tf_info = sorted(sorted_tf_info, key=lambda x: x['hocomoco']['name'], reverse=True)
     else:
-        print(tf_info)
+
         raise ValueError
     try:
         name_width = len(max([exp['name'] for exp in sorted_tf_info]))
