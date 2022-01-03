@@ -56,10 +56,9 @@ def main(i_dict):
     for key, value in tqdm(i_dict.items()):
         new_key = convert_d.get(key)
         if new_key is None:
-            print(key, value)
-            raise ValueError
+            continue
         d[new_key] = [item for item in value
-                        if item['pcm_path'] is not None]
+                      if item['pcm_path'] is not None]
     with open(info_dict_path, 'w') as out:
         print('Dumping...')
         json.dump(d, out)
