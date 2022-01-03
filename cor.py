@@ -106,7 +106,7 @@ def filter_pwms(motifs):
 def main(njobs=10):
     dicts = read_dicts()
     with open(info_dict_path) as info:
-        info_dict = json.loads(info.readline())
+        info_dict = json.load(info)
     for tf in tqdm(info_dict.keys()):
         if allowed_tfs is not None:
             if tf not in allowed_tfs:
