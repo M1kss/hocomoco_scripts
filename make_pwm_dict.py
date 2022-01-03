@@ -106,15 +106,13 @@ def main():
     hocomoco_dict = {}
     hocomoco_motifs = read_hocomoco_dir()
     for tf in tqdm(tfs):
-        if tf not in tf_class_family_tfs_dict:
-            continue
         direct_dict[tf] = get_motifs_by_tf(cisbp_dfs, tf)
         inferred_dict[tf] = get_motifs_by_tf(cisbp_dfs, tf, inferred=True)
         tf_class_family_dict[tf] = get_family_motifs_by_tf(cisbp_dfs,
-                                                           tf_class_family_tfs_dict[tf])
+                                                           tf_class_family_tfs_dict.get(tf, None))
 
         tf_class_subfamily_dict[tf] = get_family_motifs_by_tf(cisbp_dfs,
-                                                              tf_class_subfamily_tfs_dict[tf])
+                                                              tf_class_subfamily_tfs_dict.get(tf, None))
 
         hocomoco_dict[tf] = get_hocomoco_by_tf(hocomoco_motifs, tf)
     with open(os.path.join(dicts_path, 'direct_dict.json'), 'w') as f:
