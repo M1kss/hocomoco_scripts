@@ -85,6 +85,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     with open(os.path.join(result_path, t_factor + '.json')) as f:
         sim_dict = json.load(f)
     index = 0
+    print('Parsing sim dict')
     for exp in tqdm(tf_info):
         index+=1
         if index > 50:
@@ -106,12 +107,9 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
                            'orientation': comp['orientation'],
                            'sim': float(comp['similarity']),
                            'name': tf_cisbp_name}
-    if tf_info[0].get('hocomoco'):
-        sorted_tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['sim'], reverse=True)
-        sorted_tf_info = sorted(sorted_tf_info, key=lambda x: x['hocomoco']['name'], reverse=True)
-    else:
-
-        raise ValueError
+    print(tf_info)
+    sorted_tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['sim'], reverse=True)
+    sorted_tf_info = sorted(sorted_tf_info, key=lambda x: x['hocomoco']['name'], reverse=True)
     try:
         name_width = len(max([exp['name'] for exp in sorted_tf_info]))
     except ValueError:
@@ -133,7 +131,8 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     sheet.write(0, 8 + len(dict_types[1:]), 'Most_sim_TF')
     sheet.write(0, 9 + len(dict_types[1:]), 'Most_sim_type')
     worksheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
-    for index, exp in enumerate(sorted_tf_info):
+    print('Writing to file')
+    for index, exp in tqdm(enumerate(sorted_tf_info)):
         sheet.set_column(0, 0, name_width)
         sheet.set_column(4, 4, motif_len * 2.5)
         sheet.write(index + 1, 0, exp['name'])
