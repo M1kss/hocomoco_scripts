@@ -24,7 +24,6 @@ def get_tfs_by_fam_tf_class(fam, split_ids, dbid_dict, t, subfamily=False):
 def add_to_fam_dict(fam_dict, key, fam, df):
     if fam[key]:
         fam_tfs = df[df[key] == fam[key]]['curated:uniprot_id'].to_list()
-        print(fam_tfs)
         for tf in fam_tfs:
             if fam_dict.get(tf, None) is None:
                 fam_dict[tf] = fam_tfs
@@ -39,6 +38,7 @@ def parse_known_tfs(tfs_df):
     for index, row in tfs_df.iterrows():
         subfamily_dict = add_to_fam_dict(subfamily_dict, 'tfclass:subfamily', row, tfs_df)
         family_dict = add_to_fam_dict(family_dict, 'tfclass:family', row, tfs_df)
+        print(subfamily_dict)
     return family_dict, subfamily_dict
 
 
