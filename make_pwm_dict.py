@@ -80,12 +80,13 @@ def read_hocomoco_dir():
     motifs = os.listdir(hocomoco_path)
     result = {}
     for motif in motifs:
-        try:
-            tf, _, _, qual, _ = motif.split('.')
-        except ValueError:
-            print(motif)
-            raise
-        result.setdefault(tf, []).append(motif)
+        if motif != '.gitkeep':
+            try:
+                tf, _, _, qual, _ = motif.split('.')
+            except ValueError:
+                print(motif)
+                raise
+            result.setdefault(tf, []).append(motif)
     return result
 
 
