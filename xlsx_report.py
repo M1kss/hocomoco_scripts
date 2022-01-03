@@ -157,7 +157,8 @@ if __name__ == '__main__':
     cisbp_dict = {}
     for value in cisbp_dfs.values():
         df = value[value['TF_Status'] == 'D']
-        cisbp_dict = cisbp_dict.update(pd.Series(df.TF_Name.values, index=df.Motif_ID).to_dict())
+        cisbp_dict = {**cisbp_dict,
+                      **pd.Series(df.TF_Name.values, index=df.Motif_ID).to_dict()}
 
     for tf_name, value in info_dict.items():
         if allowed_tfs is not None:
