@@ -91,12 +91,10 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
         for i, d_type in enumerate(dict_types):
             motifs = sim_dict.get(d_type)
             if not motifs:
-                print('No {} motifs for {}'.format(d_type, t_factor))
                 exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
                 continue
             comp = motifs.get(pcm_name)
             if not comp:
-                print('No {} comp for {}. {}'.format(d_type, t_factor, pcm_name))
                 exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
                 continue
             tf_cisbp_name = get_cisbp_tf(comp['motif'], cisbp_dict, d_type)
@@ -134,7 +132,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
         sheet.write(index + 1, 0, exp['name'])
         sheet.write(index + 1, 1, exp['selected_by'][:1].capitalize())
         sheet.write(index + 1, 2, exp['words'])
-        sheet.write(index + 1, 3, exp['seqs']/exp['total'])
+        sheet.write(index + 1, 3, exp['seqs'] / exp['total'])
         sheet.insert_image(index + 1, 4, exp['motif_image'], {'x_scale': 0.4, 'y_scale': 0.4})
         sheet.set_row(index, 30)
         sheet.write(index + 1, 5, exp['hocomoco']['sim'], get_format(exp['hocomoco']['sim']))
@@ -154,11 +152,11 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
 if __name__ == '__main__':
     info_dict = read_info_dict()
     cisbp_dfs = read_cisbp_df()
-    cisbp_dict = {}
+    cis_dict = {}
     for value in cisbp_dfs.values():
         df = value[value['TF_Status'] == 'D']
-        cisbp_dict = {**cisbp_dict,
-                      **pd.Series(df.TF_Name.values, index=df.Motif_ID).to_dict()}
+        cis_dict = {**cis_dict,
+                    **pd.Series(df.TF_Name.values, index=df.Motif_ID).to_dict()}
 
     for tf_name, value in info_dict.items():
         if allowed_tfs is not None:
@@ -173,5 +171,5 @@ if __name__ == '__main__':
         yellow_format = workbook.add_format({'bg_color': '#FFF77D'})
         null_format = workbook.add_format()
         worksheet = workbook.add_worksheet()
-        process_tf(worksheet, tf_name, filter_pwms(value), cisbp_dict)
+        process_tf(worksheet, tf_name, filter_pwms(value), cis_dict)
         workbook.close()
