@@ -37,4 +37,4 @@ def main(inp, out):
 if __name__ == '__main__':
     for file in os.listdir(sys.argv[1]):
         f = os.path.join(sys.argv[1], file)
-        main(f, os.path.join(sys.argv[2], file))
+        main(f, os.path.join(sys.argv[2], os.path.splitext(file)[0] + '.ppm'))

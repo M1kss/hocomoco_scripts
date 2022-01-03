@@ -37,7 +37,7 @@ def parse_known_tfs(tfs_df):
     return family_dict, subfamily_dict
 
 
-def chose_df_by_tf(cisbp_dfs, tf_name):
+def choose_df_by_tf(cisbp_dfs, tf_name):
     if '_MOUSE' in tf_name:
         return cisbp_dfs['mouse']
     elif '_HUMAN' in tf_name:
@@ -47,7 +47,7 @@ def chose_df_by_tf(cisbp_dfs, tf_name):
 
 
 def get_motifs_by_tf(cisbp_dfs, tf_name, inferred=False):
-    t = chose_df_by_tf(cisbp_dfs, tf_name)
+    t = choose_df_by_tf(cisbp_dfs, tf_name)
     motifs = t[t['TF_Name'] == tf_name.split('_')[0]]
     status_ok = {'D', 'I'} if inferred else {'D'}
     motifs = motifs[motifs['TF_Status'].isin(status_ok)]
@@ -59,7 +59,7 @@ def get_family_motifs_by_tf(cisbp_dfs, tfs_list):
     if tfs_list is None:
         return None
     for tf in tfs_list:
-        t = chose_df_by_tf(cisbp_dfs, tf)
+        t = choose_df_by_tf(cisbp_dfs, tf)
         tf_name = tf[:-6]
         tf_motifs = t[t['TF_Name'] == tf_name]
         tf_motifs = set(tf_motifs[tf_motifs['TF_Status'] == 'D']['Motif_ID'].unique())
