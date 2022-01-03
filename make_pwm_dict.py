@@ -25,7 +25,7 @@ def add_to_fam_dict(fam_dict, key, fam, df):
     if fam:
         fam_tfs = df[df[key] == fam]['curated:uniprot_id']
         for tf in fam_tfs:
-            if fam_dict.get(tf, None):
+            if fam_dict.get(tf, '') == "":
                 fam_dict[tf] = fam_tfs
             else:
                 fam_dict[tf] = None
