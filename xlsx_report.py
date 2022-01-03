@@ -139,7 +139,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
         sheet.write(index + 1, 2, exp['words'])
         sheet.write(index + 1, 3, exp['seqs'] / exp['total'])
         sheet.insert_image(index + 1, 4, exp['motif_image'], {'x_scale': 0.4, 'y_scale': 0.4})
-        sheet.set_row(index, 30)
+        sheet.set_row(index + 1, 30)
         sheet.write(index + 1, 5, exp['hocomoco']['sim'], get_format(exp['hocomoco']['sim']))
         sheet.write(index + 1, 6, exp['hocomoco']['name'])
         for i, d_type in enumerate(dict_types[1:]):

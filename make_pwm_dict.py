@@ -48,7 +48,7 @@ def chose_df_by_tf(cisbp_dfs, tf_name):
 
 def get_motifs_by_tf(cisbp_dfs, tf_name, inferred=False):
     t = chose_df_by_tf(cisbp_dfs, tf_name)
-    motifs = t[t['TF_Name'] == tf_name]
+    motifs = t[t['TF_Name'] == tf_name.split('_')[0]]
     status_ok = {'D', 'I'} if inferred else {'D'}
     motifs = motifs[motifs['TF_Status'].isin(status_ok)]
     return motifs['Motif_ID'].tolist()
