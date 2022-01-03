@@ -80,7 +80,8 @@ def read_hocomoco_dir():
 
 def main():
     cisbp_df = pd.read_table(cisbp_dict_path)
-    known_tfs = pd.read_excel('~/hocomoco.xlsx', engine='openpyxl')
+    known_tfs = pd.read_excel(os.path.join('source_files', 'hocomoco_2021.xlsx'),
+                              engine='openpyxl')
     tfs = known_tfs['curated:uniprot_id'].to_list()
     tf_class_family_tfs_dict, tf_class_subfamily_tfs_dict = parse_known_tfs(known_tfs)
     print('parsed')
