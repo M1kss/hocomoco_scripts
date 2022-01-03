@@ -36,14 +36,15 @@ def draw_svg(pcm_path, revcomp):
     if not os.path.isdir(directory):
         os.mkdir(directory)
     out_path = os.path.join(directory, os.path.basename(pcm_path))
-    print(pcm_path)
-    if not pcm_path:
-        return None
-    start.draw_logo(pcm_path,
-                    revcomp=revcomp,
-                    out_path=out_path,
-                    unit_height=80,
-                    unit_width=40)
+    try:
+        start.draw_logo(pcm_path,
+                        revcomp=revcomp,
+                        out_path=out_path,
+                        unit_height=80,
+                        unit_width=40)
+    except Exception:
+        print(out_path, pcm_path)
+        raise
     svg2png(url=out_path, write_to=out_path, output_height=100, dpi=5)
 
     return out_path
