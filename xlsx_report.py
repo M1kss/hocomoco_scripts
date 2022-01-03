@@ -104,7 +104,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
                 exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
                 continue
             tf_cisbp_name = get_cisbp_tf(comp['motif'], cisbp_dict, d_type)
-            exp[d_type] = {'motif': comp['motif'],
+            exp[d_type] = {'motif': comp['motif'].replace('.txt', ''),
                            'orientation': comp['orientation'],
                            'sim': float(comp['similarity']),
                            'name': tf_cisbp_name}
