@@ -5,6 +5,8 @@ import sys
 import pandas as pd
 from tqdm import tqdm
 
+from cor import initial_info_dict_path
+
 
 def get_time(time):
     if time < 60:
@@ -134,8 +136,8 @@ def main(outputs_dir, master_list):
         peaks = file_name.split('.')[0]
         info = parse_one_file(file_name, outputs_dir)
         results.setdefault(tfs_dict[peaks], []).extend(info)
-    with open(os.path.join('files', 'info.json'), 'w') as ot:
-        json.dump(results, ot)
+    with open(initial_info_dict_path, 'w') as ot:
+        json.dump(results, ot, indent=2)
 
 
 if __name__ == '__main__':

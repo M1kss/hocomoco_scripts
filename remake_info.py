@@ -1,15 +1,7 @@
 import json
 import os
 import pandas as pd
-from cor import allowed_tfs, read_dicts
-
-with open(os.path.join('files', 'info.json')) as r:
-    info_dict = json.load(r)
-
-
-# def retrieve_IDs():
-#     with open(os.path.expanduser('~/Documents/uniprot_me.tsv'), 'w') as out:
-#         out.write('\n'.join(info_dict.keys()))
+from cor import read_dicts, read_xlsx_master, info_dict_path, initial_info_dict_path
 
 
 def read_uniprot_mapping():
@@ -55,9 +47,16 @@ def filter_tfs():
         json.dump(d, out)
 
 
-def check_IDs():
-    pass
+def main(i_dict):
+    df = read_xlsx_master()
+    convert_d = df.set_index('curated:uniprot_ac')['curated:uniprot_id'].to_dict().keys()
+    with open(info_dict_path, 'w') as out:
+        json.dump({convert_d[x]: [item for item in y
+                                  if item['pcm_path'] is not None]
+                   for x, y in i_dict.keys()}, out)
 
 
-# retrieve_IDs()
-filter_tfs()
+if __name__ == '__main__':
+    with open(initial_info_dict_path) as r:
+        info_dict = json.load(r)
+    main(info_dict)

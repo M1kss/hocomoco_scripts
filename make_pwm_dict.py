@@ -4,7 +4,7 @@ import json
 
 from tqdm import tqdm
 
-from cor import cisbp_human_dict_path, cisbp_mouse_dict_path, dicts_path, hocomoco_path
+from cor import cisbp_human_dict_path, cisbp_mouse_dict_path, dicts_path, hocomoco_path, read_xlsx_master
 
 
 def get_tfs_by_fam_tf_class(fam, split_ids, dbid_dict, t, subfamily=False):
@@ -90,11 +90,9 @@ def main():
     cisbp_dfs = {specie: pd.read_table(fname) for
                  specie, fname in zip(['human', 'mouse'],
                                       [cisbp_human_dict_path, cisbp_mouse_dict_path])}
-    known_tfs = pd.read_excel(os.path.join('source_files', 'hocomoco_2021.xlsx'),
-                              engine='openpyxl')
+    known_tfs = read_xlsx_master()
     tfs = known_tfs['curated:uniprot_id'].to_list()
     tf_class_family_tfs_dict, tf_class_subfamily_tfs_dict = parse_known_tfs(known_tfs)
-    print(len(tf_class_subfamily_tfs_dict))
     direct_dict = {}
     inferred_dict = {}
     tf_class_family_dict = {}
