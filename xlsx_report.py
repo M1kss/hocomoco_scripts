@@ -168,8 +168,9 @@ if __name__ == '__main__':
     cis_dict = {}
     for key, value in cisbp_dfs.items():
         df = value[value['TF_Status'] == 'D']
+        df['TF_Name'] = df['TF_Name'] + '_{}'.format(key.upper())
         cis_dict = {**cis_dict,
-                    **pd.Series(df['TF_Name'] + '_{}'.format(key), index=df.Motif_ID).to_dict()}
+                    **pd.Series(df['TF_Name'].values, index=df.Motif_ID).to_dict()}
         print(cis_dict)
     for tf_name, value in info_dict.items():
         if allowed_tfs is not None:
