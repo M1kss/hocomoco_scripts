@@ -89,12 +89,8 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
         return
     with open(os.path.join(result_path, t_factor + '.json')) as f:
         sim_dict = json.load(f)
-    index = 0
     print('Parsing sim dict')
     for exp in tqdm(tf_info):
-        index+=1
-        if index > 50:
-            continue
         exp['name'] = craft_motif_name(exp)
         exp['motif_image'] = draw_svg(exp['pcm_path'], False)
         pcm_name = os.path.splitext(os.path.basename(exp['pcm_path']))[0]
@@ -113,7 +109,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
                            'orientation': comp['orientation'],
                            'sim': float(comp['similarity']),
                            'name': tf_cisbp_name}
-    sorted_tf_info = sorted(tf_info[:50], key=lambda x: x['hocomoco']['sim'], reverse=True)
+    sorted_tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['sim'], reverse=True)
     sorted_tf_info = sorted(sorted_tf_info, key=lambda x: x['hocomoco']['name'], reverse=True)
     try:
         name_width = len(max([exp['name'] for exp in sorted_tf_info]))
