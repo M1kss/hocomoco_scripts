@@ -45,8 +45,9 @@ def get_family_motifs_by_tf(direct_dict, tfs_list):
     if tfs_list is None:
         return None
     for tf in tfs_list:
-        tf_motifs = set(direct_dict.get(tf))
-        result |= tf_motifs
+        if direct_dict.get(tf):
+            tf_motifs = set(direct_dict.get(tf))
+            result |= tf_motifs
     return list(result)
 
 
@@ -82,10 +83,11 @@ def main():
     for tf in tqdm(tfs):
         direct_dict[tf] = get_motifs_by_tf(cisbp_dfs, tf)
         inferred_dict[tf] = get_motifs_by_tf(cisbp_dfs, tf, inferred=True)
-        tf_class_family_dict[tf] = get_family_motifs_by_tf(cisbp_dfs,
+    for tf in tqdm(tfs):
+        tf_class_family_dict[tf] = get_family_motifs_by_tf(direct_dict,
                                                            tf_class_family_tfs_dict.get(tf, None))
 
-        tf_class_subfamily_dict[tf] = get_family_motifs_by_tf(cisbp_dfs,
+        tf_class_subfamily_dict[tf] = get_family_motifs_by_tf(direct_dict,
                                                               tf_class_subfamily_tfs_dict.get(tf, None))
 
         hocomoco_dict[tf] = get_hocomoco_by_tf(hocomoco_motifs, tf)
