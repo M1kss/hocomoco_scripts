@@ -84,6 +84,11 @@ def get_format(param):
         return null_format
 
 
+def get_max(exp):
+    return max([(x, exp[x]['sim']) for x in exp if x in dict_types and exp[x]['sim']],
+               key=lambda x: x[1])
+
+
 def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     if not os.path.exists(os.path.join(result_path, t_factor + '.json')):
         return
@@ -111,6 +116,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
                            'name': tf_cisbp_name}
     sorted_tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['sim'], reverse=True)
     sorted_tf_info = sorted(sorted_tf_info, key=lambda x: x['hocomoco']['name'], reverse=True)
+    sorted_tf_info = [x for x in sorted_tf_info if get_max(x)[1] >= 0.01]
     try:
         name_width = len(max([exp['name'] for exp in sorted_tf_info]))
     except ValueError:
@@ -148,8 +154,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
             sheet.write(index + 1, 6, exp['hocomoco']['name'])
         for i, d_type in enumerate(dict_types[1:]):
             sheet.write(index + 1, i + 7, exp[d_type]['sim'])
-        best_d_type, _ = max([(x, exp[x]['sim']) for x in exp if x in dict_types and exp[x]['sim']],
-                             key=lambda x: x[1])
+        best_d_type, best_sim = get_max(exp)
         best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'], best_d_type),
                                   revcomp=True if exp[best_d_type]['orientation'] == 'revcomp' else False)
         sheet.insert_image(index + 1, 7 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
