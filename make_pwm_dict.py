@@ -37,6 +37,7 @@ def get_motifs_by_tf(cisbp_dfs, tf_name, inferred=False):
     motifs = t[t['TF_Name'] == transform_name(tf_name, specie)]
     status_ok = {'D', 'I'} if inferred else {'D'}
     motifs = motifs[motifs['TF_Status'].isin(status_ok)]
+    print(motifs)
     return motifs['Motif_ID'].tolist()
 
 
