@@ -139,6 +139,7 @@ def main(njobs=10):
         for d_type in dict_types:
             motif_collection = dicts[d_type].get(tf)
             if not motif_collection and d_type != 'hocomoco':
+                print(tf, d_type)
                 continue
             res_dir = check_dir_for_collection(tf, motif_collection, d_type)
             ape_res = run_ape(pwms, res_dir, njobs)
