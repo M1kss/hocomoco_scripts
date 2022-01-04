@@ -109,7 +109,6 @@ def transform_name(tf, specie):
     if specie == 'human':
         return tf_name
     elif specie == 'mouse':
-        print(tf, tf_name.lower().capitalize())
         return tf_name.lower().capitalize()
     else:
         raise ValueError(specie)

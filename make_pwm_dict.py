@@ -37,19 +37,15 @@ def get_motifs_by_tf(cisbp_dfs, tf_name, inferred=False):
     motifs = t[t['TF_Name'] == transform_name(tf_name, specie)]
     status_ok = {'D', 'I'} if inferred else {'D'}
     motifs = motifs[motifs['TF_Status'].isin(status_ok)]
-    print(motifs)
     return motifs['Motif_ID'].tolist()
 
 
-def get_family_motifs_by_tf(cisbp_dfs, tfs_list):
+def get_family_motifs_by_tf(direct_dict, tfs_list):
     result = set()
     if tfs_list is None:
         return None
     for tf in tfs_list:
-        t, specie = choose_df_by_tf(cisbp_dfs, tf)
-        tf_name = transform_name(tf, specie)
-        tf_motifs = t[t['TF_Name'] == tf_name]
-        tf_motifs = set(tf_motifs[tf_motifs['TF_Status'] == 'D']['Motif_ID'].unique())
+        tf_motifs = set(direct_dict.get(tf))
         result |= tf_motifs
     return list(result)
 
