@@ -117,8 +117,12 @@ def transform_name(tf, specie):
 def filter_pwms(motifs):
     words_tr = 50
     percent_tr = 0.25
+    seqs_tr = 50
     return [x for x in motifs if x['pcm_path']
-            and x['words'] >= words_tr and x['total'] and x['seqs'] / x['total'] >= percent_tr]
+            and x['words'] >= words_tr
+            and x['total']
+            and x['seqs'] >= seqs_tr
+            and x['seqs'] / x['total'] >= percent_tr]
 
 
 def read_cisbp_df():
