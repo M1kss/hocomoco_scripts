@@ -103,8 +103,9 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
             if not motifs:
                 exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
                 continue
-            print(motifs, pcm_name)
+
             comp = motifs.get(pcm_name)
+            print(pcm_name, comp)
             if not comp:
                 exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
                 continue
