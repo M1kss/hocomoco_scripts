@@ -67,7 +67,7 @@ def parse_output(exp, output):
     return pcm_name, best_motif
 
 
-def run_ape(exps, res_dir, jobs=10):
+def run_ape(exps, res_dir, d_type, jobs=10):
     result = {}
     if res_dir is not None:
         exps_batches = [exps[i:i + jobs] for i in range(0, len(exps), jobs)]
@@ -75,7 +75,9 @@ def run_ape(exps, res_dir, jobs=10):
         for batch in exps_batches:
             commands = [["java", '-cp', ape_path,
                          'ru.autosome.macroape.ScanCollection',
-                         exp, res_dir, '--query-pcm', '--collection-pcm', '-d', '1', '--all'] for exp in batch]
+                         exp, res_dir, '--query-pcm',
+                         '--collection-{}'.format('pcm' if d_type == 'hocomoco' else 'ppm'),
+                         '-d', '1', '--all'] for exp in batch]
             processes = [subprocess.Popen(command,
                                           stdout=subprocess.PIPE,
                                           stderr=subprocess.PIPE) for command in commands]
@@ -135,7 +137,7 @@ def main(njobs=10):
                 print(tf, d_type)
                 continue
             res_dir = check_dir_for_collection(tf, motif_collection, d_type)
-            ape_res = run_ape(pwms, res_dir, njobs)
+            ape_res = run_ape(pwms, res_dir, d_type, njobs)
             results[d_type] = ape_res
         with open(os.path.join(result_path, tf + '.json'), 'w') as out:
             json.dump(results, out, indent=2)
