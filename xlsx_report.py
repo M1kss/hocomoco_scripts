@@ -148,6 +148,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
         sheet.write(index + 1, 5, exp['hocomoco']['sim'], get_format(exp['hocomoco']['sim']))
         sheet.write(index + 1, 6, exp['hocomoco']['name'])
         for i, d_type in enumerate(dict_types[1:]):
+            print('SIM', d_type, exp[d_type]['sim'])
             sheet.write(index + 1, i + 7, exp[d_type]['sim'])
         best_d_type, _ = max([(x, exp[x]['sim']) for x in exp if x in dict_types and exp[x]['sim']],
                              key=lambda x: x[1])
