@@ -105,7 +105,6 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
                 continue
 
             comp = motifs.get(pcm_name)
-            print(pcm_name, comp)
             if not comp:
                 exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
                 continue
@@ -147,10 +146,11 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
         sheet.write(index + 1, 3, exp['seqs'] / exp['total'])
         sheet.insert_image(index + 1, 4, exp['motif_image'], {'x_scale': 0.4, 'y_scale': 0.4})
         sheet.set_row(index + 1, 30)
-        sheet.write(index + 1, 5, exp['hocomoco']['sim'], get_format(exp['hocomoco']['sim']))
-        sheet.write(index + 1, 6, exp['hocomoco']['name'])
+        if exp['hocomoco']['sim']:
+            sheet.write(index + 1, 5, exp['hocomoco']['sim'],
+                        get_format(exp['hocomoco']['sim']))
+            sheet.write(index + 1, 6, exp['hocomoco']['name'])
         for i, d_type in enumerate(dict_types[1:]):
-            print('SIM', d_type, exp[d_type]['sim'])
             sheet.write(index + 1, i + 7, exp[d_type]['sim'])
         best_d_type, _ = max([(x, exp[x]['sim']) for x in exp if x in dict_types and exp[x]['sim']],
                              key=lambda x: x[1])
@@ -166,10 +166,10 @@ if __name__ == '__main__':
     info_dict = read_info_dict()
     cisbp_dfs = read_cisbp_df()
     cis_dict = {}
-    for value in cisbp_dfs.values():
+    for key, value in cisbp_dfs.items():
         df = value[value['TF_Status'] == 'D']
         cis_dict = {**cis_dict,
-                    **pd.Series(df.TF_Name.values, index=df.Motif_ID).to_dict()}
+                    **pd.Series(df['TF_Name'] + '_{}'.format(key), index=df.Motif_ID).to_dict()}
     for tf_name, value in info_dict.items():
         if allowed_tfs is not None:
             if tf_name not in allowed_tfs:
