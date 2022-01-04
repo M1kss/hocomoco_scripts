@@ -75,7 +75,7 @@ def run_ape(exps, res_dir, jobs=10):
         for batch in exps_batches:
             commands = [["java", '-cp', ape_path,
                          'ru.autosome.macroape.ScanCollection',
-                         exp, res_dir, '--query-pcm', '--collection-ppm', '-d', '1', '--all'] for exp in batch]
+                         exp, res_dir, '--query-pcm', '--collection-pcm', '-d', '1', '--all'] for exp in batch]
             processes = [subprocess.Popen(command,
                                           stdout=subprocess.PIPE,
                                           stderr=subprocess.PIPE) for command in commands]
