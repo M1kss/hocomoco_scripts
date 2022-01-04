@@ -19,7 +19,7 @@ def get_time(time):
 
 def parse_one_file(file_name, outputs_dir):
     peaks, caller, best_by, motif_type, _ = file_name.split('.')
-    with open(os.path.join(outputs_dir, file_name)) as f:
+    with open(os.path.join(outputs_dir, 'results', file_name)) as f:
         parsed_output = []
         last_line = None
         for line in f:
@@ -87,7 +87,9 @@ def parse_one_file(file_name, outputs_dir):
     time = get_time(TIME)
     words = [float(value) for key, value in parsed_output if key == 'WRDS'][-1]
     seqs = [float(value) for key, value in parsed_output if key == 'SEQS'][-1]
-    total = [float(value) for key, value in parsed_output if key == 'TOTL'][-1]
+    total = sum(1 for line in open(os.path.join(outputs_dir, 'fasta', file_name)))
+    assert total % 2 == 0
+    total = total // 2
     for i, quad in enumerate(ACGT):
         if quad in ACGT[:i]:
             assert len(ACGT) == 2 * i
