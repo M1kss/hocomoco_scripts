@@ -133,7 +133,7 @@ def make_tfs_dict(master_list):
 def main(outputs_dir, master_list):
     tfs_dict = make_tfs_dict(master_list)
     results = {}
-    iterable = os.listdir(outputs_dir)
+    iterable = os.listdir(os.path.join(outputs_dir, 'results'))
     for file_name in tqdm(iterable, total=len(iterable)):
         peaks = file_name.split('.')[0]
         info = parse_one_file(file_name, outputs_dir)
