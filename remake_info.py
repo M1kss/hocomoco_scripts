@@ -11,6 +11,17 @@ def read_uniprot_mapping():
     return pd.Series(df['Entry name'].values, index=df[df.columns[0]]).to_dict()
 
 
+def filter_array(motifs):
+    words_tr = 50
+    percent_tr = 0.25
+    seqs_tr = 50
+    return [x for x in motifs if x['pcm_path']
+            and x['words'] >= words_tr
+            and x['total']
+            and x['seqs'] >= seqs_tr
+            and x['seqs'] / x['total'] >= percent_tr]
+
+
 def filter_tfs():
     trans_dict = read_uniprot_mapping()
     dicts = read_dicts()
@@ -57,8 +68,7 @@ def main(i_dict):
         new_key = convert_d.get(key)
         if new_key is None:
             continue
-        d[new_key] = [item for item in value
-                      if item['pcm_path'] is not None]
+        d[new_key] = filter_array(value)
     with open(info_dict_path, 'w') as out:
         print('Dumping...')
         json.dump(d, out, indent=2)

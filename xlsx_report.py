@@ -8,7 +8,7 @@ import requests
 from cairosvg import svg2png
 from tqdm import tqdm
 
-from cor import dict_types, motif_dir, result_path, filter_pwms, read_info_dict, read_cisbp_df, allowed_tfs, \
+from cor import dict_types, motif_dir, result_path, read_info_dict, read_cisbp_df, allowed_tfs, \
     hocomoco_path
 
 
@@ -183,5 +183,5 @@ if __name__ == '__main__':
         yellow_format = workbook.add_format({'bg_color': '#FFF77D'})
         null_format = workbook.add_format()
         worksheet = workbook.add_worksheet()
-        process_tf(worksheet, tf_name, filter_pwms(value), cis_dict)
+        process_tf(worksheet, tf_name, value, cis_dict)
         workbook.close()
