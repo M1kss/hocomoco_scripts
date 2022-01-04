@@ -170,6 +170,7 @@ if __name__ == '__main__':
         df = value[value['TF_Status'] == 'D']
         cis_dict = {**cis_dict,
                     **pd.Series(df['TF_Name'] + '_{}'.format(key), index=df.Motif_ID).to_dict()}
+        print(cis_dict)
     for tf_name, value in info_dict.items():
         if allowed_tfs is not None:
             if tf_name not in allowed_tfs:
