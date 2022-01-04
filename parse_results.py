@@ -87,7 +87,7 @@ def parse_one_file(file_name, outputs_dir):
     time = get_time(TIME)
     words = [float(value) for key, value in parsed_output if key == 'WRDS'][-1]
     seqs = [float(value) for key, value in parsed_output if key == 'SEQS'][-1]
-    total = sum(1 for line in open(os.path.join(outputs_dir, 'fasta', file_name)))
+    total = sum(1 for line in open(os.path.join(outputs_dir, 'fasta', '.'.join([peaks, caller, best_by, 'mfa']))))
     assert total % 2 == 0
     total = total // 2
     for i, quad in enumerate(ACGT):
