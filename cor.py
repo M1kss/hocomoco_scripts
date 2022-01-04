@@ -134,8 +134,6 @@ def main(njobs=10):
         if allowed_tfs is not None:
             if tf not in allowed_tfs:
                 continue
-        if os.path.exists(os.path.join('reports', tf + '.xlsx')):
-            continue
         results = {}
         pwms = [x['pcm_path'] for x in filter_pwms(info_dict[tf])]
         for d_type in dict_types:
