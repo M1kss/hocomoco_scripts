@@ -8,9 +8,9 @@ for peak_full in $out_path/sorted/*
 do
   IFS=';'
   read -ra ADDR <<< "$peak_full"
-  peak_name=ADDR[0]
-  peak_type=ADDR[1]
-  score_type=ADDR[2]
+  peak_name=$ADDR[0]
+  peak_type=$ADDR[1]
+  score_type=$ADDR[2]
   if [ $peak_type == "cpics" ] && [ $score_type == 'pvalue' ]
   then
     continue
