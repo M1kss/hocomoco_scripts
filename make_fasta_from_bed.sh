@@ -9,6 +9,7 @@ do
   echo $peak_full
   IFS='.'
   read -ra ADDR <<< "$peak_full"
+  echo ${ADDR[0]}
   peak_name=${ADDR[0]}
   peak_type=${ADDR[1]}
   score_type=${ADDR[2]}
