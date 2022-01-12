@@ -34,7 +34,7 @@ def main():
     counter = 0
     master_df = pd.read_excel(os.path.join('source_files', 'hocomoco_2021.xlsx'))
     dicts = read_dicts()
-    for index, row in tqdm(master_df.iterrows()):
+    for index, row in tqdm(master_df.iterrows(), total=len(master_df.index)):
         tf_name = row['curated:uniprot_id']
         to_skip = False
         tf_len_list = None
