@@ -39,7 +39,7 @@ def get_extended_rows(row, callers_dict):
     return rows
 
 
-def main(master_path):
+def main(master_path, out_path):
     common_header = ['Specie', 'TF_ID', 'Peaks',
                      'Caller', 'Select_by', 'Type']
     df = read_xlsx_master()
@@ -57,13 +57,11 @@ def main(master_path):
                                                        ann_df=ann_df), axis=1)
     master[['Specie', 'TF_NAME', 'Peaks',
             'Caller', 'Select_by', 'Type',
-            'MAX_LEN', 'MIN_LEN']].to_csv(
-        sep='\t', header=None)
+            'MAX_LEN', 'MIN_LEN']].to_csv(out_path,
+                                          sep='\t', header=None)
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        peaks_path = sys.argv[1]
-    else:
+    if len(sys.argv) < 2:
         raise AssertionError('No meta file provided!')
-    main(peaks_path)
+    main(sys.argv[1], sys.argv[2])
