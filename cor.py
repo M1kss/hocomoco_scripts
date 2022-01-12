@@ -85,7 +85,7 @@ def run_ape(exps, res_dir, d_type, jobs=10):
                 process.wait()
             for process, exp in zip(processes, batch):
                 err = process.stderr.read().decode('utf-8')
-                if err:
+                if not err.startswith('Warning!'):
                     print(err)
                     print(exp)
                     raise ValueError
