@@ -6,7 +6,7 @@ njobs=$3
 
 for peak_full in $out_path/sorted/*
 do
-  IFS=' '
+  IFS='.'
   read -ra ADDR <<< "$peak_full"
   peak_name=${ADDR[0]}
   peak_type=${ADDR[1]}
