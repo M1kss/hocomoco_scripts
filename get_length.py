@@ -59,7 +59,8 @@ def main():
         )
     master_df['max_motif_len'] = max_len_list
     master_df['min_motif_len'] = min_len_list
-    master_df.to_csv(os.path.join('files', 'len_annotated.tsv'),
+    master_df[['curated:uniprot_id', 'curated:uniprot_ac', 'max_motif_len',
+               'min_motif_len']].to_csv(os.path.join('files', 'len_annotated.tsv'),
                      index=False,
                      sep='\t')
     # print(counter)
