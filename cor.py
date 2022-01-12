@@ -15,7 +15,7 @@ initial_info_dict_path = os.path.join('files', 'info.json')
 result_path = 'ape_result'
 motif_dir = 'cisbp_pwms'
 
-dict_types = ['hocomoco', 'direct', 'inferred', 'tf_class_family', 'tf_class_subfamily']
+dict_types = ['hocomoco', 'direct', 'inferred', 'tf_class_subfamily', 'tf_class_family']
 
 ape_path = os.path.expanduser('~/ape.jar')
 hocomoco_path = 'hocomoco_pwms'
@@ -32,23 +32,31 @@ def read_info_dict():
         return json.load(info)
 
 
-def check_dir_for_collection(tf, motif_collection, d_type):
+def check_dir_for_collection(tf, motif_collection, d_type, to_copy=True):
     dir_path = os.path.join(result_path, tf + '_' + d_type)
     if motif_collection is None:
         return None
-    if os.path.exists(dir_path):
-        shutil.rmtree(dir_path)
-    os.mkdir(dir_path)
+    if to_copy:
+        if os.path.exists(dir_path):
+            shutil.rmtree(dir_path)
+        os.mkdir(dir_path)
+    paths = []
     for motif in motif_collection:
         if d_type == 'hocomoco':
             path = os.path.join(hocomoco_path, motif)
         else:
             path = os.path.join(motif_dir, motif + '.ppm')
-        if os.path.exists(path):
-            shutil.copy2(path, dir_path)
+        if to_copy:
+            if os.path.exists(path):
+                shutil.copy2(path, dir_path)
+            else:
+                pass
         else:
-            pass
-    return dir_path
+            paths.append(path)
+    if to_copy:
+        return dir_path
+    else:
+        return paths
 
 
 def parse_output(exp, output):

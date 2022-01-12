@@ -3,8 +3,10 @@ import pandas as pd
 import os
 from tqdm import tqdm
 
+from cor import dict_types, read_dicts, check_dir_for_collection
 
-def get_motif_length(len_list, mode):
+
+def get_motif_length_from_list(len_list, mode):
     if len(len_list) == 0:
         if mode == 'max':
             return 24
@@ -26,102 +28,34 @@ def get_motif_length(len_list, mode):
             return max(min(valid_list) - 1, 7)
 
 
-def parse_hoco(peaks_df):
-    # di_pwm_path = os.path.expanduser('~/Desktop/dipwms')
-
-    # for path in os.listdir(di_pwm_path):
-    #     if not path.endswith('.A.dpwm') or path.endswith('.B.dpwm'):
-    #         continue
-    #     tf_name = path.split('.')[0]
-    #     len_pwm = len(pd.read_table(os.path.join(di_pwm_path, path), header=None, comment='>').index) + 1
-    #     p_df = peaks_df[peaks_df['NAME'] == tf_name]
-    #     subfamily = str(p_df['subfamily'].reset_index(drop=True)[0]) if not p_df['subfamily'].empty else None
-    #     family = str(p_df['family'].reset_index(drop=True)[0]) if not p_df['family'].empty else None
-    #     try:
-    #         tfs_dict['TFs'][tf_name].append(len_pwm)
-    #     except KeyError:
-    #         tfs_dict['TFs'][tf_name] = [len_pwm]
-    #     try:
-    #         tfs_dict['family'][family].append(len_pwm)
-    #     except KeyError:
-    #         tfs_dict['family'][family] = [len_pwm]
-    #     try:
-    #         tfs_dict['subfamily'][subfamily].append(len_pwm)
-    #     except KeyError:
-    #         tfs_dict['subfamily'][subfamily] = [len_pwm]
-    tfs_dict = {'TFs': {}, 'family': {}, 'subfamily': {}}
-    pwm_path = 'hocomoco_pwms'
-    for path in os.listdir(pwm_path):
-        if not path.endswith('.A.pwm') or path.endswith('.B.pwm'):
-            continue
-        tf_name = path.split('.')[0]
-        len_pwm = len(pd.read_table(os.path.join(pwm_path, path), header=None, comment='>').index)
-        p_df = peaks_df[peaks_df['curated:uniprot_id'] == tf_name]
-        subfamily = str(p_df['tfclass:subfamily'].reset_index(drop=True)[0]) if not p_df['subfamily'].empty else None
-        family = str(p_df['tfclass:family'].reset_index(drop=True)[0]) if not p_df['family'].empty else None
-        try:
-            tfs_dict['TFs'][tf_name].append(len_pwm)
-        except KeyError:
-            tfs_dict['TFs'][tf_name] = [len_pwm]
-        try:
-            tfs_dict['family'][family].append(len_pwm)
-        except KeyError:
-            tfs_dict['family'][family] = [len_pwm]
-        try:
-            tfs_dict['subfamily'][subfamily].append(len_pwm)
-        except KeyError:
-            tfs_dict['subfamily'][subfamily] = [len_pwm]
-    return tfs_dict
-
-
-def parse_annotation():
-    result = {}
-    ann_df = pd.read_table(
-        os.path.join('source_files', 'annotation_2.txt'), header=None)
-    ann_df = ann_df[[0, 26, 27]]
-    ann_df.columns = ['id', 'family', 'subfamily']
-    for index, row in ann_df.iterrows():
-        for name in ['subfamily', 'family']:
-            if row[name] == '__na':
-                row[name] = None
-        result[row['id']] = row[['subfamily', 'family']].to_dict()
-    return result
-
-
-def add_meta(row, annotation_dict):
-    k = annotation_dict.get(row['#ID'], None)
-    if k is not None:
-        sf, f = k
-    else:
-        sf, f = None, None
-    row['subfamily'] = sf
-    row['family'] = f
-    return row
-
-
 def main():
     max_len_list = []
     min_len_list = []
     counter = 0
     master_df = pd.read_excel(os.path.join('source_files', 'hocomoco_2021.xlsx'))
-    tfs_len_dict = parse_hoco(master_df)
+    dicts = read_dicts()
     for index, row in tqdm(master_df.iterrows()):
-        tfs_len_list = tfs_len_dict['TFs'].get(row['curated:uniprot_id'], None)
-        if not tfs_len_list:
-            if row['tfclass:subfamily'] is not None and row['tfclass:subfamily'] != '{}' and tfs_len_dict['subfamily'].get(
-                    row['tfclass:subfamily']):
-                tfs_len_list = tfs_len_dict['subfamily'].get(row['tfclass:subfamily'])
-            elif row['tfclass:family'] is not None:
-                tfs_len_list = tfs_len_dict['family'].get(row['tfclass:family'], [])
-                if row['tfclass:family'] not in tfs_len_dict['family']:
-                    counter += 1
-            else:
-                tfs_len_list = []
-                counter += 1
-        else:
-            tfs_len_list = []
-        max_len_list.append(get_motif_length(tfs_len_list, 'max'))
-        min_len_list.append(get_motif_length(tfs_len_list, 'min'))
+        tf_name = row['curated:uniprot_id']
+        to_skip = False
+        tf_len_list = None
+        for d_type in dict_types:
+            if not to_skip:
+                tf_motifs = dicts[d_type].get(tf_name)
+                if tf_motifs:
+                    tf_len_list = [len(pd.read_table(x, comment='#').index) for x in
+                                   check_dir_for_collection(tf_name,
+                                                            tf_motifs.get(tf_name),
+                                                            d_type, False)
+                                   ]
+                    to_skip = True
+        if not tf_len_list:
+            tf_len_list = []
+        max_len_list.append(get_motif_length_from_list(
+            tf_len_list, 'max')
+        )
+        min_len_list.append(get_motif_length_from_list(
+            tf_len_list, 'min')
+        )
     master_df['max_motif_len'] = max_len_list
     master_df['min_motif_len'] = min_len_list
     master_df.to_csv(os.path.join('files', 'len_annotated.tsv'),
