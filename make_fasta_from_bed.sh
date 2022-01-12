@@ -12,11 +12,11 @@ do
   peak_type=${ADDR[1]}
   score_type=${ADDR[2]}
   echo $ADDR
-  echo "Now doing $peak_name.$peak_type.$score_type.cut"
-#  if ! bedtools getfasta -fi $genome -bed $peak_name -name 2>$out_path/logs/${peak_name}.${peak_type}.${score_type}.cut.log | awk -F':' '{print $1}' 1>$out_path/fasta/${peak_name}.${peak_type}.${score_type}.mfa 2>>$out_path/logs/${peak_name}.${peak_type}.${score_type}.cut.log
-#  then
-#    echo "Cut fasta failed: $out_path/sorted/${peak_name}.${peak_type}.${score_type}.sorted.bed"
-#    continue
-#  fi
+  echo "Now doing $peak_name.$peak_type.$score_type.sorted.bed"
+  if ! bedtools getfasta -fi $genome -bed $peak_name -name 2>$out_path/logs/${peak_name}.${peak_type}.${score_type}.cut.log | awk -F':' '{print $1}' 1>$out_path/fasta/${peak_name}.${peak_type}.${score_type}.mfa 2>>$out_path/logs/${peak_name}.${peak_type}.${score_type}.cut.log
+  then
+    echo "Cut fasta failed: $out_path/sorted/${peak_name}.${peak_type}.${score_type}.sorted.bed"
+    continue
+  fi
 done
 
