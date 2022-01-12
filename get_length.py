@@ -46,6 +46,7 @@ def main():
                                    check_dir_for_collection(tf_name,
                                                             tf_motifs,
                                                             d_type, False)
+                                   if os.path.exists(x)
                                    ]
                     to_skip = True
         if not tf_len_list:
