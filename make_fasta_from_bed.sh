@@ -2,9 +2,8 @@
 
 out_path=$1
 genome=$2
-njobs=$4
+njobs=$3
 
-peaks_name=$(basename $peaks_path)
 for peak_full in $out_path/sorted/*
 do
   IFS=';'
