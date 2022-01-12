@@ -12,10 +12,7 @@ do
   peak_name=${ADDR[0]}
   peak_type=${ADDR[1]}
   score_type=${ADDR[2]}
-  if [ $peak_type == "cpics" ] && [ $score_type == 'pvalue' ]
-  then
-    continue
-  fi
+
   echo "Now doing $peaks_path/$peak_type/$peak_name, $score_type"
 #  if ! bedtools getfasta -fi $genome -bed $peak_name -name 2>$out_path/logs/${peak_name}.${peak_type}.${score_type}.cut.log | awk -F':' '{print $1}' 1>$out_path/fasta/${peak_name}.${peak_type}.${score_type}.mfa 2>>$out_path/logs/${peak_name}.${peak_type}.${score_type}.cut.log
 #  then
