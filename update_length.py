@@ -1,9 +1,9 @@
-import json
 import sys
 
 import pandas as pd
 import os
-from get_length import main as craft_motif_length_file
+
+from cor import read_xlsx_master
 
 specie = 'Mus Musculus'
 
@@ -40,34 +40,30 @@ def get_extended_rows(row, callers_dict):
 
 
 def main(master_path):
-    with open(os.path.join('source_files', 'callers.json')) as out:
-        callers_dict = json.load(out)
-    master = pd.read_table(master_path, header=None, names=['TF_ID', 'PEAKS'])
+    common_header = ['Specie', 'TF_ID', 'Peaks',
+                     'Caller', 'Select_by', 'Type']
+    df = read_xlsx_master()
+    convert_d = df.set_index('curated:uniprot_ac')['curated:uniprot_id'].to_dict()
+    master = pd.read_table(master_path, header=None,
+                           names=[*common_header, 'Max_len', 'Min_len'])
+    master = master[master['TF_ID'].apply(lambda x: x in convert_d)]
+    master['TF_NAME'] = master['TF_ID'].apply(lambda x: convert_d[x])
     ann_df = pd.read_table(os.path.join('files', 'len_annotated.tsv'))
-    master['SPECIE'] = specie
     master['MIN_LEN'] = master.apply(lambda x: get_len(x,
                                                        mode='min',
                                                        ann_df=ann_df), axis=1)
     master['MAX_LEN'] = master.apply(lambda x: get_len(x,
                                                        mode='max',
                                                        ann_df=ann_df), axis=1)
-
-    dfs = []
-    for index, row in master.iterrows():
-        dfs.append(pd.DataFrame(get_extended_rows(row, callers_dict)))
-    extended_master = pd.concat(dfs)
-
-    extended_master[['SPECIE', 'TF_ID', 'PEAKS', 'CALLER', 'RANK_TYPE', 'MOTIF_TYPE', 'MAX_LEN', 'MIN_LEN']].to_csv(
-        'master_peaks.csv',
-        sep=',',
-        index=False,
-        header=False)
+    master[['Specie', 'TF_NAME', 'Peaks',
+            'Caller', 'Select_by', 'Type',
+            'MAX_LEN', 'MIN_LEN']].to_csv(
+        sep='\t', header=None)
 
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
-        meta_path = sys.argv[1]
+        peaks_path = sys.argv[1]
     else:
         raise AssertionError('No meta file provided!')
-    craft_motif_length_file()
-    main(meta_path)
+    main(peaks_path)
