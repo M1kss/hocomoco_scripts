@@ -13,7 +13,7 @@ do
   score_type=${ADDR[2]}
   echo "Now doing $out_path/fasta/${peak_name}.${peak_type}.${score_type}.mfa"
   IFS=$' '
-  if ! bedtools getfasta "-fi" $genome -bed $peak_name -name 1>"$out_path/fasta/${peak_name}.${peak_type}.${score_type}.mfa" 2>"$out_path/logs/${peak_name}.${peak_type}.${score_type}.cut.log"
+  if ! bedtools getfasta "-fi" $genome -bed "$out_path/sorted/${peak_name}.${peak_type}.${score_type}.sorted.bed" -name 1>"$out_path/fasta/${peak_name}.${peak_type}.${score_type}.mfa" 2>"$out_path/logs/${peak_name}.${peak_type}.${score_type}.cut.log"
   then
     echo "Cut fasta failed: $out_path/sorted/${peak_name}.${peak_type}.${score_type}.sorted.bed"
     continue
