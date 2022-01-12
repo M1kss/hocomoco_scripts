@@ -44,7 +44,7 @@ def main():
                 if tf_motifs:
                     tf_len_list = [len(pd.read_table(x, comment='#').index) for x in
                                    check_dir_for_collection(tf_name,
-                                                            tf_motifs.get(tf_name),
+                                                            tf_motifs,
                                                             d_type, False)
                                    ]
                     to_skip = True
