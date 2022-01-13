@@ -54,7 +54,7 @@ def main(master_path, out_path):
     master[['Specie', 'TF_NAME', 'Peaks',
             'Caller', 'Select_by', 'Type',
             'MAX_LEN', 'MIN_LEN']].to_csv(out_path,
-                                          sep='\t', header=None)
+                                          sep=',', header=None, index=False)
 
 
 if __name__ == '__main__':
