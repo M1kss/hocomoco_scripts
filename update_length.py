@@ -44,7 +44,7 @@ def main(master_path, out_path):
                      'Caller', 'Select_by', 'Type']
     df = read_xlsx_master()
     convert_d = df.set_index('curated:uniprot_ac')['curated:uniprot_id'].to_dict()
-    master = pd.read_table(master_path, header=None,
+    master = pd.read_csv(master_path, header=None,
                            names=[*common_header, 'Max_len', 'Min_len'])
     print(master)
     master = master[master['TF_ID'].apply(lambda x: x in convert_d)]
