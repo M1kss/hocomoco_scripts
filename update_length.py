@@ -11,7 +11,7 @@ specie = 'Mus Musculus'
 def get_len(row, len_d, mode):
     if row['TF_NAME'] == True:
         print(row)
-    return len_d[row['TF_NAME']][mode]
+    return len_d[row['TF_ID']][mode]
 
 
 def get_extended_rows(row, callers_dict):
