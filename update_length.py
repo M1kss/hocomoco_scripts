@@ -39,6 +39,16 @@ def get_extended_rows(row, callers_dict):
     return rows
 
 
+def make_length_dict(ann_df):
+    d = {}
+    for index, row in ann_df.iterrows():
+        d[row['curated:uniprot_ac']] = {
+            'min': row['min_motif_len'],
+            'max': row['max_motif_len'],
+        }
+    return d
+
+
 def main(master_path, out_path):
     common_header = ['Specie', 'TF_ID', 'Peaks',
                      'Caller', 'Select_by', 'Type']
@@ -49,12 +59,9 @@ def main(master_path, out_path):
     master = master[master['TF_ID'].apply(lambda x: x in convert_d)]
     master['TF_NAME'] = master['TF_ID'].apply(lambda x: convert_d[x] and convert_d[x] == 'CTCF_MOUSE')
     ann_df = pd.read_table(os.path.join('files', 'len_annotated.tsv'))
-    master['MIN_LEN'] = master.apply(lambda x: get_len(x,
-                                                       mode='min',
-                                                       ann_df=ann_df), axis=1)
-    master['MAX_LEN'] = master.apply(lambda x: get_len(x,
-                                                       mode='max',
-                                                       ann_df=ann_df), axis=1)
+    len_d = make_length_dict(ann_df)
+    master['MIN_LEN'] = master.apply(lambda x: len_d[x['TF_NAME']]['min'], axis=1)
+    master['MAX_LEN'] = master.apply(lambda x: len_d[x['TF_NAME']]['max'], axis=1)
     print(master)
     master[['Specie', 'TF_NAME', 'Peaks',
             'Caller', 'Select_by', 'Type',
