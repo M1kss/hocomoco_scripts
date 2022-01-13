@@ -55,6 +55,7 @@ def main(master_path, out_path):
     master['MAX_LEN'] = master.apply(lambda x: get_len(x,
                                                        mode='max',
                                                        ann_df=ann_df), axis=1)
+    print(master)
     master[['Specie', 'TF_NAME', 'Peaks',
             'Caller', 'Select_by', 'Type',
             'MAX_LEN', 'MIN_LEN']].to_csv(out_path,
