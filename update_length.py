@@ -46,12 +46,9 @@ def main(master_path, out_path):
     convert_d = df.set_index('curated:uniprot_ac')['curated:uniprot_id'].to_dict()
     master = pd.read_csv(master_path, header=None,
                            names=[*common_header, 'Max_len', 'Min_len'])
-    print(master)
     master = master[master['TF_ID'].apply(lambda x: x in convert_d)]
-    print(convert_d.keys[0])
     master['TF_NAME'] = master['TF_ID'].apply(lambda x: convert_d[x])
     ann_df = pd.read_table(os.path.join('files', 'len_annotated.tsv'))
-    print(master)
     master['MIN_LEN'] = master.apply(lambda x: get_len(x,
                                                        mode='min',
                                                        ann_df=ann_df), axis=1)
