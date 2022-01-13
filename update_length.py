@@ -46,6 +46,7 @@ def make_length_dict(ann_df):
             'min': row['min_motif_len'],
             'max': row['max_motif_len'],
         }
+    print(d)
     return d
 
 
