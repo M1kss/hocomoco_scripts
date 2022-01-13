@@ -8,22 +8,10 @@ from cor import read_xlsx_master
 specie = 'Mus Musculus'
 
 
-def get_len(row, ann_df, mode):
-    try:
-        filtered_df = ann_df[
-            ann_df['curated:uniprot_ac'] == row['TF_ID']][
-            '{}_motif_len'.format(mode)
-        ].reset_index(drop=True)
-        if len(filtered_df.index) == 0:
-            raise AssertionError
-        return filtered_df[0]
-    except AssertionError:
-        if mode == 'max':
-            return 24
-        elif mode == 'min':
-            return 7
-        else:
-            raise AssertionError('Mode {} not in "max" or "min"'.format(mode))
+def get_len(row, len_d, mode):
+    if row['TF_NAME'] == True:
+        print(row)
+    return len_d[row['TF_NAME']][mode]
 
 
 def get_extended_rows(row, callers_dict):
@@ -61,8 +49,8 @@ def main(master_path, out_path):
     master['TF_NAME'] = master['TF_ID'].apply(lambda x: convert_d[x] and convert_d[x] == 'CTCF_MOUSE')
     ann_df = pd.read_table(os.path.join('files', 'len_annotated.tsv'))
     len_d = make_length_dict(ann_df)
-    master['MIN_LEN'] = master.apply(lambda x: len_d[x['TF_NAME']]['min'], axis=1)
-    master['MAX_LEN'] = master.apply(lambda x: len_d[x['TF_NAME']]['max'], axis=1)
+    master['MIN_LEN'] = master.apply(lambda x: get_len(x, len_d, 'min'), axis=1)
+    master['MAX_LEN'] = master.apply(lambda x: get_len(x, len_d, 'max'), axis=1)
     print(master)
     master[['Specie', 'TF_NAME', 'Peaks',
             'Caller', 'Select_by', 'Type',
