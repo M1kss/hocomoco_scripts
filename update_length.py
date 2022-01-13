@@ -42,6 +42,7 @@ def main(master_path, out_path):
                      'Caller', 'Select_by', 'Type']
     df = read_xlsx_master()
     convert_d = df.set_index('curated:uniprot_ac')['curated:uniprot_id'].to_dict()
+    print(convert_d)
     master = pd.read_csv(master_path, header=None,
                            names=[*common_header, 'Max_len', 'Min_len'])
     print(len(master.index))
@@ -52,7 +53,6 @@ def main(master_path, out_path):
     len_d = make_length_dict(ann_df)
     master['MIN_LEN'] = master.apply(lambda x: get_len(x, len_d, 'min'), axis=1)
     master['MAX_LEN'] = master.apply(lambda x: get_len(x, len_d, 'max'), axis=1)
-    print(master)
     master[['Specie', 'TF_NAME', 'Peaks',
             'Caller', 'Select_by', 'Type',
             'MAX_LEN', 'MIN_LEN']].to_csv(out_path,
