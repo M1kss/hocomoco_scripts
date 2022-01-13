@@ -49,6 +49,7 @@ def main(master_path, out_path):
     master = master[master['TF_ID'].apply(lambda x: x in convert_d)]
     master['TF_NAME'] = master['TF_ID'].apply(lambda x: convert_d[x])
     ann_df = pd.read_table(os.path.join('files', 'len_annotated.tsv'))
+    print(master)
     master['MIN_LEN'] = master.apply(lambda x: get_len(x,
                                                        mode='min',
                                                        ann_df=ann_df), axis=1)
