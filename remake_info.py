@@ -68,7 +68,7 @@ def main(i_dict):
     d = {}
     for key, value in tqdm(i_dict.items()):
         new_key = convert_d.get(key)
-        print(new_key, key, d)
+        print(new_key, key, convert_d)
         if new_key is None:
             continue
         d[new_key] = filter_array(value)
