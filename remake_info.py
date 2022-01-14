@@ -62,6 +62,7 @@ def filter_tfs():
 
 def main(i_dict):
     df = read_xlsx_master()
+    print(df)
     convert_d = df.set_index('curated:uniprot_ac')['curated:uniprot_id'].to_dict()
     d = {}
     for key, value in tqdm(i_dict.items()):
