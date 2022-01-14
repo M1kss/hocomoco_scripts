@@ -67,7 +67,7 @@ def main(i_dict):
                           index=df['curated:uniprot_ac']).to_dict()
     d = {}
     for key, value in tqdm(i_dict.items()):
-        new_key = convert_d.get(key)
+        new_key = key
         print(new_key, key, convert_d)
         if new_key is None:
             continue
