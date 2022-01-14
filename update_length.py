@@ -44,6 +44,7 @@ def main(master_path, out_path):
                          names=[*common_header, 'Max_len', 'Min_len'])
     master = master[master['TF_ID'].apply(lambda x: x in convert_d and convert_d[x] != 'CTCF_MOUSE')]
     master['TF_NAME'] = master['TF_ID'].apply(lambda x: convert_d[x])
+    master = master.sort_values(by='TF_NAME')
     ann_df = pd.read_table(os.path.join('files', 'len_annotated.tsv'))
     len_d = make_length_dict(ann_df)
     master['MIN_LEN'] = master.apply(lambda x: get_len(x, len_d, 'min'), axis=1)
