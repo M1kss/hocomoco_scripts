@@ -46,7 +46,7 @@ def filter_tfs():
     # print('EXPS:', len(sum_count))
     for key in info_dict:
         new_key = trans_dict.get(key)
-        if new_key is None or new_key[:-6] not in dicts['hocomoco']:
+        if new_key is None:
             continue
         d[new_key] = [item for item in info_dict[key] if item['pcm_path'] is not None]
     # print([x for x in new_d.keys() if x is None])
@@ -66,6 +66,7 @@ def main(i_dict):
     d = {}
     for key, value in tqdm(i_dict.items()):
         new_key = convert_d.get(key)
+        print(new_key, key)
         if new_key is None:
             continue
         d[new_key] = filter_array(value)
