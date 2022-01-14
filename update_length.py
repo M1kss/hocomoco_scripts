@@ -40,12 +40,9 @@ def main(master_path, out_path):
                      'Caller', 'Select_by', 'Type']
     df = read_xlsx_master()
     convert_d = df.set_index('curated:uniprot_ac')['curated:uniprot_id'].to_dict()
-    print(convert_d)
     master = pd.read_csv(master_path, header=None,
-                           names=[*common_header, 'Max_len', 'Min_len'])
-    print(len(master.index))
-    master = master[master['TF_ID'].apply(lambda x: x in convert_d and convert_d[x] == 'CTCF_MOUSE')]
-    print(len(master.index))
+                         names=[*common_header, 'Max_len', 'Min_len'])
+    master = master[master['TF_ID'].apply(lambda x: x in convert_d and convert_d[x] != 'CTCF_MOUSE')]
     master['TF_NAME'] = master['TF_ID'].apply(lambda x: convert_d[x])
     ann_df = pd.read_table(os.path.join('files', 'len_annotated.tsv'))
     len_d = make_length_dict(ann_df)

@@ -62,13 +62,11 @@ def filter_tfs():
 
 def main(i_dict):
     df = read_xlsx_master()
-    print(df)
     convert_d = pd.Series(df['curated:uniprot_id'].values,
                           index=df['curated:uniprot_ac']).to_dict()
     d = {}
     for key, value in tqdm(i_dict.items()):
         new_key = key
-        print(new_key, key, convert_d)
         if new_key is None:
             continue
         d[new_key] = filter_array(value)

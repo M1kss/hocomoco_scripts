@@ -31,7 +31,6 @@ def get_motif_length_from_list(len_list, mode):
 def main():
     max_len_list = []
     min_len_list = []
-    counter = 0
     master_df = pd.read_excel(os.path.join('source_files', 'hocomoco_2021.xlsx'))
     dicts = read_dicts()
     for index, row in tqdm(master_df.iterrows(), total=len(master_df.index)):
