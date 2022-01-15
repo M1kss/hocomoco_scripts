@@ -68,7 +68,7 @@ def main(peak_file_name, peak_type, score_type, out_path):
             peak_df['SCORE'] = peak_df['-10*log10(pvalue)']
             peak_df['SCORE2'] = peak_df['tags']
     elif peak_type == 'gem':
-        peak_df['SUMMIT'] = peak_df['END']
+        peak_df['SUMMIT'] = 150
         peak_df['START'] = peak_df['START'].apply(lambda x: max(x - 150, 0))
         peak_df['END'] = peak_df['END'] + 150
         if score_type == 'score':

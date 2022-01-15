@@ -11,6 +11,7 @@ dicts_path = 'files'
 cisbp_human_dict_path = os.path.join('source_files', 'TF_Information_human.txt')
 cisbp_mouse_dict_path = os.path.join('source_files', 'TF_Information_mouse.txt')
 info_dict_path = os.path.join('files', 'filtered_info.json')
+bad_info_dict_path = os.path.join('files', 'no_info.json')
 initial_info_dict_path = os.path.join('files', 'info.json')
 result_path = 'ape_result'
 motif_dir = 'cisbp_pwms'

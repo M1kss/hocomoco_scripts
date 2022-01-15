@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from tqdm import tqdm
 
-from cor import read_dicts, read_xlsx_master, info_dict_path, initial_info_dict_path
+from cor import read_dicts, read_xlsx_master, info_dict_path, initial_info_dict_path, bad_info_dict_path
 
 
 def read_uniprot_mapping():
@@ -15,11 +15,16 @@ def filter_array(motifs):
     words_tr = 50
     percent_tr = 0.25
     seqs_tr = 50
-    return [x for x in motifs if x['pcm_path']
-            and x['words'] >= words_tr
-            and x['total']
-            and x['seqs'] >= seqs_tr
-            and x['seqs'] / x['total'] >= percent_tr]
+    good_motifs = []
+    bad_motifs = []
+    for x in motifs:
+        if x['pcm_path'] and x['words'] >= words_tr \
+                and x['total'] and x['seqs'] >= seqs_tr \
+                and x['seqs'] / x['total'] >= percent_tr:
+            good_motifs.append(x)
+        else:
+            bad_motifs.append(x)
+    return good_motifs, bad_motifs
 
 
 def filter_tfs():
@@ -65,14 +70,19 @@ def main(i_dict):
     convert_d = pd.Series(df['curated:uniprot_id'].values,
                           index=df['curated:uniprot_ac']).to_dict()
     d = {}
+    bad_d = {}
     for key, value in tqdm(i_dict.items()):
         new_key = key
         if new_key is None:
             continue
-        d[new_key] = filter_array(value)
+        good_items, bad_items = filter_array(value)
+        bad_d[new_key] = bad_items
+        d[new_key] = good_items
+    print('Dumping...')
     with open(info_dict_path, 'w') as out:
-        print('Dumping...')
         json.dump(d, out, indent=2)
+    with open(bad_info_dict_path, 'w') as out:
+        json.dump(bad_d, out, indent=2)
 
 
 if __name__ == '__main__':
