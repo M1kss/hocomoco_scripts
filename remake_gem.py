@@ -21,7 +21,7 @@ for peak in os.listdir(fasta_dir):
                     line = line.strip()
                     df_line = p.readline().strip().split('\t')
                     if line != '>{}'.format(df_line[3]):
-                        print(line, '>{}'.format(df_line[3]))
+                        print(line, df_line)
                         raise AssertionError
                     out.write('> {}'.format(int(df_line[3]) - int(df_line[1])))
 
