@@ -8,10 +8,10 @@ if not os.path.exists(out_dir):
 fasta_dir = os.path.join(base_dir, 'fasta')
 peak_dir = os.path.join(base_dir, 'sorted')
 for peak in os.listdir(fasta_dir):
-    print('Now doing:', peak)
     peak_name, caller, score, *args = peak.split('.')
     df_name = '.'.join([peak_name, caller, score, 'sorted', 'bed'])
     if caller == 'gem':
+        print('Now doing:', peak)
         with open(os.path.join(fasta_dir, peak)) as f,\
                 open(os.path.join(peak_dir, df_name)) as p,\
                 open(os.path.join(out_dir, peak), 'w') as out:
