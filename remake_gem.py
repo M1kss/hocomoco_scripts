@@ -1,8 +1,6 @@
 import os
 import sys
 
-from format_peaks import ChromPos
-
 base_dir = sys.argv[1]
 out_dir = sys.argv[2]
 if not os.path.exists(out_dir):
@@ -10,6 +8,7 @@ if not os.path.exists(out_dir):
 fasta_dir = os.path.join(base_dir, 'fasta')
 peak_dir = os.path.join(base_dir, 'sorted')
 for peak in os.listdir(fasta_dir):
+    print('Now doing:', peak)
     peak_name, caller, score, *args = peak.split('.')
     df_name = '.'.join([peak_name, caller, score, 'sorted', 'bed'])
     if caller == 'gem':
