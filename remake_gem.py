@@ -20,8 +20,9 @@ for peak in os.listdir(fasta_dir):
                 else:
                     line = line.strip()
                     df_line = p.readline().strip().split('\t')
+                    print(line, df_line)
                     if line != '>{}'.format(df_line[3]):
                         print(line, df_line, index)
                         raise AssertionError
-                    out.write('> {}'.format(int(df_line[3]) - int(df_line[1])))
+                    out.write('> {}\n'.format(int(df_line[3]) - int(df_line[1])))
 
