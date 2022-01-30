@@ -18,7 +18,7 @@ min_len=${ARRAY[7]}
 
 
 if [ -f "$out_path/gem/${peaks_name}.${peak_type}.${score_type}.mfa" ]; then
-  echo $out_path/gem/${peaks_name}.${peak_type}.${score_type}.mfa
+  echo $out_path/results/${peaks_name}.${peak_type}.${score_type}.${motif_type}.out
   if [ "$motif_type" == 'single' ]; then
     java -Xmx4G -cp ~/chipmunk.jar ru.autosome.ChIPHorde ${min_len}:${max_len},${min_len}:${max_len} f c 1.0 m:$out_path/gem/${peaks_name}.${peak_type}.${score_type}.mfa 100 10 1 2 random auto single 1>$out_path/results/${peaks_name}.${peak_type}.${score_type}.single.out 2>$out_path/logs/${peaks_name}.${peak_type}.${score_type}.single.log
   fi
