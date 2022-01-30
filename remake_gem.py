@@ -1,6 +1,8 @@
 import os
 import sys
 
+from format_peaks import ChromPos
+
 base_dir = sys.argv[1]
 out_dir = sys.argv[2]
 if not os.path.exists(out_dir):
@@ -21,6 +23,8 @@ for peak in os.listdir(fasta_dir):
                     line = line.strip()
                     df_line = p.readline().strip().split('\t')
                     print(line, df_line)
+                    while df_line[0] not in ChromPos.chrs:
+                        df_line = p.readline().strip().split('\t')
                     if line != '>{}'.format(df_line[3]):
                         print(line, df_line, index)
                         raise AssertionError
