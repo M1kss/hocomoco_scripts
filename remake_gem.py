@@ -22,13 +22,9 @@ for peak in os.listdir(fasta_dir):
                 else:
                     line = line.strip()
                     df_line = p.readline().strip().split('\t')
-                    while df_line[0] not in [x for x in ChromPos.chrs] + ['chrM']:
+                    while '>{}'.format(df_line[3]) != line:
                         print(line, df_line)
                         df_line = p.readline().strip().split('\t')
-                    print(df_line)
-                    if line != '>{}'.format(df_line[3]):
-                        print(line, p.readlines())
-                        raise ValueError
                     if line != '>{}'.format(df_line[3]):
                         raise AssertionError
                     out.write('> {}\n'.format(int(df_line[3]) - int(df_line[1])))
