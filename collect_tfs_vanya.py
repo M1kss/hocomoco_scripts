@@ -21,6 +21,7 @@ for tf in int_tfs:
         os.mkdir(tf_path)
     peaks = master_list['Name']
     peaks = set(peaks[peaks == tf].tolist())
+    print('{} peaks for {}; Looking in archive'.format(len(peaks), tf))
     with ZipFile(archive_path, 'r') as zipObj:
         # Get a list of all archived file names from the zip
         list_of_file_names = zipObj.namelist()
