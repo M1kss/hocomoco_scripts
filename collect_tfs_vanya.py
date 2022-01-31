@@ -27,8 +27,11 @@ for tf in int_tfs:
         # Iterate over the file names
         for file_name in list_of_file_names:
             # Check filename endswith csv
-            print(file_name)
-            _, name, caller, _ = file_name.split('/')
+            try:
+                _, name, caller, _ = file_name.split('/')
+            except ValueError:
+                print(file_name)
+                continue
             if name in peaks and caller in models:
                 # Extract a single file from zip
                 zipObj.extract(file_name, tf_path)
