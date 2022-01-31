@@ -9,8 +9,8 @@ master_list_path = sys.argv[1]
 master_list = pd.read_csv(master_list_path,
                           header=None,
                           names=['Specie', 'TF', 'Name', 'Caller', 'Select', 'Type', 'Max', 'Min'])
-master_list = master_list[master_list['TF'].in_(int_tfs)]
-master_list = master_list[master_list['Caller'].in_(models)]
+master_list = master_list[master_list['TF'].isin(int_tfs)]
+master_list = master_list[master_list['Caller'].isin(models)]
 archive_path = sys.argv[2]
 out_path = sys.argv[3]
 if not os.path.exists(out_path):
