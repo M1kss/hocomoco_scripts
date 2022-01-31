@@ -11,7 +11,6 @@ master_list = pd.read_csv(master_list_path,
                           names=['Specie', 'TF', 'Name', 'Caller', 'Select', 'Type', 'Max', 'Min'])
 master_list = master_list[master_list['TF'].isin(int_tfs)]
 master_list = master_list[master_list['Caller'].isin(models)]
-print(master_list)
 archive_path = sys.argv[2]
 out_path = sys.argv[3]
 if not os.path.exists(out_path):
@@ -20,8 +19,7 @@ for tf in int_tfs:
     tf_path = os.path.join(out_path, tf)
     if not os.path.exists(tf_path):
         os.mkdir(tf_path)
-    peaks = master_list['Name']
-    peaks = set(peaks[peaks == tf].tolist())
+    peaks = set(master_list[master_list['TF'] == tf]['Name'].tolist())
     print('{} peaks for {}; Looking in archive'.format(len(peaks), tf))
     with ZipFile(archive_path, 'r') as zipObj:
         # Get a list of all archived file names from the zip
