@@ -23,8 +23,8 @@ hocomoco_path = 'hocomoco_pwms'
 allowed_tfs = ['ANDR_MOUSE', 'CTCF_MOUSE']
 
 
-def initial_info_dict_path(is_human=True):
-    return os.path.join('files', 'info.{}.json'.format('human' if is_human else 'mouse'))
+def initial_info_dict_path(specie):
+    return os.path.join('files', 'info.{}.json'.format(specie))
 
 
 def read_xlsx_master():

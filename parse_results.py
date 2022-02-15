@@ -17,7 +17,7 @@ def get_time(time):
         return str(round(time / 3600)) + 'h'
 
 
-def parse_one_file(file_name, outputs_dir):
+def parse_one_file(file_name, outputs_dir, specie):
     peaks, caller, best_by, motif_type, _ = file_name.split('.')
     with open(os.path.join(outputs_dir, 'results', file_name)) as f:
         parsed_output = []
@@ -31,6 +31,7 @@ def parse_one_file(file_name, outputs_dir):
             last_line = line
         if last_line is None or not last_line.startswith('_^^_| P0wered by cute chipmunks!'):
             return [{
+                'specie': specie,
                 'name': peaks,
                 'caller': caller,
                 'motif_type': motif_type,
@@ -52,6 +53,7 @@ def parse_one_file(file_name, outputs_dir):
     if len(A) == 0:
         if len(parsed_output) != 0:
             return [{
+                'specie': specie,
                 'name': peaks,
                 'caller': caller,
                 'motif_type': motif_type,
@@ -66,6 +68,7 @@ def parse_one_file(file_name, outputs_dir):
                 'pcm_path': None,
             }]
         return [{
+            'specie': specie,
             'name': peaks,
             'caller': caller,
             'motif_type': motif_type,
@@ -104,6 +107,7 @@ def parse_one_file(file_name, outputs_dir):
             for a, c, g, t in values:
                 pcm.write('\t'.join([a, c, g, t]) + '\n')
         result.append({
+            'specie': specie,
             'name': peaks,
             'caller': caller,
             'motif_type': motif_type,
@@ -130,7 +134,7 @@ def make_tfs_dict(master_list):
     return out
 
 
-def main(outputs_dir, master_list, is_human=True):
+def main(outputs_dir, master_list, specie='human'):
     tfs_dict = make_tfs_dict(master_list)
     results = {}
     iterable = os.listdir(os.path.join(outputs_dir, 'results'))
@@ -138,17 +142,12 @@ def main(outputs_dir, master_list, is_human=True):
         peaks = file_name.split('.')[0]
         if peaks not in tfs_dict:
             continue
-        info = parse_one_file(file_name, outputs_dir)
+        info = parse_one_file(file_name, outputs_dir, specie)
         results.setdefault(tfs_dict[peaks], []).extend(info)
-    with open(initial_info_dict_path(is_human), 'w') as ot:
+    with open(initial_info_dict_path(specie), 'w') as ot:
         json.dump(results, ot, indent=2)
 
 
 if __name__ == '__main__':
-    if sys.argv[3] == 'human':
-        flag = True
-    elif sys.argv[3] == 'mouse':
-        flag = False
-    else:
-        raise ValueError
-    main(sys.argv[1], sys.argv[2], flag)
+    assert sys.argv[3] in ('human', 'mouse')
+    main(sys.argv[1], sys.argv[2], sys.argv[3])
