@@ -20,7 +20,7 @@ dict_types = ['hocomoco', 'direct', 'inferred', 'tf_class_subfamily', 'tf_class_
 
 ape_path = os.path.expanduser('~/ape.jar')
 hocomoco_path = 'hocomoco_pwms'
-allowed_tfs = ['ANDR_MOUSE', 'CTCF_MOUSE']
+allowed_tfs = ['ANDR', 'CTCF']
 
 
 def initial_info_dict_path(specie):
