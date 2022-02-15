@@ -127,41 +127,43 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     except ValueError:
         motif_len = 1
     sheet.write(0, 0, 'Name')
-    sheet.write(0, 1, 'Motif type')
-    sheet.write(0, 2, 'Words')
-    sheet.write(0, 3, 'Seqs.fraction')
-    sheet.write(0, 4, 'Motif')
-    sheet.write(0, 5, 'HOCOMOCO_sim')
-    sheet.write(0, 6, 'HOCOMOCO_info')
+    sheet.write(0, 1, 'Specie')
+    sheet.write(0, 2, 'Motif type')
+    sheet.write(0, 3, 'Words')
+    sheet.write(0, 4, 'Seqs.fraction')
+    sheet.write(0, 5, 'Motif')
+    sheet.write(0, 6, 'HOCOMOCO_sim')
+    sheet.write(0, 7, 'HOCOMOCO_info')
     for index, d_type in enumerate(dict_types[1:]):
         sheet.write(0, index + 7, d_type + '_sim')
-    sheet.write(0, 7 + len(dict_types[1:]), 'Most_sim_motif')
-    sheet.write(0, 8 + len(dict_types[1:]), 'Most_sim_TF')
-    sheet.write(0, 9 + len(dict_types[1:]), 'Most_sim_type')
+    sheet.write(0, 8 + len(dict_types[1:]), 'Most_sim_motif')
+    sheet.write(0, 9 + len(dict_types[1:]), 'Most_sim_TF')
+    sheet.write(0, 10 + len(dict_types[1:]), 'Most_sim_type')
     worksheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
     print('Writing to file')
     for index, exp in tqdm(enumerate(sorted_tf_info), total=len(sorted_tf_info)):
         sheet.set_column(0, 0, name_width)
-        sheet.set_column(4, 4, motif_len * 2.5)
+        sheet.set_column(4, 5, motif_len * 2.5)
         sheet.write(index + 1, 0, exp['name'])
-        sheet.write(index + 1, 1, exp['selected_by'][:1].capitalize())
-        sheet.write(index + 1, 2, exp['words'])
-        sheet.write(index + 1, 3, exp['seqs'] / exp['total'])
-        sheet.insert_image(index + 1, 4, exp['motif_image'], {'x_scale': 0.4, 'y_scale': 0.4})
+        sheet.write(index + 1, 1, exp['specie'])
+        sheet.write(index + 1, 2, exp['selected_by'][:1].capitalize())
+        sheet.write(index + 1, 3, exp['words'])
+        sheet.write(index + 1, 4, exp['seqs'] / exp['total'])
+        sheet.insert_image(index + 1, 5, exp['motif_image'], {'x_scale': 0.4, 'y_scale': 0.4})
         sheet.set_row(index + 1, 30)
         if exp['hocomoco']['sim']:
-            sheet.write(index + 1, 5, exp['hocomoco']['sim'],
+            sheet.write(index + 1, 6, exp['hocomoco']['sim'],
                         get_format(exp['hocomoco']['sim']))
-            sheet.write(index + 1, 6, exp['hocomoco']['name'])
+            sheet.write(index + 1, 7, exp['hocomoco']['name'])
         for i, d_type in enumerate(dict_types[1:]):
-            sheet.write(index + 1, i + 7, exp[d_type]['sim'])
+            sheet.write(index + 1, 8 + i, exp[d_type]['sim'])
         best_d_type, best_sim = get_max(exp)
         best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'], best_d_type),
                                   revcomp=True if exp[best_d_type]['orientation'] == 'revcomp' else False)
-        sheet.insert_image(index + 1, 7 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
-        sheet.set_column(7 + len(dict_types[1:]), 7 + len(dict_types[1:]), motif_len * 2.5)
-        sheet.write(index + 1, 8 + len(dict_types[1:]), exp[best_d_type]['name'])
-        sheet.write(index + 1, 9 + len(dict_types[1:]), best_d_type)
+        sheet.insert_image(index + 1, 9 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
+        sheet.set_column(8 + len(dict_types[1:]), 8 + len(dict_types[1:]), motif_len * 2.5)
+        sheet.write(index + 1, 9 + len(dict_types[1:]), exp[best_d_type]['name'])
+        sheet.write(index + 1, 10 + len(dict_types[1:]), best_d_type)
 
 
 if __name__ == '__main__':
