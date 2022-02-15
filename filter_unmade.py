@@ -15,7 +15,11 @@ def merge_info_dicts(human_info_dict, mouse_info_dict):
     tf_names = [*human_info_dict.keys(), *mouse_info_dict.keys()]
     result = {}
     for tf in tf_names:
-        tf_without_suf, specie = tf.split('_')
+        try:
+            tf_without_suf, specie = tf.split('_')
+        except ValueError:
+            print(tf)
+            raise
         if specie == 'HUMAN':
             new_value = human_info_dict[tf]
         elif specie == 'MOUSE':
