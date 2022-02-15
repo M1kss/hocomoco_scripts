@@ -28,6 +28,8 @@ def merge_info_dicts(human_info_dict, mouse_info_dict):
             result[tf_without_suf] = result[tf_without_suf].append(new_value)
         else:
             result[tf_without_suf] = new_value
+        if result[tf_without_suf] is None:
+            print(tf)
     return result
 
 
@@ -53,13 +55,10 @@ def main(merged_dict):
     #                       index=df['curated:uniprot_ac']).to_dict()
     d = {}
     bad_d = {}
-    print(merged_dict['KMT2A'])
     for key, value in tqdm(merged_dict.items()):
         new_key = key
         if new_key is None:
             continue
-        if value is None:
-            print(key)
         good_items, bad_items = filter_array(value)
         bad_d[new_key] = bad_items
         d[new_key] = good_items
