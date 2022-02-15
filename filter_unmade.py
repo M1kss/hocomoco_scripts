@@ -50,6 +50,7 @@ def main(merged_dict):
     #                       index=df['curated:uniprot_ac']).to_dict()
     d = {}
     bad_d = {}
+    print(merged_dict)
     for key, value in tqdm(merged_dict.items()):
         new_key = key
         if new_key is None:
