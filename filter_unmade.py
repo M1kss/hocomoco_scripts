@@ -50,11 +50,12 @@ def main(merged_dict):
     #                       index=df['curated:uniprot_ac']).to_dict()
     d = {}
     bad_d = {}
-    print(merged_dict)
     for key, value in tqdm(merged_dict.items()):
         new_key = key
         if new_key is None:
             continue
+        if value is None:
+            print(key)
         good_items, bad_items = filter_array(value)
         bad_d[new_key] = bad_items
         d[new_key] = good_items
