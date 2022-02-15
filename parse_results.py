@@ -143,4 +143,10 @@ def main(outputs_dir, master_list, is_human=True):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2], sys.argv[3] == 'human')
+    if sys.argv[3] == 'human':
+        flag = True
+    elif sys.argv[3] == 'mouse':
+        flag = False
+    else:
+        raise ValueError
+    main(sys.argv[1], sys.argv[2], flag)
