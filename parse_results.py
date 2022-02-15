@@ -136,6 +136,8 @@ def main(outputs_dir, master_list, is_human=True):
     iterable = os.listdir(os.path.join(outputs_dir, 'results'))
     for file_name in tqdm(iterable, total=len(iterable)):
         peaks = file_name.split('.')[0]
+        if peaks not in tfs_dict:
+            continue
         info = parse_one_file(file_name, outputs_dir)
         results.setdefault(tfs_dict[peaks], []).extend(info)
     with open(initial_info_dict_path(is_human), 'w') as ot:

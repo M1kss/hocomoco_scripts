@@ -6,11 +6,6 @@ from tqdm import tqdm
 from cor import info_dict_path, initial_info_dict_path, bad_info_dict_path
 
 
-def read_uniprot_mapping():
-    df = pd.read_table(os.path.join('source_files', 'uniprot.tab'))
-    return pd.Series(df['Entry name'].values, index=df[df.columns[0]]).to_dict()
-
-
 def merge_info_dicts(human_info_dict, mouse_info_dict):
     tf_names = [*human_info_dict.keys(), *mouse_info_dict.keys()]
     result = {}
