@@ -22,6 +22,8 @@ ape_path = os.path.expanduser('~/ape.jar')
 hocomoco_path = 'hocomoco_pwms'
 allowed_tfs = ['ANDR', 'CTCF']
 
+species = 'human', 'mouse'
+
 
 def initial_info_dict_path(specie):
     return os.path.join('files', 'info.{}.json'.format(specie))
@@ -145,15 +147,22 @@ def main(njobs=10):
             if tf not in allowed_tfs:
                 continue
         results = {}
-        pwms = [x['pcm_path'] for x in info_dict[tf]]
+        pwms = {}
+        for specie in species:
+            pwms[specie] = [x['pcm_path'] for x in info_dict[tf] if x['specie'] == specie]
         for d_type in dict_types:
-            motif_collection = dicts[d_type].get(tf)
-            if not motif_collection and d_type != 'hocomoco':
-                print(tf, d_type)
-                continue
-            res_dir = check_dir_for_collection(tf, motif_collection, d_type)
-            ape_res = run_ape(pwms, res_dir, d_type, njobs)
-            results[d_type] = ape_res
+            res = {}
+            for specie in species:
+                tf_name = tf + '_' + specie.upper()
+                motif_collection = dicts[d_type].get(tf_name)
+                if not motif_collection and d_type != 'hocomoco':
+                    print(tf, d_type)
+                    continue
+                res_dir = check_dir_for_collection(tf_name, motif_collection, d_type)
+                ape_res = run_ape(pwms[specie], res_dir, d_type, njobs)
+                res.update(ape_res)
+            results[d_type] = res
+
         with open(os.path.join(result_path, tf + '.json'), 'w') as out:
             json.dump(results, out, indent=2)
 
