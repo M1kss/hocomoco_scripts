@@ -7,6 +7,7 @@ from drawlogo import start
 import requests
 from cairosvg import svg2png
 from tqdm import tqdm
+import sys
 
 from cor import dict_types, motif_dir, result_path, read_info_dict, read_cisbp_df, allowed_tfs, \
     hocomoco_path
@@ -163,8 +164,27 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
         sheet.write(index + 1, 9 + len(dict_types[1:]), best_d_type)
 
 
+def merge_info_dicts(human_info_dict, mouse_info_dict):
+    tf_names = [*human_info_dict.keys(), *mouse_info_dict.keys()]
+    result = {}
+    for tf in tf_names:
+        tf_without_suf, specie = tf.split('_')
+        if specie == 'HUMAN':
+            new_value = human_info_dict[tf]
+        elif specie == 'MOUSE':
+            new_value = mouse_info_dict[tf]
+        else:
+            raise ValueError
+        if tf_without_suf in result:
+            result[tf_without_suf] = result[tf_without_suf].update(new_value)
+        else:
+            result[tf_without_suf] = new_value
+    return result
+
+
 if __name__ == '__main__':
-    info_dict = read_info_dict()
+    human_info_dict = read_info_dict()
+    mouse_info_dict = read_info_dict(sys.argv[1])
     cisbp_dfs = read_cisbp_df()
     cis_dict = {}
     for key, value in cisbp_dfs.items():
@@ -172,7 +192,8 @@ if __name__ == '__main__':
         df['TF_Name'] = df['TF_Name'].apply(lambda x: x.upper() + '_{}'.format(key.upper()))
         cis_dict = {**cis_dict,
                     **pd.Series(df['TF_Name'].values, index=df.Motif_ID).to_dict()}
-    for tf_name, value in info_dict.items():
+    merged_dict = merge_info_dicts(human_info_dict, mouse_info_dict)
+    for tf_name, value in merged_dict.items():
         if allowed_tfs is not None:
             if tf_name not in allowed_tfs:
                 continue

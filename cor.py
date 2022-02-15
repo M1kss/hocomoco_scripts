@@ -28,8 +28,10 @@ def read_xlsx_master():
                          engine='openpyxl')
 
 
-def read_info_dict():
-    with open(info_dict_path) as info:
+def read_info_dict(path=None):
+    if path is None:
+        path = info_dict_path
+    with open(path) as info:
         return json.load(info)
 
 
