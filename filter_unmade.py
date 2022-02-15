@@ -21,6 +21,8 @@ def merge_info_dicts(human_info_dict, mouse_info_dict):
             new_value = mouse_info_dict[tf]
         else:
             raise ValueError
+        if new_value is None:
+            print(tf)
         if tf_without_suf in result:
             result[tf_without_suf] = result[tf_without_suf].append(new_value)
         else:
