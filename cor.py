@@ -12,7 +12,7 @@ cisbp_human_dict_path = os.path.join('source_files', 'TF_Information_human.txt')
 cisbp_mouse_dict_path = os.path.join('source_files', 'TF_Information_mouse.txt')
 info_dict_path = os.path.join('files', 'filtered_info.json')
 bad_info_dict_path = os.path.join('files', 'no_info.json')
-initial_info_dict_path = os.path.join('files', 'info.json')
+
 result_path = 'ape_result'
 motif_dir = 'cisbp_pwms'
 
@@ -21,6 +21,10 @@ dict_types = ['hocomoco', 'direct', 'inferred', 'tf_class_subfamily', 'tf_class_
 ape_path = os.path.expanduser('~/ape.jar')
 hocomoco_path = 'hocomoco_pwms'
 allowed_tfs = ['ANDR_MOUSE', 'CTCF_MOUSE']
+
+
+def initial_info_dict_path(is_human=True):
+    return os.path.join('files', 'info{}.json'.format('' if is_human else '.mouse'))
 
 
 def read_xlsx_master():

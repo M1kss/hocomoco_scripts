@@ -130,7 +130,7 @@ def make_tfs_dict(master_list):
     return out
 
 
-def main(outputs_dir, master_list):
+def main(outputs_dir, master_list, is_human=True):
     tfs_dict = make_tfs_dict(master_list)
     results = {}
     iterable = os.listdir(os.path.join(outputs_dir, 'results'))
@@ -138,9 +138,9 @@ def main(outputs_dir, master_list):
         peaks = file_name.split('.')[0]
         info = parse_one_file(file_name, outputs_dir)
         results.setdefault(tfs_dict[peaks], []).extend(info)
-    with open(initial_info_dict_path, 'w') as ot:
+    with open(initial_info_dict_path(is_human), 'w') as ot:
         json.dump(results, ot, indent=2)
 
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2], sys.argv[3] == 'human')
