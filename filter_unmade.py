@@ -26,6 +26,7 @@ def merge_info_dicts(human_info_dict, mouse_info_dict):
             raise
         if tf_without_suf in result:
             old_value = result[tf_without_suf]
+            print(old_value, new_value)
             result[tf_without_suf] = [old_value] + [new_value]
         else:
             result[tf_without_suf] = new_value
