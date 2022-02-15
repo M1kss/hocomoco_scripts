@@ -96,7 +96,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     with open(os.path.join(result_path, t_factor + '.json')) as f:
         sim_dict = json.load(f)
     print('Parsing sim dict')
-    for exp in tqdm(tf_info[:50]):
+    for exp in tqdm(tf_info):
         exp['name'] = craft_motif_name(exp)
         exp['motif_image'] = draw_svg(exp['pcm_path'], False)
         pcm_name = os.path.splitext(os.path.basename(exp['pcm_path']))[0]
@@ -115,7 +115,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
                            'orientation': comp['orientation'],
                            'sim': float(comp['similarity']),
                            'name': tf_cisbp_name}
-    sorted_tf_info = sorted(tf_info[:50], key=lambda x: x['hocomoco']['sim'], reverse=True)
+    sorted_tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['sim'], reverse=True)
     sorted_tf_info = sorted(sorted_tf_info, key=lambda x: x['hocomoco']['name'], reverse=True)
     sorted_tf_info = [x for x in sorted_tf_info if get_max(x)[1] >= 0.01]
     try:
@@ -141,7 +141,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     sheet.write(0, 10 + len(dict_types[1:]), 'Most_sim_type')
     worksheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
     print('Writing to file')
-    for index, exp in tqdm(enumerate(sorted_tf_info[:50]), total=len(sorted_tf_info)):
+    for index, exp in tqdm(enumerate(sorted_tf_info), total=len(sorted_tf_info)):
         sheet.set_column(0, 0, name_width)
         sheet.set_column(5, 5, motif_len * 2.5)
         sheet.write(index + 1, 0, exp['name'])
