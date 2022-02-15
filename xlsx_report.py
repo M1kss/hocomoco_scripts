@@ -136,9 +136,9 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     sheet.write(0, 7, 'HOCOMOCO_info')
     for index, d_type in enumerate(dict_types[1:]):
         sheet.write(0, 8 + index, d_type + '_sim')
-    sheet.write(0, 9 + len(dict_types[1:]), 'Most_sim_motif')
-    sheet.write(0, 10 + len(dict_types[1:]), 'Most_sim_TF')
-    sheet.write(0, 11 + len(dict_types[1:]), 'Most_sim_type')
+    sheet.write(0, 8 + len(dict_types[1:]), 'Most_sim_motif')
+    sheet.write(0, 9 + len(dict_types[1:]), 'Most_sim_TF')
+    sheet.write(0, 10 + len(dict_types[1:]), 'Most_sim_type')
     worksheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
     print('Writing to file')
     for index, exp in tqdm(enumerate(sorted_tf_info[:50]), total=len(sorted_tf_info)):
@@ -160,7 +160,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
         best_d_type, best_sim = get_max(exp)
         best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'], best_d_type),
                                   revcomp=True if exp[best_d_type]['orientation'] == 'revcomp' else False)
-        sheet.insert_image(index + 1, 9 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
+        sheet.insert_image(index + 1, 8 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
         sheet.set_column(8 + len(dict_types[1:]), 8 + len(dict_types[1:]), motif_len * 2.5)
         sheet.write(index + 1, 9 + len(dict_types[1:]), exp[best_d_type]['name'])
         sheet.write(index + 1, 10 + len(dict_types[1:]), best_d_type)
