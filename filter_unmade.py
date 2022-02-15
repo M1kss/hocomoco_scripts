@@ -66,9 +66,9 @@ def main(merged_dict):
 
 if __name__ == '__main__':
 
-    with open(initial_info_dict_path()) as r:
+    with open(initial_info_dict_path('human')) as r:
         human_info_dict = json.load(r)
-    with open(initial_info_dict_path(False)) as r:
+    with open(initial_info_dict_path('mouse')) as r:
         mouse_info_dict = json.load(r)
     m_dict = merge_info_dicts(human_info_dict, mouse_info_dict)
     main(m_dict)
