@@ -76,7 +76,7 @@ def get_cisbp_tf(motif_name, cisbp_dict, d_type=None):
         return cisbp_dict.get(os.path.splitext(motif_name)[0])
 
 
-def get_format(param):
+def get_format(param, green_format, yellow_format, null_format):
     if param >= 0.1:
         return green_format
     elif param >= 0.05:
@@ -90,12 +90,19 @@ def get_max(exp):
                key=lambda x: x[1])
 
 
-def process_tf(sheet, t_factor, tf_info, cisbp_dict):
+def process_tf(t_factor, tf_info, cisbp_dict, part=0, chunk_size=5000):
+    report_path = os.path.join('reports', tf_name + '.xlsx')
+    workbook = xlsxwriter.Workbook(report_path)
+    green_format = workbook.add_format({'bg_color': '#C6EFCE'})
+    yellow_format = workbook.add_format({'bg_color': '#FFF77D'})
+    null_format = workbook.add_format()
+    sheet = workbook.add_worksheet()
     if not os.path.exists(os.path.join(result_path, t_factor + '.json')):
         return
     with open(os.path.join(result_path, t_factor + '.json')) as f:
         sim_dict = json.load(f)
     print('Parsing sim dict')
+    tf_info = tf_info[chunk_size * part:min(len(tf_info), chunk_size * (part + 1))]
     for exp in tqdm(tf_info):
         exp['name'] = craft_motif_name(exp)
         exp['motif_image'] = draw_svg(exp['pcm_path'], False)
@@ -118,6 +125,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     sorted_tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['sim'], reverse=True)
     sorted_tf_info = sorted(sorted_tf_info, key=lambda x: x['hocomoco']['name'], reverse=True)
     sorted_tf_info = [x for x in sorted_tf_info if get_max(x)[1] >= 0.01]
+    print('Writing to file')
     try:
         name_width = len(max([exp['name'] for exp in sorted_tf_info]))
     except ValueError:
@@ -139,13 +147,13 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
     sheet.write(0, 8 + len(dict_types[1:]), 'Most_sim_motif')
     sheet.write(0, 9 + len(dict_types[1:]), 'Most_sim_TF')
     sheet.write(0, 10 + len(dict_types[1:]), 'Most_sim_type')
-    worksheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
-    print('Writing to file')
+    sheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
     for index, exp in tqdm(enumerate(sorted_tf_info), total=len(sorted_tf_info)):
         sheet.set_column(0, 0, name_width)
+        sheet.set_column(1, 1, 1)
         sheet.set_column(5, 5, motif_len * 2.5)
         sheet.write(index + 1, 0, exp['name'])
-        sheet.write(index + 1, 1, exp['specie'])
+        sheet.write(index + 1, 1, exp['specie'][0].upper())
         sheet.write(index + 1, 2, exp['selected_by'][:1].capitalize())
         sheet.write(index + 1, 3, exp['words'])
         sheet.write(index + 1, 4, exp['seqs'] / exp['total'])
@@ -153,7 +161,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
         sheet.set_row(index + 1, 30)
         if exp['hocomoco']['sim']:
             sheet.write(index + 1, 6, exp['hocomoco']['sim'],
-                        get_format(exp['hocomoco']['sim']))
+                        get_format(exp['hocomoco']['sim'], green_format, yellow_format, null_format))
             sheet.write(index + 1, 7, exp['hocomoco']['name'])
         for i, d_type in enumerate(dict_types[1:]):
             sheet.write(index + 1, 8 + i, exp[d_type]['sim'])
@@ -164,6 +172,7 @@ def process_tf(sheet, t_factor, tf_info, cisbp_dict):
         sheet.set_column(8 + len(dict_types[1:]), 8 + len(dict_types[1:]), motif_len * 2.5)
         sheet.write(index + 1, 9 + len(dict_types[1:]), exp[best_d_type]['name'])
         sheet.write(index + 1, 10 + len(dict_types[1:]), best_d_type)
+    workbook.close()
 
 
 if __name__ == '__main__':
@@ -180,11 +189,5 @@ if __name__ == '__main__':
             if tf_name not in allowed_tfs:
                 continue
         print('Processing {}'.format(tf_name))
-        report_path = os.path.join('reports', tf_name + '.xlsx')
-        workbook = xlsxwriter.Workbook(report_path)
-        green_format = workbook.add_format({'bg_color': '#C6EFCE'})
-        yellow_format = workbook.add_format({'bg_color': '#FFF77D'})
-        null_format = workbook.add_format()
-        worksheet = workbook.add_worksheet()
-        process_tf(worksheet, tf_name, value, cis_dict)
-        workbook.close()
+        process_tf(tf_name, value, cis_dict, chunk_size=len(value))
+

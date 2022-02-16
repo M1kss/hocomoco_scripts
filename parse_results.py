@@ -88,8 +88,6 @@ def parse_one_file(file_name, outputs_dir, specie):
     ACGT = list(zip(A, C, G, T))
     TIME = [float(value) for key, value in parsed_output if key == 'TIME'][-1]
     time = get_time(TIME)
-    words = [float(value) for key, value in parsed_output if key == 'WRDS'][-1]
-    seqs = [float(value) for key, value in parsed_output if key == 'SEQS'][-1]
     total = sum(1 for line in open(os.path.join(outputs_dir, 'fasta', '.'.join([peaks, caller, best_by, 'mfa']))))
     assert total % 2 == 0
     total = total // 2
@@ -104,6 +102,8 @@ def parse_one_file(file_name, outputs_dir, specie):
             pcm.write('>{}.{}'.format(file_name[:-4], k) + '\n')
             values = list(zip(*quad))
             motif_len = len(values)
+            words = [float(value) for key, value in parsed_output if key == 'WRDS'][k]
+            seqs = [float(value) for key, value in parsed_output if key == 'SEQS'][k]
             for a, c, g, t in values:
                 pcm.write('\t'.join([a, c, g, t]) + '\n')
         result.append({
