@@ -151,17 +151,25 @@ def main(njobs=10):
         for specie in species:
             pwms[specie] = [x['pcm_path'] for x in info_dict[tf] if x['specie'] == specie]
         for d_type in dict_types:
-            res = {}
-            for specie in species:
-                tf_name = tf + '_' + specie.upper()
-                motif_collection = dicts[d_type].get(tf_name)
-                if not motif_collection and d_type != 'hocomoco':
-                    print(tf, d_type)
+            if d_type == 'hocomoco':
+                tf_name = tf + '_' + 'HUMAN'
+                motif_collection = dicts[d_type].get(tf_name, None)
+                if not motif_collection:
+                    tf_name = tf + '_' + 'MOUSE'
+                    motif_collection = dicts[d_type].get(tf_name, None)
+                if not motif_collection:
                     continue
-                res_dir = check_dir_for_collection(tf_name, motif_collection, d_type)
-                ape_res = run_ape(pwms[specie], res_dir, d_type, njobs)
-                res.update(ape_res)
-            results[d_type] = res
+            else:
+                motif_collection = []
+                for specie in species:
+                    tf_name = tf + '_' + specie.upper()
+                    motif_col = dicts[d_type].get(tf_name, None)
+                    if motif_collection is not None:
+                        motif_collection += motif_col
+                motif_collection = set(motif_collection)
+            res_dir = check_dir_for_collection(tf, motif_collection, d_type)
+            ape_res = run_ape([x['pcm_path'] for x in info_dict[tf]], res_dir, d_type, njobs)
+            results[d_type] = ape_res
 
         with open(os.path.join(result_path, tf + '.json'), 'w') as out:
             json.dump(results, out, indent=2)
