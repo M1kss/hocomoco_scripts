@@ -144,7 +144,7 @@ def main(njobs=10):
     info_dict = read_info_dict()
     for tf in tqdm(info_dict.keys()):
         if allowed_tfs is not None:
-            if tf not in allowed_tfs:
+            if tf in allowed_tfs:
                 continue
         results = {}
         pwms = {}
