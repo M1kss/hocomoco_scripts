@@ -91,7 +91,7 @@ def get_max(exp):
 
 
 def process_tf(t_factor, tf_info, cisbp_dict, part=0, chunk_size=5000):
-    report_path = os.path.join('reports', tf_name + '.xlsx')
+    report_path = os.path.join('reports', '{}.{}.xlsx'.format(tf_name, part + 1))
     workbook = xlsxwriter.Workbook(report_path)
     green_format = workbook.add_format({'bg_color': '#C6EFCE'})
     yellow_format = workbook.add_format({'bg_color': '#FFF77D'})
@@ -105,7 +105,6 @@ def process_tf(t_factor, tf_info, cisbp_dict, part=0, chunk_size=5000):
     tf_info = tf_info[chunk_size * part:min(len(tf_info), chunk_size * (part + 1))]
     for exp in tqdm(tf_info):
         exp['name'] = craft_motif_name(exp)
-        exp['motif_image'] = draw_svg(exp['pcm_path'], False)
         pcm_name = os.path.splitext(os.path.basename(exp['pcm_path']))[0]
         for i, d_type in enumerate(dict_types):
             motifs = sim_dict.get(d_type)
@@ -150,24 +149,37 @@ def process_tf(t_factor, tf_info, cisbp_dict, part=0, chunk_size=5000):
     sheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
     for index, exp in tqdm(enumerate(sorted_tf_info), total=len(sorted_tf_info)):
         sheet.set_column(0, 0, name_width)
-        sheet.set_column(1, 1, 1)
+        sheet.set_column(1, 2, 1.5)
         sheet.set_column(5, 5, motif_len * 2.5)
         sheet.write(index + 1, 0, exp['name'])
         sheet.write(index + 1, 1, exp['specie'][0].upper())
         sheet.write(index + 1, 2, exp['selected_by'][:1].capitalize())
         sheet.write(index + 1, 3, exp['words'])
-        sheet.write(index + 1, 4, exp['seqs'] / exp['total'])
-        sheet.insert_image(index + 1, 5, exp['motif_image'], {'x_scale': 0.4, 'y_scale': 0.4})
+        sheet.write(index + 1, 4, round(exp['seqs'] / exp['total'], 2))
         sheet.set_row(index + 1, 30)
+
+        for i, d_type in enumerate(dict_types[1:]):
+            sheet.write(index + 1, 8 + i, round(exp[d_type]['sim'], 2))
+        best_d_type, best_sim = get_max(exp)
         if exp['hocomoco']['sim']:
-            sheet.write(index + 1, 6, exp['hocomoco']['sim'],
+            hocomoco_orient = exp['hocomoco']['orientation'] == 'revcomp'
+            sheet.write(index + 1, 6, round(exp['hocomoco']['sim'], 2),
                         get_format(exp['hocomoco']['sim'], green_format, yellow_format, null_format))
             sheet.write(index + 1, 7, exp['hocomoco']['name'])
-        for i, d_type in enumerate(dict_types[1:]):
-            sheet.write(index + 1, 8 + i, exp[d_type]['sim'])
-        best_d_type, best_sim = get_max(exp)
-        best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'], best_d_type),
-                                  revcomp=True if exp[best_d_type]['orientation'] == 'revcomp' else False)
+            sheet.insert_image(index + 1, 5,
+                               draw_svg(exp['pcm_path'], hocomoco_orient),
+                               {'x_scale': 0.4, 'y_scale': 0.4})
+            best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'],
+                                                          best_d_type),
+                                      hocomoco_orient ^ (exp[best_d_type]['orientation'] == 'revcomp'))
+        else:
+            sheet.insert_image(index + 1, 5,
+                               draw_svg(exp['pcm_path'], exp[best_d_type]['orientation'] == 'revcomp'),
+                               {'x_scale': 0.4, 'y_scale': 0.4})
+            best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'],
+                                                          best_d_type),
+                                      False)
+
         sheet.insert_image(index + 1, 8 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
         sheet.set_column(8 + len(dict_types[1:]), 8 + len(dict_types[1:]), motif_len * 2.5)
         sheet.write(index + 1, 9 + len(dict_types[1:]), exp[best_d_type]['name'])
@@ -189,5 +201,7 @@ if __name__ == '__main__':
             if tf_name not in allowed_tfs:
                 continue
         print('Processing {}'.format(tf_name))
-        process_tf(tf_name, value, cis_dict, chunk_size=len(value))
+        chunk_size = 2000
+        for i in range(0, len(value), chunk_size):
+            process_tf(tf_name, value, cis_dict, chunk_size=chunk_size, part=i)
 
