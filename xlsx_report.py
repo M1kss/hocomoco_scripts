@@ -1,3 +1,5 @@
+import multiprocessing
+
 import pandas as pd
 import xlsxwriter
 import json
@@ -159,6 +161,13 @@ def write_tf(report_name, sorted_tf_info):
     workbook.close()
 
 
+def write_tf_in_parallel(i, sorted_tf_info, tf_name, chunk_size):
+    part = i // 2000 + 1
+    print('Processing chunk {}'.format(part))
+    write_tf('{}.{}.xlsx'.format(tf_name, part),
+             sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))])
+
+
 def main():
     info_dict = read_info_dict()
     cisbp_dfs = read_cisbp_df()
@@ -198,14 +207,16 @@ def main():
                                'name': tf_cisbp_name}
         if len(tf_info) > 0 and tf_info[0]['hocomoco']['sim']:
             tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['sim'], reverse=True)
-            tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['name'], reverse=True)
+            tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['name'])
         sorted_tf_info = [x for x in tf_info if get_max(x)[1] >= 0.01]
-        chunk_size = 2000
-        for i in range(0, len(sorted_tf_info), chunk_size):
-            part = i // 2000 + 1
-            print('Processing chunk {}'.format(part))
-            write_tf('{}.{}.xlsx'.format(tf_name, part + 1),
-                     sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))])
+        chunk_size = 1000
+        parts_start = [i for i in range(0, len(sorted_tf_info), chunk_size)]
+        pool = multiprocessing.Pool(len(parts_start))
+        pool.map(lambda x: write_tf_in_parallel(x,
+                                                sorted_tf_info=sorted_tf_info,
+                                                tf_name=tf_name,
+                                                chunk_size=chunk_size),
+                 parts_start)
 
 
 if __name__ == '__main__':
