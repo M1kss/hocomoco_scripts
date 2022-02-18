@@ -118,7 +118,7 @@ def write_tf(report_name, sorted_tf_info):
     sheet.write(0, 9 + len(dict_types[1:]), 'Most_sim_TF')
     sheet.write(0, 10 + len(dict_types[1:]), 'Most_sim_type')
     sheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
-    for index, exp in enumerate(sorted_tf_info):
+    for index, exp in tqdm(enumerate(sorted_tf_info), total=len(sorted_tf_info)):
         sheet.set_column(0, 0, name_width)
         sheet.set_column(1, 2, 1.5)
         sheet.set_column(5, 5, motif_len * 2.5)
