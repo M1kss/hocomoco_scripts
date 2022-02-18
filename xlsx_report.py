@@ -1,4 +1,5 @@
 import multiprocessing
+from itertools import repeat
 
 import pandas as pd
 import xlsxwriter
@@ -212,11 +213,8 @@ def main():
         chunk_size = 1000
         parts_start = [i for i in range(0, len(sorted_tf_info), chunk_size)]
         pool = multiprocessing.Pool(len(parts_start))
-        pool.map(lambda x: write_tf_in_parallel(x,
-                                                sorted_tf_info=sorted_tf_info,
-                                                tf_name=tf_name,
-                                                chunk_size=chunk_size),
-                 parts_start)
+        pool.starmap(write_tf_in_parallel,
+                     [parts_start, repeat(sorted_tf_info), repeat(tf_name), repeat(chunk_size)])
 
 
 if __name__ == '__main__':
