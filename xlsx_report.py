@@ -203,5 +203,6 @@ if __name__ == '__main__':
         print('Processing {}'.format(tf_name))
         chunk_size = 2000
         for i in range(0, len(value), chunk_size):
+            print('Processing chunk {}'.format(i + 1))
             process_tf(tf_name, value, cis_dict, chunk_size=chunk_size, part=i)
 
