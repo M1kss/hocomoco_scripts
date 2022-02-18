@@ -7,7 +7,6 @@ from drawlogo import start
 import requests
 from cairosvg import svg2png
 from tqdm import tqdm
-import sys
 
 from cor import dict_types, motif_dir, result_path, read_info_dict, read_cisbp_df, allowed_tfs, \
     hocomoco_path
@@ -90,40 +89,13 @@ def get_max(exp):
                key=lambda x: x[1])
 
 
-def process_tf(t_factor, tf_info, cisbp_dict, part=0, chunk_size=5000):
-    report_path = os.path.join('reports', '{}.{}.xlsx'.format(tf_name, part + 1))
+def write_tf(report_name, sorted_tf_info):
+    report_path = os.path.join('reports', report_name)
     workbook = xlsxwriter.Workbook(report_path)
     green_format = workbook.add_format({'bg_color': '#C6EFCE'})
     yellow_format = workbook.add_format({'bg_color': '#FFF77D'})
     null_format = workbook.add_format()
     sheet = workbook.add_worksheet()
-    if not os.path.exists(os.path.join(result_path, t_factor + '.json')):
-        return
-    with open(os.path.join(result_path, t_factor + '.json')) as f:
-        sim_dict = json.load(f)
-    print('Parsing sim dict')
-    tf_info = tf_info[chunk_size * part:min(len(tf_info), chunk_size * (part + 1))]
-    for exp in tqdm(tf_info):
-        exp['name'] = craft_motif_name(exp)
-        pcm_name = os.path.splitext(os.path.basename(exp['pcm_path']))[0]
-        for i, d_type in enumerate(dict_types):
-            motifs = sim_dict.get(d_type)
-            if not motifs:
-                exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
-                continue
-
-            comp = motifs.get(pcm_name)
-            if not comp:
-                exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
-                continue
-            tf_cisbp_name = get_cisbp_tf(comp['motif'], cisbp_dict, d_type)
-            exp[d_type] = {'motif': comp['motif'].replace('.txt', ''),  # FIXME
-                           'orientation': comp['orientation'],
-                           'sim': float(comp['similarity']),
-                           'name': tf_cisbp_name}
-    sorted_tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['sim'], reverse=True)
-    sorted_tf_info = sorted(sorted_tf_info, key=lambda x: x['hocomoco']['name'], reverse=True)
-    sorted_tf_info = [x for x in sorted_tf_info if get_max(x)[1] >= 0.01]
     print('Writing to file')
     try:
         name_width = len(max([exp['name'] for exp in sorted_tf_info]))
@@ -187,22 +159,52 @@ def process_tf(t_factor, tf_info, cisbp_dict, part=0, chunk_size=5000):
     workbook.close()
 
 
-if __name__ == '__main__':
+def main():
     info_dict = read_info_dict()
     cisbp_dfs = read_cisbp_df()
-    cis_dict = {}
+    cisbp_dict = {}
     for key, value in cisbp_dfs.items():
         df = value[value['TF_Status'] == 'D']
         df['TF_Name'] = df['TF_Name'].apply(lambda x: x.upper() + '_{}'.format(key.upper()))
-        cis_dict = {**cis_dict,
-                    **pd.Series(df['TF_Name'].values, index=df.Motif_ID).to_dict()}
-    for tf_name, value in info_dict.items():
+        cisbp_dict = {**cisbp_dict,
+                      **pd.Series(df['TF_Name'].values, index=df.Motif_ID).to_dict()}
+    for tf_name, tf_info in info_dict.items():
         if allowed_tfs is not None:
             if tf_name not in allowed_tfs:
                 continue
         print('Processing {}'.format(tf_name))
-        chunk_size = 2000
-        for i in range(0, len(value), chunk_size):
-            print('Processing chunk {}'.format(i + 1))
-            process_tf(tf_name, value, cis_dict, chunk_size=chunk_size, part=i)
+        if not os.path.exists(os.path.join(result_path, tf_name + '.json')):
+            return
+        with open(os.path.join(result_path, tf_name + '.json')) as f:
+            sim_dict = json.load(f)
+        print('Parsing sim dict')
+        for exp in tqdm(tf_info):
+            exp['name'] = craft_motif_name(exp)
+            pcm_name = os.path.splitext(os.path.basename(exp['pcm_path']))[0]
+            for i, d_type in enumerate(dict_types):
+                motifs = sim_dict.get(d_type)
+                if not motifs:
+                    exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
+                    continue
 
+                comp = motifs.get(pcm_name)
+                if not comp:
+                    exp[d_type] = {'motif': None, 'sim': None, 'name': ''}
+                    continue
+                tf_cisbp_name = get_cisbp_tf(comp['motif'], cisbp_dict, d_type)
+                exp[d_type] = {'motif': comp['motif'].replace('.txt', ''),  # FIXME
+                               'orientation': comp['orientation'],
+                               'sim': float(comp['similarity']),
+                               'name': tf_cisbp_name}
+        sorted_tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['sim'], reverse=True)
+        sorted_tf_info = sorted(sorted_tf_info, key=lambda x: x['hocomoco']['name'], reverse=True)
+        sorted_tf_info = [x for x in sorted_tf_info if get_max(x)[1] >= 0.01]
+        chunk_size = 2000
+        for i in range(0, len(sorted_tf_info), chunk_size):
+            part = i // 2000 + 1
+            print('Processing chunk {}'.format(part))
+            write_tf('{}.{}.xlsx'.format(tf_name, part + 1), tf_info)
+
+
+if __name__ == '__main__':
+    main()
