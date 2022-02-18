@@ -196,14 +196,16 @@ def main():
                                'orientation': comp['orientation'],
                                'sim': float(comp['similarity']),
                                'name': tf_cisbp_name}
-        sorted_tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['sim'], reverse=True)
-        sorted_tf_info = sorted(sorted_tf_info, key=lambda x: x['hocomoco']['name'], reverse=True)
-        sorted_tf_info = [x for x in sorted_tf_info if get_max(x)[1] >= 0.01]
+        if len(tf_info) > 0 and tf_info[0]['hocomoco']['sim']:
+            tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['sim'], reverse=True)
+            tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['name'], reverse=True)
+        sorted_tf_info = [x for x in tf_info if get_max(x)[1] >= 0.01]
         chunk_size = 2000
         for i in range(0, len(sorted_tf_info), chunk_size):
             part = i // 2000 + 1
             print('Processing chunk {}'.format(part))
-            write_tf('{}.{}.xlsx'.format(tf_name, part + 1), tf_info)
+            write_tf('{}.{}.xlsx'.format(tf_name, part + 1),
+                     sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))])
 
 
 if __name__ == '__main__':
