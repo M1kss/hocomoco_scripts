@@ -1,5 +1,3 @@
-import multiprocessing
-
 import pandas as pd
 import xlsxwriter
 import json
@@ -204,11 +202,9 @@ def main():
         chunk_size = 1000
         parts_start = [i for i in range(0, len(sorted_tf_info), chunk_size)]
         print('Writing to files')
-        with multiprocessing.Pool(len(parts_start)) as pool:
-            pool.starmap(write_tf,
-                         [('{}.{}.xlsx'.format(tf_name, i//chunk_size + 1),
-                           sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))])
-                          for i in parts_start])
+        for i in parts_start:
+            write_tf('{}.{}.xlsx'.format(tf_name, i // chunk_size + 1),
+                     sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))])
 
 
 if __name__ == '__main__':
