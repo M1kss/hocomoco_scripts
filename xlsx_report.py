@@ -1,5 +1,4 @@
 import multiprocessing
-from itertools import repeat
 
 import pandas as pd
 import xlsxwriter
@@ -99,7 +98,6 @@ def write_tf(report_name, sorted_tf_info):
     yellow_format = workbook.add_format({'bg_color': '#FFF77D'})
     null_format = workbook.add_format()
     sheet = workbook.add_worksheet()
-    print('Writing to file')
     try:
         name_width = len(max([exp['name'] for exp in sorted_tf_info]))
     except ValueError:
@@ -122,7 +120,7 @@ def write_tf(report_name, sorted_tf_info):
     sheet.write(0, 9 + len(dict_types[1:]), 'Most_sim_TF')
     sheet.write(0, 10 + len(dict_types[1:]), 'Most_sim_type')
     sheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
-    for index, exp in tqdm(enumerate(sorted_tf_info), total=len(sorted_tf_info)):
+    for index, exp in enumerate(sorted_tf_info):
         sheet.set_column(0, 0, name_width)
         sheet.set_column(1, 2, 1.5)
         sheet.set_column(5, 5, motif_len * 2.5)
@@ -160,13 +158,6 @@ def write_tf(report_name, sorted_tf_info):
         sheet.write(index + 1, 9 + len(dict_types[1:]), exp[best_d_type]['name'])
         sheet.write(index + 1, 10 + len(dict_types[1:]), best_d_type)
     workbook.close()
-
-
-def write_tf_in_parallel(i, sorted_tf_info, tf_name, chunk_size):
-    part = i // 2000 + 1
-    print('Processing chunk {}'.format(part))
-    write_tf('{}.{}.xlsx'.format(tf_name, part),
-             sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))])
 
 
 def main():
