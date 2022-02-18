@@ -164,7 +164,7 @@ def main(njobs=10):
                 for specie in species:
                     tf_name = tf + '_' + specie.upper()
                     motif_col = dicts[d_type].get(tf_name, None)
-                    if motif_collection is not None:
+                    if motif_col is not None:
                         motif_collection += motif_col
                 motif_collection = set(motif_collection)
             res_dir = check_dir_for_collection(tf, motif_collection, d_type)
