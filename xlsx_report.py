@@ -130,7 +130,7 @@ def write_tf(report_name, sorted_tf_info):
         sheet.set_row(index + 1, 30)
 
         for i, d_type in enumerate(dict_types[1:]):
-            sheet.write(index + 1, 8 + i, round(exp[d_type]['sim'], 2))
+            sheet.write(index + 1, 8 + i, round(exp[d_type]['sim'], 2) if exp[d_type]['sim'] else None)
         best_d_type, best_sim = get_max(exp)
         if exp['hocomoco']['sim']:
             hocomoco_orient = exp['hocomoco']['orientation'] == 'revcomp'
