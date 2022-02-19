@@ -169,11 +169,11 @@ def main():
                       **pd.Series(df['TF_Name'].values, index=df.Motif_ID).to_dict()}
     for tf_name, tf_info in info_dict.items():
         if allowed_tfs is not None:
-            if tf_name not in allowed_tfs:
+            if tf_name in allowed_tfs:
                 continue
         print('Processing {}'.format(tf_name))
         if not os.path.exists(os.path.join(result_path, tf_name + '.json')):
-            return
+            continue
         with open(os.path.join(result_path, tf_name + '.json')) as f:
             sim_dict = json.load(f)
         print('Parsing sim dict')
