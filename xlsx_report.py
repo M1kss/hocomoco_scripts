@@ -92,8 +92,7 @@ def get_max(exp):
         return None, 0
 
 
-def write_tf(report_name, sorted_tf_info):
-    report_path = os.path.join('reports', report_name)
+def write_tf(report_path, sorted_tf_info):
     workbook = xlsxwriter.Workbook(report_path)
     green_format = workbook.add_format({'bg_color': '#C6EFCE'})
     yellow_format = workbook.add_format({'bg_color': '#FFF77D'})
@@ -176,6 +175,8 @@ def main():
                 continue
         print('Processing {}'.format(tf_name))
         if not os.path.exists(os.path.join(result_path, tf_name + '.json')):
+            continue
+        if os.path.exists(os.path.join('reports', tf_name + '.1.xlsx')):
             continue
         with open(os.path.join(result_path, tf_name + '.json')) as f:
             sim_dict = json.load(f)
