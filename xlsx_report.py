@@ -85,8 +85,11 @@ def get_format(param, green_format, yellow_format, null_format):
 
 
 def get_max(exp):
-    return max([(x, exp[x]['sim']) for x in exp if x in dict_types and exp[x]['sim']],
-               key=lambda x: x[1])
+    try:
+        return max([(x, exp[x]['sim']) for x in exp if x in dict_types and exp[x]['sim']],
+                   key=lambda x: x[1])
+    except ValueError:
+        return None, 0
 
 
 def write_tf(report_name, sorted_tf_info):
