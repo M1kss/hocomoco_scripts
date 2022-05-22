@@ -176,6 +176,7 @@ def main(njobs=10):
                                                        for tf in tfs for d_type in dict_types])):
             if res is None:
                 continue
+            print(f'Doing {tf}')
             results.setdefault(tf, {}).update(res)
 
     for tf in results:
