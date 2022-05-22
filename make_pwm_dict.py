@@ -91,25 +91,22 @@ def main():
 
     with open(os.path.join(dicts_path, 'inferred_dict.json'), 'w') as f:
         json.dump(inferred_dict, f, indent=2)
-    print('Processing Family and subfamily')
-    for tf in tqdm(tfs):
-        hoc_tf = hocomoco_tf_dict[tf]
+    print('Processing family, subfamily and HOCOMOCO')
+    hocomoco_dict = {}
+    hocomoco_motifs = read_hocomoco_dir()
+
+    for hoc_tf in tqdm(hocomoco_tfs):
         tf_class_family_dict[hoc_tf] = get_family_motifs_by_tf(direct_dict,
-                                                               tf_class_family_tfs_dict.get(tf, None))
+                                                               tf_class_family_tfs_dict.get(hoc_tf, None))
 
         tf_class_subfamily_dict[hoc_tf] = get_family_motifs_by_tf(direct_dict,
-                                                                  tf_class_subfamily_tfs_dict.get(tf, None))
-
+                                                                  tf_class_subfamily_tfs_dict.get(hoc_tf, None))
+        hocomoco_dict[hoc_tf] = get_hocomoco_by_tf(hocomoco_motifs, hoc_tf)
     with open(os.path.join(dicts_path, 'tf_class_family_dict.json'), 'w') as f:
         json.dump(tf_class_family_dict, f, indent=2)
 
     with open(os.path.join(dicts_path, 'tf_class_subfamily_dict.json'), 'w') as f:
         json.dump(tf_class_subfamily_dict, f, indent=2)
-    print('Processing HOCOMOCO')
-    hocomoco_dict = {}
-    hocomoco_motifs = read_hocomoco_dir()
-    for hoc_tf in tqdm(hocomoco_tfs):
-        hocomoco_dict[hoc_tf] = get_hocomoco_by_tf(hocomoco_motifs, hoc_tf)
     with open(os.path.join(dicts_path, 'hocomoco_dict.json'), 'w') as f:
         json.dump(hocomoco_dict, f, indent=2)
 
