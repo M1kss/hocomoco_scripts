@@ -34,7 +34,7 @@ def choose_df_by_tf(cisbp_dfs, tf_name):
 
 def get_motifs_by_tf(cisbp_dfs, tf_name, inferred=False):
     t, specie = choose_df_by_tf(cisbp_dfs, tf_name)
-    motifs = t[t['TF_Name'] == transform_name(tf_name, specie)]
+    motifs = t[t['TF_Name'] == tf_name]
     status_ok = {'D', 'I'} if inferred else {'D'}
     motifs = motifs[motifs['TF_Status'].isin(status_ok)]
     return motifs['Motif_ID'].tolist()
@@ -72,14 +72,12 @@ def read_hocomoco_dir():
 def main():
     cisbp_dfs = read_cisbp_df()
     known_tfs = read_xlsx_master()
-    tfs = known_tfs['curated:uniprot_id'].to_list()
+    tfs = known_tfs['auto:gene_symbol'].to_list()
     tf_class_family_tfs_dict, tf_class_subfamily_tfs_dict = parse_known_tfs(known_tfs)
     direct_dict = {}
     inferred_dict = {}
     tf_class_family_dict = {}
     tf_class_subfamily_dict = {}
-    hocomoco_dict = {}
-    hocomoco_motifs = read_hocomoco_dir()
     for tf in tqdm(tfs):
         direct_dict[tf] = get_motifs_by_tf(cisbp_dfs, tf)
         inferred_dict[tf] = get_motifs_by_tf(cisbp_dfs, tf, inferred=True)
@@ -95,14 +93,17 @@ def main():
         tf_class_subfamily_dict[tf] = get_family_motifs_by_tf(direct_dict,
                                                               tf_class_subfamily_tfs_dict.get(tf, None))
 
-        hocomoco_dict[tf] = get_hocomoco_by_tf(hocomoco_motifs, tf)
-
     with open(os.path.join(dicts_path, 'tf_class_family_dict.json'), 'w') as f:
         json.dump(tf_class_family_dict, f, indent=2)
 
     with open(os.path.join(dicts_path, 'tf_class_subfamily_dict.json'), 'w') as f:
         json.dump(tf_class_subfamily_dict, f, indent=2)
-
+    print('Processing HOCOMOCO')
+    hocomoco_tfs = known_tfs['curated:uniprot_id'].to_list()
+    hocomoco_dict = {}
+    hocomoco_motifs = read_hocomoco_dir()
+    for tf in tqdm(hocomoco_tfs):
+        hocomoco_dict[tf] = get_hocomoco_by_tf(hocomoco_motifs, tf)
     with open(os.path.join(dicts_path, 'hocomoco_dict.json'), 'w') as f:
         json.dump(hocomoco_dict, f, indent=2)
 
