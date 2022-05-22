@@ -33,8 +33,8 @@ def choose_df_by_tf(cisbp_dfs, tf_name):
         raise ValueError(tf_name)
 
 
-def get_motifs_by_tf(cisbp_dfs, tf_name, inferred=False):
-    t, specie = choose_df_by_tf(cisbp_dfs, tf_name)
+def get_motifs_by_tf(cisbp_dfs, hoc_tf, tf_name, inferred=False):
+    t, specie = choose_df_by_tf(cisbp_dfs, hoc_tf)
     motifs = t[t['TF_Name'] == tf_name]
     status_ok = {'D', 'I'} if inferred else {'D'}
     motifs = motifs[motifs['TF_Status'].isin(status_ok)]
@@ -84,8 +84,8 @@ def main():
     print('Processing direct and inferred')
     for tf in tqdm(tfs):
         hoc_tf = hocomoco_tf_dict[tf]
-        direct_dict[hoc_tf] = get_motifs_by_tf(cisbp_dfs, tf)
-        inferred_dict[hoc_tf] = get_motifs_by_tf(cisbp_dfs, tf, inferred=True)
+        direct_dict[hoc_tf] = get_motifs_by_tf(cisbp_dfs, hoc_tf, tf)
+        inferred_dict[hoc_tf] = get_motifs_by_tf(cisbp_dfs, hoc_tf, tf, inferred=True)
     with open(os.path.join(dicts_path, 'direct_dict.json'), 'w') as f:
         json.dump(direct_dict, f, indent=2)
 
