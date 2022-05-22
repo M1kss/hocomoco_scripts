@@ -3,9 +3,9 @@ import os
 import sys
 import json
 import shutil
-import pandas as pd
+from multiprocessing import Pool
 
-from tqdm import tqdm
+import pandas as pd
 
 dicts_path = 'files'
 cisbp_human_dict_path = os.path.join('source_files', 'TF_Information_human.txt')
@@ -84,7 +84,7 @@ def parse_output(exp, output):
     return pcm_name, best_motif
 
 
-def run_ape(exps, res_dir, d_type, jobs=10):
+def run_ape(exps, res_dir, d_type, jobs=1):
     result = {}
     if res_dir is not None:
         exps_batches = [exps[i:i + jobs] for i in range(0, len(exps), jobs)]
@@ -139,40 +139,48 @@ def read_cisbp_df():
                                  [cisbp_human_dict_path, cisbp_mouse_dict_path])}
 
 
+def process_tf(tf, d_type, dicts, info_dict):
+    pwms = {}
+    for specie in species:
+        pwms[specie] = [x['pcm_path'] for x in info_dict[tf] if x['specie'] == specie]
+    results = {}
+    if d_type == 'hocomoco':
+        tf_name = tf + '_' + 'HUMAN'
+        motif_collection = dicts[d_type].get(tf_name, None)
+        if not motif_collection:
+            tf_name = tf + '_' + 'MOUSE'
+            motif_collection = dicts[d_type].get(tf_name, None)
+        if not motif_collection:
+            return
+    else:
+        motif_collection = []
+        for specie in species:
+            tf_name = tf + '_' + specie.upper()
+            motif_col = dicts[d_type].get(tf_name, None)
+            if motif_col is not None:
+                motif_collection += motif_col
+        motif_collection = set(motif_collection)
+    res_dir = check_dir_for_collection(tf, motif_collection, d_type)
+    ape_res = run_ape([x['pcm_path'] for x in info_dict[tf]], res_dir, d_type)
+    results[d_type] = ape_res
+    return results
+
+
 def main(njobs=10):
     dicts = read_dicts()
     info_dict = read_info_dict()
-    for tf in tqdm(info_dict.keys()):
-        if allowed_tfs is not None:
-            if tf in allowed_tfs:
+    tfs = info_dict.keys()
+    results = {}
+    with Pool(njobs) as p:
+        for tf, res in zip(tfs, p.starmap(process_tf, [(tf, d_type, dicts, info_dict)
+                                                       for tf in tfs for d_type in dict_types])):
+            if res is None:
                 continue
-        results = {}
-        pwms = {}
-        for specie in species:
-            pwms[specie] = [x['pcm_path'] for x in info_dict[tf] if x['specie'] == specie]
-        for d_type in dict_types:
-            if d_type == 'hocomoco':
-                tf_name = tf + '_' + 'HUMAN'
-                motif_collection = dicts[d_type].get(tf_name, None)
-                if not motif_collection:
-                    tf_name = tf + '_' + 'MOUSE'
-                    motif_collection = dicts[d_type].get(tf_name, None)
-                if not motif_collection:
-                    continue
-            else:
-                motif_collection = []
-                for specie in species:
-                    tf_name = tf + '_' + specie.upper()
-                    motif_col = dicts[d_type].get(tf_name, None)
-                    if motif_col is not None:
-                        motif_collection += motif_col
-                motif_collection = set(motif_collection)
-            res_dir = check_dir_for_collection(tf, motif_collection, d_type)
-            ape_res = run_ape([x['pcm_path'] for x in info_dict[tf]], res_dir, d_type, njobs)
-            results[d_type] = ape_res
+            results.setdefault(tf, {}).update(res)
 
-        with open(os.path.join(result_path, tf + '.json'), 'w') as out:
-            json.dump(results, out, indent=2)
+    for tf in results:
+        with open(os.path.join(result_path, f'{tf}.json'), 'w') as out:
+            json.dump(results[tf], out, indent=2)
 
 
 if __name__ == '__main__':
