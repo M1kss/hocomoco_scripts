@@ -90,7 +90,6 @@ def run_ape(exps, res_dir, d_type, jobs=1):
         exps_batches = [exps[i:i + jobs] for i in range(0, len(exps), jobs)]
 
         for batch in exps_batches:
-            print('Batches')
             commands = [["java", '-cp', ape_path,
                          'ru.autosome.macroape.ScanCollection',
                          exp, res_dir, '--query-pcm',
@@ -111,6 +110,7 @@ def run_ape(exps, res_dir, d_type, jobs=1):
                 name, res = parse_output(exp, res)
                 result[name] = res
         shutil.rmtree(res_dir)
+    print(result, d_type)
     return result
 
 
