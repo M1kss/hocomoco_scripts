@@ -166,6 +166,7 @@ def process_tf(tf, d_type, dicts, info_dict):
     res_dir = check_dir_for_collection(tf, motif_collection, d_type)
     ape_res = run_ape([x['pcm_path'] for x in info_dict[tf]], res_dir, d_type)
     results[d_type] = ape_res
+    print(tf, d_type)
     return results
 
 
@@ -178,7 +179,6 @@ def main(njobs=10):
     with Pool(njobs) as p:
         for tf, res in zip(tfs, p.starmap(process_tf, [(tf, d_type, dicts, info_dict)
                                                        for tf, d_type in tf_dtype])):
-            print(tf)
             if res is None:
                 continue
             print(f'Doing {tf}')
