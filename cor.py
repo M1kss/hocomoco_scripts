@@ -174,9 +174,10 @@ def main(njobs=10):
     info_dict = read_info_dict()
     tfs = info_dict.keys()
     results = {}
+    tf_dtype = [(tf, d_type) for tf in tfs for d_type in dict_types]
     with Pool(njobs) as p:
         for tf, res in zip(tfs, p.starmap(process_tf, [(tf, d_type, dicts, info_dict)
-                                                       for tf in tfs for d_type in dict_types])):
+                                                       for tf, d_type in tf_dtype])):
             print(tf)
             if res is None:
                 continue
