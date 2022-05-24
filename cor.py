@@ -110,7 +110,6 @@ def run_ape(exps, res_dir, d_type, jobs=1):
                 name, res = parse_output(exp, res)
                 result[name] = res
         shutil.rmtree(res_dir)
-    print(result, d_type)
     return result
 
 
@@ -178,6 +177,7 @@ def main(njobs=10):
     with Pool(njobs) as p:
         for tf, res in zip(tfs, p.starmap(process_tf, [(tf, d_type, dicts, info_dict)
                                                        for tf in tfs for d_type in dict_types])):
+            print(tf)
             if res is None:
                 continue
             print(f'Doing {tf}')
