@@ -165,6 +165,7 @@ def process_tf(tf, d_type, dicts, info_dict):
         motif_collection = set(motif_collection)
     res_dir = check_dir_for_collection(tf, motif_collection, d_type)
     ape_res = run_ape([x['pcm_path'] for x in info_dict[tf]], res_dir, d_type)
+    print(ape_res)
     results[d_type] = ape_res
     print(tf, d_type)
     return results
