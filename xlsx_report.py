@@ -205,7 +205,7 @@ def main():
         sorted_tf_info = [x for x in tf_info if get_max(x)[1] >= 0.01]
         chunk_size = 1000
         parts_start = [i for i in range(0, len(sorted_tf_info), chunk_size)]
-        print('Writing to files')
+        print(f'Writing to files {len(sorted_tf_info)} entries')
         for i in parts_start:
             write_tf('{}.{}.xlsx'.format(tf_name, i // chunk_size + 1),
                      sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))])
