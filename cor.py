@@ -181,7 +181,6 @@ def main(njobs=10):
             if res is None:
                 continue
             tf, d_type = tf_dtype
-            print(f'Doing {tf}')
             results.setdefault(tf, {}).update(res)
 
     for tf in results:
