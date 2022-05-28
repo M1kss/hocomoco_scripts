@@ -207,7 +207,7 @@ def main():
         chunk_size = 1000
         parts_start = [i for i in range(0, len(sorted_tf_info), chunk_size)]
         for i in parts_start:
-            write_tf('{}.{}.xlsx'.format(tf_name, i // chunk_size + 1),
+            write_tf(os.path.join('reports', '{}.{}.xlsx'.format(tf_name, i // chunk_size + 1)),
                      sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))])
 
 
