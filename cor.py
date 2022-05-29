@@ -174,10 +174,10 @@ def main(njobs=10):
     info_dict = read_info_dict()
     tfs = info_dict.keys()
     results = {}
-    tf_dtype = [(tf, d_type) for tf in tfs for d_type in dict_types]
+    tf_dtype = [(tf, d_type) for tf in tfs for d_type in dict_types if tf != 'CTCF']
     with Pool(njobs) as p:
         for tf_dtype, res in zip(tf_dtype, p.starmap(process_tf, [(tf, d_type, dicts, info_dict)
-                                                       for tf, d_type in tf_dtype])):
+                                                                  for tf, d_type in tf_dtype])):
             if res is None:
                 continue
             tf, d_type = tf_dtype
