@@ -96,8 +96,8 @@ def run_ape(exps, res_dir, d_type, jobs=1):
                  '-d', '1', '--all'] for exp in exps]
     for exp, command in zip(exps, commands):
         process = subprocess.Popen(command,
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE)
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE)
         err = process.stderr.read().decode('utf-8')
         if err and not err.startswith('Warning!'):
             print(err)
@@ -174,7 +174,7 @@ def main(njobs=10):
     tfs = info_dict.keys()
     tf_dtype = [(tf, d_type) for tf in tfs for d_type
                 in dict_types if tf not in allowed_tfs]
-    ctx = mp.get_context('forkserever')
+    ctx = mp.get_context("forkserver")
     with ctx.Pool(njobs) as p:
         for tf_dtype, res in zip(tf_dtype, p.starmap(process_tf, [(tf, d_type, dicts, info_dict)
                                                                   for tf, d_type in tf_dtype])):
@@ -183,7 +183,6 @@ def main(njobs=10):
             tf, d_type = tf_dtype
             with open(os.path.join(result_path, f'{tf}@{d_type}.json'), 'w') as out:
                 json.dump(res, out, indent=2)
-
 
 
 if __name__ == '__main__':
