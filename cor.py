@@ -3,7 +3,7 @@ import os
 import sys
 import json
 import shutil
-import multiprocessing
+import multiprocessing as mp
 
 import pandas as pd
 
@@ -174,7 +174,7 @@ def main(njobs=10):
     tfs = info_dict.keys()
     tf_dtype = [(tf, d_type) for tf in tfs for d_type
                 in dict_types if tf not in allowed_tfs]
-    ctx = multiprocessing.get_context('forkserever')
+    ctx = mp.get_context('forkserever')
     with ctx.Pool(njobs) as p:
         for tf_dtype, res in zip(tf_dtype, p.starmap(process_tf, [(tf, d_type, dicts, info_dict)
                                                                   for tf, d_type in tf_dtype])):
