@@ -143,7 +143,6 @@ def process_tf(tf, d_type, dicts, info_dict):
     #         return
     for specie in species:
         pwms[specie] = [x['pcm_path'] for x in info_dict[tf] if x['specie'] == specie]
-    results = {}
     if d_type == 'hocomoco':
         tf_name = tf + '_' + 'HUMAN'
         motif_collection = dicts[d_type].get(tf_name, None)
@@ -162,10 +161,9 @@ def process_tf(tf, d_type, dicts, info_dict):
         motif_collection = set(motif_collection)
     res_dir = check_dir_for_collection(tf, motif_collection, d_type)
     ape_res = run_ape([x['pcm_path'] for x in info_dict[tf]], res_dir, d_type)
-    if ape_res is None:
-        return
-    results[d_type] = ape_res
-    return results
+    with open(os.path.join(result_path, f'{tf}@{d_type}.json'), 'w') as out:
+        json.dump(ape_res, out, indent=2)
+    return ape_res
 
 
 def main(njobs=10):
@@ -175,6 +173,9 @@ def main(njobs=10):
     tf_dtype = [(tf, d_type) for tf in tfs for d_type
                 in dict_types if tf not in allowed_tfs]
     ctx = mp.get_context("forkserver")
+    for tf_dtype, args in zip(tf_dtype, [(tf, d_type, dicts, info_dict)
+                                                                  for tf, d_type in tf_dtype]):
+        process_tf(*args)
     with ctx.Pool(njobs) as p:
         for tf_dtype, res in zip(tf_dtype, p.starmap(process_tf, [(tf, d_type, dicts, info_dict)
                                                                   for tf, d_type in tf_dtype])):
@@ -182,8 +183,6 @@ def main(njobs=10):
             if res is None:
                 continue
             tf, d_type = tf_dtype
-            with open(os.path.join(result_path, f'{tf}@{d_type}.json'), 'w') as out:
-                json.dump(res, out, indent=2)
 
 
 if __name__ == '__main__':
