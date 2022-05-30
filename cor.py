@@ -173,11 +173,11 @@ def main(njobs=10):
     tf_dtype = [(tf, d_type) for tf in tfs for d_type
                 in dict_types if tf not in allowed_tfs]
     ctx = mp.get_context("forkserver")
-    for tf_dtype, args in zip(tf_dtype, [(tf, d_type, dicts, info_dict)
-                                                                  for tf, d_type in tf_dtype]):
-        process_tf(*args)
-    # with ctx.Pool(njobs) as p:
-    #     p.starmap(process_tf, [(tf, d_type, dicts, info_dict) for tf, d_type in tf_dtype])
+    # for tf_dtype, args in zip(tf_dtype, [(tf, d_type, dicts, info_dict)
+    #                                                               for tf, d_type in tf_dtype]):
+    #     process_tf(*args)
+    with ctx.Pool(njobs) as p:
+        p.starmap(process_tf, [(tf, d_type, dicts, info_dict) for tf, d_type in tf_dtype])
 
 
 if __name__ == '__main__':
