@@ -141,9 +141,9 @@ def read_cisbp_df():
 
 def process_tf(tf, d_type, dicts, info_dict):
     pwms = {}
-    if allowed_tfs is not None:
-        if tf in allowed_tfs:
-            return
+    # if allowed_tfs is not None:
+    #     if tf in allowed_tfs:
+    #         return
     for specie in species:
         pwms[specie] = [x['pcm_path'] for x in info_dict[tf] if x['specie'] == specie]
     results = {}
