@@ -3,7 +3,7 @@ import os
 import sys
 import json
 import shutil
-from multiprocessing import Pool
+import multiprocessing
 
 import pandas as pd
 
@@ -86,30 +86,27 @@ def parse_output(exp, output):
 
 def run_ape(exps, res_dir, d_type, jobs=1):
     result = {}
-    if res_dir is not None:
-        exps_batches = [exps[i:i + jobs] for i in range(0, len(exps), jobs)]
-
-        for batch in exps_batches:
-            commands = [["java", '-cp', ape_path,
-                         'ru.autosome.macroape.ScanCollection',
-                         exp, res_dir, '--query-pcm',
-                         '--collection-{}'.format('pcm' if d_type == 'hocomoco' else 'ppm'),
-                         '-d', '1', '--all'] for exp in batch]
-            processes = [subprocess.Popen(command,
-                                          stdout=subprocess.PIPE,
-                                          stderr=subprocess.PIPE) for command in commands]
-            for process in processes:
-                process.wait()
-            for process, exp in zip(processes, batch):
-                err = process.stderr.read().decode('utf-8')
-                if err and not err.startswith('Warning!'):
-                    print(err)
-                    print(exp)
-                    raise ValueError
-                res = process.stdout.read().decode('utf-8')
-                name, res = parse_output(exp, res)
-                result[name] = res
-        shutil.rmtree(res_dir)
+    if res_dir is None:
+        return
+    exps_batches = exps
+    commands = [["java", '-cp', ape_path,
+                 'ru.autosome.macroape.ScanCollection',
+                 exp, res_dir, '--query-pcm',
+                 '--collection-{}'.format('pcm' if d_type == 'hocomoco' else 'ppm'),
+                 '-d', '1', '--all'] for exp in exps]
+    for exp, command in zip(exps, commands):
+        process = subprocess.Popen(command,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+        err = process.stderr.read().decode('utf-8')
+        if err and not err.startswith('Warning!'):
+            print(err)
+            print(exp)
+            raise ValueError
+        res = process.stdout.read().decode('utf-8')
+        name, res = parse_output(exp, res)
+        result[name] = res
+    shutil.rmtree(res_dir)
     return result
 
 
@@ -165,6 +162,8 @@ def process_tf(tf, d_type, dicts, info_dict):
         motif_collection = set(motif_collection)
     res_dir = check_dir_for_collection(tf, motif_collection, d_type)
     ape_res = run_ape([x['pcm_path'] for x in info_dict[tf]], res_dir, d_type)
+    if ape_res is None:
+        return
     results[d_type] = ape_res
     return results
 
@@ -175,6 +174,7 @@ def main(njobs=10):
     tfs = info_dict.keys()
     tf_dtype = [(tf, d_type) for tf in tfs for d_type
                 in dict_types if tf not in allowed_tfs]
+
     with Pool(processes=njobs) as p:
         for tf_dtype, res in zip(tf_dtype, p.starmap(process_tf, [(tf, d_type, dicts, info_dict)
                                                                   for tf, d_type in tf_dtype])):
