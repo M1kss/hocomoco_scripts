@@ -176,13 +176,8 @@ def main(njobs=10):
     for tf_dtype, args in zip(tf_dtype, [(tf, d_type, dicts, info_dict)
                                                                   for tf, d_type in tf_dtype]):
         process_tf(*args)
-    with ctx.Pool(njobs) as p:
-        for tf_dtype, res in zip(tf_dtype, p.starmap(process_tf, [(tf, d_type, dicts, info_dict)
-                                                                  for tf, d_type in tf_dtype])):
-            print(res)
-            if res is None:
-                continue
-            tf, d_type = tf_dtype
+    # with ctx.Pool(njobs) as p:
+    #     p.starmap(process_tf, [(tf, d_type, dicts, info_dict) for tf, d_type in tf_dtype])
 
 
 if __name__ == '__main__':
