@@ -84,11 +84,10 @@ def parse_output(exp, output):
     return pcm_name, best_motif
 
 
-def run_ape(exps, res_dir, d_type, jobs=1):
+def run_ape(exps, res_dir, d_type):
     result = {}
     if res_dir is None:
         return
-    exps_batches = exps
     commands = [["java", '-cp', ape_path,
                  'ru.autosome.macroape.ScanCollection',
                  exp, res_dir, '--query-pcm',
@@ -98,12 +97,13 @@ def run_ape(exps, res_dir, d_type, jobs=1):
         process = subprocess.Popen(command,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE)
-        err = process.stderr.read().decode('utf-8')
+        stdout, stderr = process.communicate()
+        err = stderr.decode('utf-8')
         if err and not err.startswith('Warning!'):
             print(err)
             print(exp)
             raise ValueError
-        res = process.stdout.read().decode('utf-8')
+        res = stdout.decode('utf-8')
         name, res = parse_output(exp, res)
         result[name] = res
     shutil.rmtree(res_dir)
