@@ -175,12 +175,17 @@ def main():
             if tf_name in allowed_tfs:
                 continue
         print('Processing {}'.format(tf_name))
-        if not os.path.exists(os.path.join(result_path, tf_name + '.json')):
-            continue
+
+        sim_dict = {}
+        for d_type in dict_types:
+            name = f'{tf_name}@{d_type}.json'
+            if not os.path.exists(os.path.join(result_path, name)):
+                continue
+            with open(os.path.join(result_path, name)) as f:
+                sim_dict.update(json.load(f))
         if os.path.exists(os.path.join('reports', tf_name + '.1.xlsx')):
             continue
-        with open(os.path.join(result_path, tf_name + '.json')) as f:
-            sim_dict = json.load(f)
+
         print('Parsing sim dict')
         for exp in tqdm(tf_info):
             exp['name'] = craft_motif_name(exp)
