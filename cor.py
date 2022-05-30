@@ -173,7 +173,6 @@ def main(njobs=10):
     dicts = read_dicts()
     info_dict = read_info_dict()
     tfs = info_dict.keys()
-    results = {}
     tf_dtype = [(tf, d_type) for tf in tfs for d_type
                 in dict_types if tf not in allowed_tfs]
     with Pool(njobs) as p:
@@ -182,11 +181,9 @@ def main(njobs=10):
             if res is None:
                 continue
             tf, d_type = tf_dtype
-            results.setdefault(tf, {}).update(res)
+            with open(os.path.join(result_path, f'{tf}@{d_type}.json'), 'w') as out:
+                json.dump(res, out, indent=2)
 
-    for tf in results:
-        with open(os.path.join(result_path, f'{tf}.json'), 'w') as out:
-            json.dump(results[tf], out, indent=2)
 
 
 if __name__ == '__main__':
