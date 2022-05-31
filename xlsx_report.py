@@ -178,11 +178,12 @@ def main():
 
         sim_dict = {}
         for d_type in dict_types:
-            name = f'{tf_name}@{d_type}.json'
-            if not os.path.exists(os.path.join(result_path, name)):
+            name = os.path.join(result_path, f'{tf_name}@{d_type}.json')
+            if not os.path.exists(name):
+                print(name)
                 continue
-            with open(os.path.join(result_path, name)) as f:
-                sim_dict.update(json.load(f))
+            with open(name) as f:
+                sim_dict[d_type] = json.load(f)
         if os.path.exists(os.path.join('reports', tf_name + '.1.xlsx')):
             continue
 
