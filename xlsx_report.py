@@ -219,10 +219,13 @@ def main(njobs=1):
         df['TF_Name'] = df['TF_Name'].apply(lambda x: x.upper() + '_{}'.format(key.upper()))
         cisbp_dict = {**cisbp_dict,
                       **pd.Series(df['TF_Name'].values, index=df.Motif_ID).to_dict()}
-
-    ctx = mp.get_context("forkserver")
-    with ctx.Pool(njobs) as p:
-        p.starmap(process_tf, [(tf_name, tf_info, cisbp_dict) for tf_name, tf_info in info_dict.items()])
+    if njobs > 1:
+        ctx = mp.get_context("forkserver")
+        with ctx.Pool(njobs) as p:
+            p.starmap(process_tf, [(tf_name, tf_info, cisbp_dict) for tf_name, tf_info in info_dict.items()])
+    else:
+        for tf_name, tf_info in info_dict.items():
+            process_tf(tf_name, tf_info, cisbp_dict)
 
 
 if __name__ == '__main__':
