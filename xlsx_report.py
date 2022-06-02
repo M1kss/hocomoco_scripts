@@ -175,8 +175,8 @@ def process_tf(tf_name, tf_info, cisbp_dict):
             continue
         with open(name) as f:
             sim_dict[d_type] = json.load(f)
-    # if os.path.exists(os.path.join('reports', tf_name + '.1.xlsx')):
-    #     continue
+    if os.path.exists(os.path.join('reports', tf_name + '.1.xlsx')):
+        return
 
     print('Parsing sim dict')
     for exp in tqdm(tf_info):
