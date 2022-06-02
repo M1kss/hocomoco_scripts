@@ -167,7 +167,7 @@ def process_tf(tf_name, tf_info, cisbp_dict):
             return
     print('Processing {}'.format(tf_name))
     if tf_name == 'NANOG':
-        print(tf_name, tf_info)
+        return
     sim_dict = {}
     for d_type in dict_types:
         name = os.path.join(result_path, f'{tf_name}@{d_type}.json')
