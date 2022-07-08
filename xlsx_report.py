@@ -114,13 +114,14 @@ def write_tf(report_path, sorted_tf_info):
     sheet.write(0, 3, 'Words')
     sheet.write(0, 4, 'Seqs.fraction')
     sheet.write(0, 5, 'Motif')
-    sheet.write(0, 6, 'HOCOMOCO_sim')
-    sheet.write(0, 7, 'HOCOMOCO_info')
+    sheet.write(0, 6, 'Motif.len')
+    sheet.write(0, 7, 'HOCOMOCO_sim')
+    sheet.write(0, 8, 'HOCOMOCO_info')
     for index, d_type in enumerate(dict_types[1:]):
-        sheet.write(0, 8 + index, d_type + '_sim')
-    sheet.write(0, 8 + len(dict_types[1:]), 'Most_sim_motif')
-    sheet.write(0, 9 + len(dict_types[1:]), 'Most_sim_TF')
-    sheet.write(0, 10 + len(dict_types[1:]), 'Most_sim_type')
+        sheet.write(0, 9 + index, d_type + '_sim')
+    sheet.write(0, 9 + len(dict_types[1:]), 'Most_sim_motif')
+    sheet.write(0, 10 + len(dict_types[1:]), 'Most_sim_TF')
+    sheet.write(0, 11 + len(dict_types[1:]), 'Most_sim_type')
     sheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
     for index, exp in tqdm(enumerate(sorted_tf_info), total=len(sorted_tf_info)):
         sheet.set_column(0, 0, name_width)
@@ -131,16 +132,17 @@ def write_tf(report_path, sorted_tf_info):
         sheet.write(index + 1, 2, exp['selected_by'][:1].capitalize())
         sheet.write(index + 1, 3, exp['words'])
         sheet.write(index + 1, 4, round(exp['seqs'] / exp['total'], 2))
+        sheet.write(index + 1, 6, motif_len)
         sheet.set_row(index + 1, 30)
 
         for i, d_type in enumerate(dict_types[1:]):
-            sheet.write(index + 1, 8 + i, round(exp[d_type]['sim'], 2) if exp[d_type]['sim'] else None)
+            sheet.write(index + 1, 9 + i, round(exp[d_type]['sim'], 2) if exp[d_type]['sim'] else None)
         best_d_type, best_sim = get_max(exp)
         if exp['hocomoco']['sim']:
             hocomoco_orient = exp['hocomoco']['orientation'] == 'revcomp'
-            sheet.write(index + 1, 6, round(exp['hocomoco']['sim'], 2),
+            sheet.write(index + 1, 7, round(exp['hocomoco']['sim'], 2),
                         get_format(exp['hocomoco']['sim'], green_format, yellow_format, null_format))
-            sheet.write(index + 1, 7, exp['hocomoco']['name'])
+            sheet.write(index + 1, 8, exp['hocomoco']['name'])
             sheet.insert_image(index + 1, 5,
                                draw_svg(exp['pcm_path'], hocomoco_orient),
                                {'x_scale': 0.4, 'y_scale': 0.4})
@@ -155,14 +157,16 @@ def write_tf(report_path, sorted_tf_info):
                                                           best_d_type),
                                       False)
 
-        sheet.insert_image(index + 1, 8 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
-        sheet.set_column(8 + len(dict_types[1:]), 8 + len(dict_types[1:]), motif_len * 2.5)
-        sheet.write(index + 1, 9 + len(dict_types[1:]), exp[best_d_type]['name'])
-        sheet.write(index + 1, 10 + len(dict_types[1:]), best_d_type)
+        sheet.insert_image(index + 1, 9 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
+        sheet.set_column(9 + len(dict_types[1:]), 9 + len(dict_types[1:]), motif_len * 2.5)
+        sheet.write(index + 1, 10 + len(dict_types[1:]), exp[best_d_type]['name'])
+        sheet.write(index + 1, 11 + len(dict_types[1:]), best_d_type)
     workbook.close()
 
 
 def process_tf(tf_name, tf_info, cisbp_dict):
+    if tf_name != 'HNF4A':
+        return
     if allowed_tfs is not None:
         if tf_name in allowed_tfs:
             return
