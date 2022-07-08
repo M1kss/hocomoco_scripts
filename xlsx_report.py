@@ -163,12 +163,13 @@ def write_tf(report_path, sorted_tf_info):
 
 
 def process_tf(tf_name, tf_info, cisbp_dict):
+    if tf_name != 'HNF4A':
+        return
     if allowed_tfs is not None:
         if tf_name in allowed_tfs:
             return
     print('Processing {}'.format(tf_name))
-    if tf_name != 'HNF4A':
-        return
+
     sim_dict = {}
     for d_type in dict_types:
         name = os.path.join(result_path, f'{tf_name}@{d_type}.json')
@@ -225,6 +226,7 @@ def main(njobs=1):
         with ctx.Pool(njobs) as p:
             p.starmap(process_tf, [(tf_name, tf_info, cisbp_dict) for tf_name, tf_info in info_dict.items()])
     else:
+        print(*[x for x in info_dict.keys()], sep='\n')
         for tf_name, tf_info in info_dict.items():
             process_tf(tf_name, tf_info, cisbp_dict)
 
