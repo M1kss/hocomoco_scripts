@@ -178,8 +178,8 @@ def process_tf(tf_name, tf_info, cisbp_dict):
             continue
         with open(name) as f:
             sim_dict[d_type] = json.load(f)
-    if os.path.exists(os.path.join('reports', tf_name + '.1.xlsx')):
-        return
+    # if os.path.exists(os.path.join('reports', tf_name + '.1.xlsx')):
+    #     return
 
     print('Parsing sim dict')
     for exp in tqdm(tf_info):
@@ -226,7 +226,6 @@ def main(njobs=1):
         with ctx.Pool(njobs) as p:
             p.starmap(process_tf, [(tf_name, tf_info, cisbp_dict) for tf_name, tf_info in info_dict.items()])
     else:
-        print(*[x for x in info_dict.keys()], sep='\n')
         for tf_name, tf_info in info_dict.items():
             process_tf(tf_name, tf_info, cisbp_dict)
 
