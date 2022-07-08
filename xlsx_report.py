@@ -161,12 +161,13 @@ def write_tf(report_path, sorted_tf_info):
         sheet.write(index + 1, 10 + len(dict_types[1:]), best_d_type)
     workbook.close()
 
+
 def process_tf(tf_name, tf_info, cisbp_dict):
     if allowed_tfs is not None:
         if tf_name in allowed_tfs:
             return
     print('Processing {}'.format(tf_name))
-    if tf_name == 'NANOG':
+    if tf_name != 'HNF4A':
         return
     sim_dict = {}
     for d_type in dict_types:
