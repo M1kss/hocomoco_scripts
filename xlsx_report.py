@@ -163,8 +163,6 @@ def write_tf(report_path, sorted_tf_info):
 
 
 def process_tf(tf_name, tf_info, cisbp_dict):
-    if tf_name != 'HNF4A':
-        return
     if allowed_tfs is not None:
         if tf_name in allowed_tfs:
             return
