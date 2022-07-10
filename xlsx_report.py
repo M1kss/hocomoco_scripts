@@ -102,7 +102,7 @@ def check_empty_xlsx(fullpath):
 
 
 def write_tf(report_path, sorted_tf_info):
-    if not check_empty_xlsx(report_path):
+    if os.path.exists(report_path) and not check_empty_xlsx(report_path):
         return
     workbook = xlsxwriter.Workbook(report_path)
     print('Writing', report_path)
