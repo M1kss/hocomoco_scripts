@@ -95,7 +95,10 @@ def get_max(exp):
 
 
 def check_empty_xlsx(fullpath):
-    xlsxfile = openpyxl.load_workbook(fullpath)
+    try:
+        xlsxfile = openpyxl.load_workbook(fullpath)
+    except KeyError:
+        return True
     return len(xlsxfile.active.rows) <= 1
 
 
