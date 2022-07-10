@@ -101,7 +101,7 @@ def check_empty_xlsx(fullpath):
     return xls.empty
 
 
-def write_tf(report_path, sorted_tf_info):
+def write_tf(report_path, sorted_tf_info, no_tqdm=True):
     if os.path.exists(report_path) and not check_empty_xlsx(report_path):
         return
     workbook = xlsxwriter.Workbook(report_path)
@@ -133,7 +133,11 @@ def write_tf(report_path, sorted_tf_info):
     sheet.write(0, 10 + len(dict_types[1:]), 'Most_sim_TF')
     sheet.write(0, 11 + len(dict_types[1:]), 'Most_sim_type')
     sheet.freeze_panes(1, 0)  # Freeze the first row. KDIC
-    for index, exp in tqdm(enumerate(sorted_tf_info), total=len(sorted_tf_info)):
+    if no_tqdm:
+        iterator = enumerate(sorted_tf_info)
+    else:
+        iterator = tqdm(enumerate(sorted_tf_info), total=len(sorted_tf_info))
+    for index, exp in iterator:
         sheet.set_column(0, 0, name_width)
         sheet.set_column(1, 2, 1.5)
         sheet.set_column(5, 5, motif_len * 2.5)
@@ -221,7 +225,7 @@ def process_tf(tf_name, tf_info, cisbp_dict, no_tqdm=True):
     parts_start = [i for i in range(0, len(sorted_tf_info), chunk_size)]
     for i in parts_start:
         write_tf(os.path.join('reports', '{}.{}.xlsx'.format(tf_name, i // chunk_size + 1)),
-                 sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))])
+                 sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))], no_tqdm=no_tqdm)
 
 
 def main(njobs=1):
