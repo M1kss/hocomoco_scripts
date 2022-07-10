@@ -1,5 +1,6 @@
 import pandas as pd
 import xlsxwriter
+import openpyxl
 import json
 import os
 from base64 import b64encode
@@ -94,10 +95,8 @@ def get_max(exp):
 
 
 def check_empty_xlsx(fullpath):
-
-    xls = pd.read_excel(fullpath, sheet_name="sheet1")
-
-    return xls.empty
+    xlsxfile = openpyxl.load_workbook(fullpath)
+    return len(xlsxfile.active.rows) <= 1
 
 
 def write_tf(report_path, sorted_tf_info, no_tqdm=True):
