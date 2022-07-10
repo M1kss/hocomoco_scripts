@@ -96,25 +96,9 @@ def get_max(exp):
 
 def check_empty_xlsx(fullpath):
 
-    xls = xlrd.open_workbook(fullpath)
+    xls = pd.read_excel(fullpath)
 
-    is_empty = None
-
-    for sheet in xls.sheets():
-        number_of_rows = sheet.nrows
-
-        if number_of_rows == 1:
-            header = sheet.row_values(0)
-            # then If it contains only headers I want to treat as empty
-            if header:
-                is_empty = True
-                break
-
-        if number_of_rows > 1:
-            is_empty = False
-            break
-
-    return is_empty
+    return xls.empty
 
 
 def write_tf(report_path, sorted_tf_info):
