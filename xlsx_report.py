@@ -8,7 +8,6 @@ import requests
 from cairosvg import svg2png
 from tqdm import tqdm
 import sys
-import xlrd
 import multiprocessing as mp
 from cor import dict_types, motif_dir, result_path, read_info_dict, read_cisbp_df, allowed_tfs, \
     hocomoco_path
@@ -96,7 +95,7 @@ def get_max(exp):
 
 def check_empty_xlsx(fullpath):
 
-    xls = pd.read_excel(fullpath)
+    xls = pd.read_excel(fullpath, engine='openpyxl')
 
     return xls.empty
 
@@ -179,6 +178,8 @@ def write_tf(report_path, sorted_tf_info, no_tqdm=True):
 
 
 def process_tf(tf_name, tf_info, cisbp_dict, no_tqdm=True):
+    if tf_name != 'ADNP':
+        return
     if allowed_tfs is not None:
         if tf_name in allowed_tfs:
             return
