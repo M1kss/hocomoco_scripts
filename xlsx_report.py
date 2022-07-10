@@ -95,7 +95,7 @@ def get_max(exp):
 
 def check_empty_xlsx(fullpath):
 
-    xls = pd.read_excel(fullpath, sheetname="sheet1")
+    xls = pd.read_excel(fullpath, sheet_name="sheet1")
 
     return xls.empty
 
