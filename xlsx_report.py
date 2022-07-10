@@ -99,7 +99,7 @@ def check_empty_xlsx(fullpath):
         xlsxfile = openpyxl.load_workbook(fullpath)
     except KeyError:
         return True
-    return len(xlsxfile.active.rows) <= 1
+    return len([x for x in xlsxfile.active.rows]) <= 1
 
 
 def write_tf(report_path, sorted_tf_info, no_tqdm=True):
