@@ -180,6 +180,8 @@ def write_tf(report_path, sorted_tf_info, no_tqdm=True):
 
 
 def process_tf(tf_name, tf_info, cisbp_dict, no_tqdm=True):
+    if tf_name != 'ADNP':
+        return
     if allowed_tfs is not None:
         if tf_name in allowed_tfs:
             return
