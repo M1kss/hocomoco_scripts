@@ -8,6 +8,7 @@ import requests
 from cairosvg import svg2png
 from tqdm import tqdm
 import sys
+import xlrd
 import multiprocessing as mp
 from cor import dict_types, motif_dir, result_path, read_info_dict, read_cisbp_df, allowed_tfs, \
     hocomoco_path
@@ -93,9 +94,34 @@ def get_max(exp):
         return None, 0
 
 
+def check_empty_xlsx(fullpath):
+
+    xls = xlrd.open_workbook(fullpath)
+
+    is_empty = None
+
+    for sheet in xls.sheets():
+        number_of_rows = sheet.nrows
+
+        if number_of_rows == 1:
+            header = sheet.row_values(0)
+            # then If it contains only headers I want to treat as empty
+            if header:
+                is_empty = True
+                break
+
+        if number_of_rows > 1:
+            is_empty = False
+            break
+
+    return is_empty
+
+
 def write_tf(report_path, sorted_tf_info):
+    if not check_empty_xlsx(report_path):
+        return
     workbook = xlsxwriter.Workbook(report_path)
-    print(report_path)
+    print('Writing', report_path)
     green_format = workbook.add_format({'bg_color': '#C6EFCE'})
     yellow_format = workbook.add_format({'bg_color': '#FFF77D'})
     null_format = workbook.add_format()
@@ -164,9 +190,7 @@ def write_tf(report_path, sorted_tf_info):
     workbook.close()
 
 
-def process_tf(tf_name, tf_info, cisbp_dict):
-    if tf_name != 'CTCFL':
-        return
+def process_tf(tf_name, tf_info, cisbp_dict, no_tqdm=True):
     if allowed_tfs is not None:
         if tf_name in allowed_tfs:
             return
@@ -182,9 +206,12 @@ def process_tf(tf_name, tf_info, cisbp_dict):
             sim_dict[d_type] = json.load(f)
     # if os.path.exists(os.path.join('reports', tf_name + '.1.xlsx')):
     #     return
-
+    if no_tqdm:
+        iterator = tf_info
+    else:
+        iterator = tqdm(tf_info)
     print('Parsing sim dict')
-    for exp in tqdm(tf_info):
+    for exp in iterator:
         exp['name'] = craft_motif_name(exp)
         pcm_name = os.path.splitext(os.path.basename(exp['pcm_path']))[0]
         for i, d_type in enumerate(dict_types):
@@ -229,7 +256,7 @@ def main(njobs=1):
             p.starmap(process_tf, [(tf_name, tf_info, cisbp_dict) for tf_name, tf_info in info_dict.items()])
     else:
         for tf_name, tf_info in info_dict.items():
-            process_tf(tf_name, tf_info, cisbp_dict)
+            process_tf(tf_name, tf_info, cisbp_dict, False)
 
 
 if __name__ == '__main__':
