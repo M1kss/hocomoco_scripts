@@ -147,7 +147,7 @@ def write_tf(report_path, sorted_tf_info, no_tqdm=True):
         sheet.write(index + 1, 2, exp['selected_by'][:1].capitalize())
         sheet.write(index + 1, 3, exp['words'])
         sheet.write(index + 1, 4, round(exp['seqs'] / exp['total'], 2))
-        sheet.write(index + 1, 6, motif_len)
+        sheet.write(index + 1, 6, exp['motif_len'])
         sheet.set_row(index + 1, 30)
 
         for i, d_type in enumerate(dict_types[1:]):
@@ -230,7 +230,7 @@ def process_tf(tf_name, tf_info, cisbp_dict, no_tqdm=True):
     chunk_size = 1000
     parts_start = [i for i in range(0, len(sorted_tf_info), chunk_size)]
     for i in parts_start:
-        write_tf(os.path.join('reports', '{}.{}.xlsx'.format(tf_name, i // chunk_size + 1)),
+        write_tf(os.path.join('reports_motif_len', '{}.{}.xlsx'.format(tf_name, i // chunk_size + 1)),
                  sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))], no_tqdm=no_tqdm)
 
 
