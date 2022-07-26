@@ -171,6 +171,7 @@ def write_tf(report_path, sorted_tf_info, no_tqdm=True):
                 sheet.insert_image(index + 1, 5,
                                    draw_svg(exp['pcm_path'], exp[best_d_type]['orientation'] == 'revcomp'),
                                    {'x_scale': 0.4, 'y_scale': 0.4})
+                sheet.write(index + 1, 10 + len(dict_types[1:]), exp[best_d_type]['name'])
                 try:
                     best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'],
                                                                   best_d_type),
@@ -181,7 +182,6 @@ def write_tf(report_path, sorted_tf_info, no_tqdm=True):
         if best_sim_motif is not None:
             sheet.insert_image(index + 1, 9 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
         sheet.set_column(9 + len(dict_types[1:]), 9 + len(dict_types[1:]), motif_len * 2.5)
-        sheet.write(index + 1, 10 + len(dict_types[1:]), exp[best_d_type]['name'])
         sheet.write(index + 1, 11 + len(dict_types[1:]), best_d_type)
     workbook.close()
 
