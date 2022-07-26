@@ -230,7 +230,7 @@ def process_tf(tf_name, tf_info, cisbp_dict, no_tqdm=True):
         tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['name'])
     sorted_tf_info = [x for x in tf_info if get_max(x)[1] >= 0.01]
     chunk_size = 1000
-    if len(sorted_tf_info) < 10:
+    if len(sorted_tf_info) < 6 and len(tf_info) >= 6:
         sorted_tf_info = tf_info
     else:
         return
