@@ -228,9 +228,13 @@ def process_tf(tf_name, tf_info, cisbp_dict, no_tqdm=True):
         tf_info = sorted(tf_info, key=lambda x: x['hocomoco']['name'])
     sorted_tf_info = [x for x in tf_info if get_max(x)[1] >= 0.01]
     chunk_size = 1000
+    if len(sorted_tf_info) < 10:
+        sorted_tf_info = tf_info
+    else:
+        return
     parts_start = [i for i in range(0, len(sorted_tf_info), chunk_size)]
     for i in parts_start:
-        write_tf(os.path.join('reports_motif_len', '{}.{}.xlsx'.format(tf_name, i // chunk_size + 1)),
+        write_tf(os.path.join('reports_motif_no_filter', '{}.{}.xlsx'.format(tf_name, i // chunk_size + 1)),
                  sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))], no_tqdm=no_tqdm)
 
 
