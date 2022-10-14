@@ -142,46 +142,47 @@ def write_tf(report_path, sorted_tf_info, no_tqdm=True):
     for index, exp in iterator:
         sheet.set_column(0, 0, name_width)
         sheet.set_column(1, 2, 1.5)
-        sheet.set_column(5, 5, motif_len * 2.5)
+        #sheet.set_column(6, 6, motif_len * 2.5)
         sheet.write(index + 1, 0, exp['name'])
         sheet.write(index + 1, 1, exp['specie'][0].upper())
         sheet.write(index + 1, 2, exp['selected_by'][:1].capitalize())
-        sheet.write(index + 1, 3, exp['words'])
-        sheet.write(index + 1, 4, round(exp['seqs'] / exp['total'], 2))
-        sheet.write(index + 1, 6, exp['motif_len'])
+        sheet.write(index + 1, 3, exp['selected_by'][:1].capitalize())
+        sheet.write(index + 1, 4, exp['words'])
+        sheet.write(index + 1, 5, round(exp['seqs'] / exp['total'], 2))
+        sheet.write(index + 1, 7, exp['motif_len'])
         sheet.set_row(index + 1, 30)
 
         for i, d_type in enumerate(dict_types[1:]):
-            sheet.write(index + 1, 9 + i, round(exp[d_type]['sim'], 2) if exp[d_type]['sim'] else None)
+            sheet.write(index + 1, 10 + i, round(exp[d_type]['sim'], 2) if exp[d_type]['sim'] else None)
         best_d_type, best_sim = get_max(exp)
         if exp['hocomoco']['sim']:
             hocomoco_orient = exp['hocomoco']['orientation'] == 'revcomp'
-            sheet.write(index + 1, 7, round(exp['hocomoco']['sim'], 2),
+            sheet.write(index + 1, 8, round(exp['hocomoco']['sim'], 2),
                         get_format(exp['hocomoco']['sim'], green_format, yellow_format, null_format))
-            sheet.write(index + 1, 8, exp['hocomoco']['name'])
-            sheet.insert_image(index + 1, 5,
-                               draw_svg(exp['pcm_path'], hocomoco_orient),
-                               {'x_scale': 0.4, 'y_scale': 0.4})
-            best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'],
-                                                          best_d_type),
-                                      hocomoco_orient ^ (exp[best_d_type]['orientation'] == 'revcomp'))
+            sheet.write(index + 1, 9, exp['hocomoco']['name'])
+            # sheet.insert_image(index + 1, 6,
+            #                    draw_svg(exp['pcm_path'], hocomoco_orient),
+            #                    {'x_scale': 0.4, 'y_scale': 0.4})
+            # best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'],
+            #                                               best_d_type),
+            #                           hocomoco_orient ^ (exp[best_d_type]['orientation'] == 'revcomp'))
 
-        else:
-            sheet.insert_image(index + 1, 5,
-                               draw_svg(exp['pcm_path'], exp[best_d_type]['orientation'] == 'revcomp'),
-                               {'x_scale': 0.4, 'y_scale': 0.4})
-            try:
-                best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'],
-                                                              best_d_type),
-                                          False)
-            except:
-                best_sim_motif = None
+        # else:
+            # sheet.insert_image(index + 1, 5,
+            #                    draw_svg(exp['pcm_path'], exp[best_d_type]['orientation'] == 'revcomp'),
+            #                    {'x_scale': 0.4, 'y_scale': 0.4})
+            # try:
+            #     best_sim_motif = draw_svg(get_comp_motif_path(exp[best_d_type]['motif'],
+            #                                                   best_d_type),
+            #                               False)
+            # except:
+            #     best_sim_motif = None
 
-        if best_sim_motif is not None:
-            sheet.insert_image(index + 1, 9 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
-        sheet.set_column(9 + len(dict_types[1:]), 9 + len(dict_types[1:]), motif_len * 2.5)
-        sheet.write(index + 1, 10 + len(dict_types[1:]), exp[best_d_type]['name'])
-        sheet.write(index + 1, 11 + len(dict_types[1:]), best_d_type)
+        # if best_sim_motif is not None:
+        #     sheet.insert_image(index + 1, 9 + len(dict_types[1:]), best_sim_motif, {'x_scale': 0.4, 'y_scale': 0.4})
+        # sheet.set_column(9 + len(dict_types[1:]), 9 + len(dict_types[1:]), motif_len * 2.5)
+        sheet.write(index + 1, 11 + len(dict_types[1:]), exp[best_d_type]['name'])
+        sheet.write(index + 1, 12 + len(dict_types[1:]), best_d_type)
     workbook.close()
 
 
