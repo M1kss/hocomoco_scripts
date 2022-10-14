@@ -145,7 +145,7 @@ def write_tf(report_path, sorted_tf_info, no_tqdm=True):
         #sheet.set_column(6, 6, motif_len * 2.5)
         sheet.write(index + 1, 0, exp['name'])
         sheet.write(index + 1, 1, exp['specie'][0].upper())
-        sheet.write(index + 1, 2, exp['selected_by'][:1].capitalize())
+        sheet.write(index + 1, 2, exp['motif_type'])
         sheet.write(index + 1, 3, exp['selected_by'][:1].capitalize())
         sheet.write(index + 1, 4, exp['words'])
         sheet.write(index + 1, 5, round(exp['seqs'] / exp['total'], 2))
