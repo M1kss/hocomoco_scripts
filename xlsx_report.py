@@ -14,6 +14,7 @@ from cor import dict_types, motif_dir, result_path, read_info_dict, read_cisbp_d
     hocomoco_path
 
 
+
 def get_made_part(objs, index, parts=10):
     div, mod = divmod(index, (len(objs) // parts))
     if mod == 0:
@@ -184,7 +185,7 @@ def write_tf(report_path, sorted_tf_info, no_tqdm=True):
     workbook.close()
 
 
-def process_tf(tf_name, tf_info, cisbp_dict, no_tqdm=True):
+def process_tf(tf_name, tf_info, cisbp_dict, outdir, no_tqdm=True):
     if allowed_tfs is not None:
         if tf_name in allowed_tfs:
             return
@@ -230,11 +231,11 @@ def process_tf(tf_name, tf_info, cisbp_dict, no_tqdm=True):
     chunk_size = 1000
     parts_start = [i for i in range(0, len(sorted_tf_info), chunk_size)]
     for i in parts_start:
-        write_tf(os.path.join('reports_motif_len', '{}.{}.xlsx'.format(tf_name, i // chunk_size + 1)),
+        write_tf(os.path.join(outdir, '{}.{}.xlsx'.format(tf_name, i // chunk_size + 1)),
                  sorted_tf_info[i:min(i + chunk_size, len(sorted_tf_info))], no_tqdm=no_tqdm)
 
 
-def main(njobs=1):
+def main(outdir):
     info_dict = read_info_dict()
     cisbp_dfs = read_cisbp_df()
     cisbp_dict = {}
@@ -244,14 +245,14 @@ def main(njobs=1):
         df['TF_Name'] = df['TF_Name'].apply(lambda x: x.upper() + '_{}'.format(key.upper()))
         cisbp_dict = {**cisbp_dict,
                       **pd.Series(df['TF_Name'].values, index=df.Motif_ID).to_dict()}
-    if njobs > 1:
-        ctx = mp.get_context("forkserver")
-        with ctx.Pool(njobs) as p:
-            p.starmap(process_tf, [(tf_name, tf_info, cisbp_dict) for tf_name, tf_info in info_dict.items()])
-    else:
-        for tf_name, tf_info in info_dict.items():
-            process_tf(tf_name, tf_info, cisbp_dict, False)
+    # if njobs > 1:
+    #     ctx = mp.get_context("forkserver")
+    #     with ctx.Pool(njobs) as p:
+    #         p.starmap(process_tf, [(tf_name, tf_info, cisbp_dict) for tf_name, tf_info in info_dict.items()])
+    # else:
+    for tf_name, tf_info in info_dict.items():
+        process_tf(tf_name, tf_info, cisbp_dict, outdir=outdir, no_tqdm=False)
 
 
 if __name__ == '__main__':
-    main(int(sys.argv[1]))
+    main(sys.argv[1])
