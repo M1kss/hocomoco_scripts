@@ -250,6 +250,7 @@ def main(outdir):
     #     with ctx.Pool(njobs) as p:
     #         p.starmap(process_tf, [(tf_name, tf_info, cisbp_dict) for tf_name, tf_info in info_dict.items()])
     # else:
+
     for tf_name, tf_info in info_dict.items():
         process_tf(tf_name, tf_info, cisbp_dict, outdir=outdir, no_tqdm=False)
 
