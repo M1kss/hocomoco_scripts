@@ -104,6 +104,12 @@ def parse_one_file(file_name, outputs_dir, specie):
             motif_len = len(values)
             words = [float(value) for key, value in parsed_output if key == 'WRDS'][k]
             seqs = [float(value) for key, value in parsed_output if key == 'SEQS'][k]
+            words_lines = []
+            for key, value in parsed_output:
+                if key == 'WORD':
+                    words_lines.append(value)
+                if key == 'LENG':
+                    break
             for a, c, g, t in values:
                 pcm.write('\t'.join([a, c, g, t]) + '\n')
         result.append({
@@ -113,6 +119,7 @@ def parse_one_file(file_name, outputs_dir, specie):
             'motif_type': motif_type,
             'selected_by': best_by,
             'words': words,
+            'words_lines': words_lines,
             'seqs': seqs,
             'total': total,
             'motif_index': k,
