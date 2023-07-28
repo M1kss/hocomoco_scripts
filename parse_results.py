@@ -111,14 +111,15 @@ def parse_one_file(file_name, outputs_dir, specie):
             check_output = False
             counter = 0
             for key, value in parsed_output:
-                if check_output or key == 'LIST':
+                if check_output and key == 'LENG':
+                    counter += 1
+                    check_output = False
+                elif check_output or key == 'LIST':
                     assert key in ('WORD', 'LIST')
                     if counter == k:
                         words_lines.append(value)
                     check_output = True
-                if check_output and key == 'LENG':
-                    counter += 1
-                    check_output = False
+
             for a, c, g, t in values:
                 pcm.write('\t'.join([a, c, g, t]) + '\n')
         result.append({
